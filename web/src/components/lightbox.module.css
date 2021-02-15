@@ -1,0 +1,11 @@
+.dialogInner {
+  position: relative;
+}
+.closeicon {
+  cursor: pointer;
+  height: 30px;
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: auto;
+}

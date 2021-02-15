@@ -1,0 +1,14 @@
+.main {
+  background: #fff;
+  /* border: 1px solid #e5e5e5; */
+  border-radius: 2px;
+}
+
+blockquote {
+	border-left: 10px solid #D1C9C6;
+	font-size: 1.1em;
+	font-style: italic;
+	margin: 2rem 0;	
+	max-width: 700px;
+	padding: 0 1rem;
+}
