@@ -1,10 +1,38 @@
 // in post.js
 
 export default {
-  title: "Blog Post",
-  name: "post",
+  title: "Page",
+  name: "page",
   type: "document",
   fields: [
+    {
+      title: "Template Key",
+      name: "templateKey",
+      type: "string",
+    },
+    {
+      title: "Folder",
+      name: "folder",
+      type: "reference",
+      description: "Which top level folder is the page located",
+      to: [{ type: "pageCategory" }],
+    },
+    {
+      title: "Columns",
+      name: "columns",
+      type: "string",
+    },
+    {
+      title: "Title",
+      name: "title",
+      type: "string",
+    },
+    {
+      title: "Meta Description",
+      name: "description",
+      type: "string",
+    },
+
     {
       title: "Published",
       name: "published",
@@ -15,12 +43,6 @@ export default {
       title: "Featured Image",
       name: "featured_image",
       type: "image",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      title: "Title",
-      name: "title",
-      type: "string",
       validation: (Rule) => Rule.required(),
     },
     {
