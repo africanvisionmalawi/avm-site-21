@@ -1,22 +1,10 @@
 // in post.js
 
 export default {
-  title: "News",
-  name: "post",
+  title: "Site Settings",
+  name: "siteSettings",
   type: "document",
   fields: [
-    {
-      title: "Published",
-      name: "published",
-      type: "boolean",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      title: "Featured Image",
-      name: "featured_image",
-      type: "image",
-      validation: (Rule) => Rule.required(),
-    },
     {
       title: "Title",
       name: "title",
@@ -50,14 +38,17 @@ export default {
       type: "tags",
     },
     {
-      title: "Body",
-      name: "body",
-      type: "richText",
-    },
-    {
-      title: "PDF Upload",
-      name: "pdf",
-      type: "file",
+      title: "Content",
+      name: "content",
+      type: "array",
+      of: [
+        {
+          type: "block",
+        },
+        {
+          type: "image",
+        },
+      ],
     },
   ],
 };

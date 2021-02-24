@@ -2,10 +2,15 @@
 // Then import schema types from any plugins that might expose them
 import schemaTypes from "all:part:@sanity/base/schema-type";
 import createSchema from "part:@sanity/base/schema-creator";
+import pageCategory from "./category";
+import pageLink from "./components/pageLinksPhoto.js";
+import figure from "./objects/figure";
 import page from "./page";
-import pageCategory from "./page-category";
 import post from "./post";
+import richText from "./richText";
+import richTextSimple from "./richTextSimple";
 import shop from "./shop";
+import siteSettings from "./siteSettings";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,5 +24,10 @@ export default createSchema({
     post,
     shop,
     page,
+    siteSettings,
+    richText,
+    richTextSimple,
+    pageLink,
+    figure,
   ]),
 });

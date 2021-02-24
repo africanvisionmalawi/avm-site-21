@@ -6,65 +6,43 @@ export default {
   type: "document",
   fields: [
     {
-      title: "Template Key",
-      name: "templateKey",
-      type: "string",
-    },
-    {
-      title: "Folder",
-      name: "folder",
-      type: "reference",
-      description: "Which top level folder is the page located",
-      to: [{ type: "pageCategory" }],
-    },
-    {
-      title: "Columns",
-      name: "columns",
-      type: "string",
-    },
-    {
       title: "Title",
       name: "title",
       type: "string",
     },
     {
-      title: "Meta Description",
-      name: "description",
-      type: "string",
-    },
-
-    {
-      title: "Published",
-      name: "published",
-      type: "boolean",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      title: "Featured Image",
-      name: "featured_image",
-      type: "image",
+      title: "Category",
+      name: "category",
+      type: "reference",
+      description: "Which top level folder is the page located",
+      to: [{ type: "pageCategory" }],
       validation: (Rule) => Rule.required(),
     },
     {
       title: "Slug",
       name: "slug",
       type: "slug",
+      description:
+        "This will have whatever category you select above prefixed to it",
       options: {
-        source: "title",
+        source: (doc) => `${doc.title}`,
       },
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Date",
-      name: "date",
-      type: "datetime",
-      validation: (Rule) => Rule.required(),
+      title: "Featured Image",
+      name: "featured_image",
+      type: "image",
     },
     {
-      title: "Meta Description",
-      name: "meta_description",
-      type: "string",
-      validation: (Rule) => Rule.required(),
+      title: "Body",
+      name: "body",
+      type: "richText",
+    },
+    {
+      title: "Page Links",
+      name: "pageLinks",
+      type: "pageLink",
     },
     {
       title: "Tags",
@@ -72,22 +50,14 @@ export default {
       type: "tags",
     },
     {
-      title: "Content",
-      name: "content",
-      type: "array",
-      of: [
-        {
-          type: "block",
-        },
-        {
-          type: "image",
-        },
-      ],
-    },
-    {
       title: "PDF Upload",
       name: "pdf",
       type: "file",
+    },
+    {
+      title: "Meta Description",
+      name: "description",
+      type: "string",
     },
   ],
 };

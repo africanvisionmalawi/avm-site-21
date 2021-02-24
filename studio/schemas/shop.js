@@ -1,7 +1,7 @@
 // in post.js
 
 export default {
-  title: "Shop Product",
+  title: "Shop",
   name: "shop",
   type: "document",
   fields: [
@@ -14,15 +14,7 @@ export default {
     {
       title: "Body",
       name: "body",
-      type: "array",
-      of: [
-        {
-          type: "block",
-        },
-        {
-          type: "image",
-        },
-      ],
+      type: "richText",
     },
     {
       title: "templateKey",
