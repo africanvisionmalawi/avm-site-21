@@ -40,26 +40,31 @@ export default {
       type: "richText",
     },
     {
-      name: "content",
-      type: "array",
-      title: "Page sections",
-      description: "Add, edit, and reorder sections",
-      of: [{ type: "hero" }, { type: "pageLinks" }],
+      title: "Videos",
+      name: "videos",
+      type: "videoGallery",
     },
+    // {
+    //   name: "content",
+    //   type: "array",
+    //   title: "Page sections",
+    //   description: "Add, edit, and reorder sections",
+    //   of: [{ type: "hero" }, { type: "pageLinks" }],
+    // },
     {
       title: "Page Links",
       name: "inks",
       type: "pageLinks",
     },
     {
+      title: "Photo gallery",
+      name: "gallery",
+      type: "photoGallery",
+    },
+    {
       title: "Tags",
       name: "tags",
       type: "tags",
-    },
-    {
-      title: "PDF Upload",
-      name: "pdf",
-      type: "file",
     },
     {
       title: "Meta Description",

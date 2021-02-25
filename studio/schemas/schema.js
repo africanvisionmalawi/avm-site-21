@@ -12,8 +12,11 @@ import hero from "./objects/hero";
 import mainImage from "./objects/mainImage";
 import pageLinkPhoto from "./objects/pageLinkPhoto.js";
 import pageLinks from "./objects/pageLinks.js";
+import photoGallery from "./objects/photoGallery";
 import richText from "./objects/richText";
 import richTextSimple from "./objects/richTextSimple";
+import video from "./objects/video";
+import videoGallery from "./objects/videoGallery";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -35,5 +38,8 @@ export default createSchema({
     figure,
     hero,
     mainImage,
+    video,
+    videoGallery,
+    photoGallery,
   ]),
 });
