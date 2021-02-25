@@ -3,14 +3,17 @@
 import schemaTypes from "all:part:@sanity/base/schema-type";
 import createSchema from "part:@sanity/base/schema-creator";
 import pageCategory from "./category";
-import pageLink from "./components/pageLinksPhoto.js";
+import page from "./documents/page";
+import post from "./documents/post";
+import shop from "./documents/shop";
+import siteSettings from "./documents/siteSettings";
 import figure from "./objects/figure";
-import page from "./page";
-import post from "./post";
-import richText from "./richText";
-import richTextSimple from "./richTextSimple";
-import shop from "./shop";
-import siteSettings from "./siteSettings";
+import hero from "./objects/hero";
+import mainImage from "./objects/mainImage";
+import pageLinkPhoto from "./objects/pageLinkPhoto.js";
+import pageLinks from "./objects/pageLinks.js";
+import richText from "./objects/richText";
+import richTextSimple from "./objects/richTextSimple";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -27,7 +30,10 @@ export default createSchema({
     siteSettings,
     richText,
     richTextSimple,
-    pageLink,
+    pageLinks,
+    pageLinkPhoto,
     figure,
+    hero,
+    mainImage,
   ]),
 });

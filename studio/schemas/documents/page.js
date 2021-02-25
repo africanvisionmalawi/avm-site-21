@@ -30,9 +30,9 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Featured Image",
-      name: "featured_image",
-      type: "image",
+      title: "Hero Image",
+      name: "hero",
+      type: "hero",
     },
     {
       title: "Body",
@@ -40,9 +40,16 @@ export default {
       type: "richText",
     },
     {
+      name: "content",
+      type: "array",
+      title: "Page sections",
+      description: "Add, edit, and reorder sections",
+      of: [{ type: "hero" }, { type: "pageLinks" }],
+    },
+    {
       title: "Page Links",
-      name: "pageLinks",
-      type: "pageLink",
+      name: "inks",
+      type: "pageLinks",
     },
     {
       title: "Tags",
