@@ -28,8 +28,9 @@ export default {
   ],
   preview: {
     select: {
+      media: "figure",
       imageUrl: "asset.url",
-      title: "caption",
+      title: "alt",
     },
   },
 };

@@ -7,8 +7,8 @@ export default {
       type: "figure",
     },
     {
-      type: "string",
       name: "linkTitle",
+      type: "string",
     },
     {
       name: "linkText",
@@ -21,4 +21,16 @@ export default {
       to: [{ type: "page" }],
     },
   ],
+  preview: {
+    select: {
+      name: "linkTitle",
+      media: "photo",
+    },
+    prepare({ linkTitle, media }) {
+      return {
+        title: linkTitle,
+        media,
+      };
+    },
+  },
 };
