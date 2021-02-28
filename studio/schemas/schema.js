@@ -7,6 +7,8 @@ import page from "./documents/page";
 import post from "./documents/post";
 import shop from "./documents/shop";
 import siteSettings from "./documents/siteSettings";
+import blockPortableText from "./objects/blockPortableText";
+import bodyPortableText from "./objects/bodyPortableText";
 import figure from "./objects/figure";
 import hero from "./objects/hero";
 import mainImage from "./objects/mainImage";
@@ -41,5 +43,7 @@ export default createSchema({
     video,
     videoGallery,
     photoGallery,
+    bodyPortableText,
+    blockPortableText,
   ]),
 });

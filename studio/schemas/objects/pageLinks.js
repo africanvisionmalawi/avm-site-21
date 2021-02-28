@@ -15,4 +15,14 @@ export default {
     collapsible: true,
     collapsed: true,
   },
+  preview: {
+    select: {
+      title: "Page Links (click to view)",
+    },
+    prepare({}) {
+      return {
+        title: "Page Links (click to view/edit)",
+      };
+    },
+  },
 };

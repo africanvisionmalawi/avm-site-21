@@ -37,7 +37,7 @@ export default {
     {
       title: "Body",
       name: "body",
-      type: "richText",
+      type: "bodyPortableText",
     },
     // {
     //   title: "Videos",
@@ -51,7 +51,7 @@ export default {
       description: "Add, edit, and reorder sections",
       of: [
         { type: "hero" },
-        { type: "richText" },
+        { type: "blockPortableText" },
         { type: "videoGallery" },
         { type: "pageLinks" },
         { type: "photoGallery" },

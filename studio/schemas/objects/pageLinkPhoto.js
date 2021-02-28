@@ -23,12 +23,12 @@ export default {
   ],
   preview: {
     select: {
-      name: "linkTitle",
+      title: "linkTitle",
       media: "photo",
     },
-    prepare({ linkTitle, media }) {
+    prepare({ title, media }) {
       return {
-        title: linkTitle,
+        title: title,
         media,
       };
     },
