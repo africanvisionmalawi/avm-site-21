@@ -103,6 +103,16 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_DATASET,
+        token: process.env.SANITY_READ_TOKEN,
+        watchMode: true,
+        overlayDrafts: true,
+      },
+    },
     // {
     //   resolve: "@bundle-analyzer/gatsby-plugin",
     //   options: { token: process.env.BUNDLE_ANALYZER_TOKEN },

@@ -15,4 +15,11 @@ export default {
     collapsible: true,
     collapsed: true,
   },
+  preview: {
+    prepare({}) {
+      return {
+        title: "Photo gallery (click to view/edit)",
+      };
+    },
+  },
 };

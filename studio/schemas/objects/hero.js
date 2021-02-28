@@ -11,6 +11,11 @@ export default {
       name: "image",
       type: "mainImage",
     },
+    {
+      name: "mobileImage",
+      type: "mainImage",
+      title: "Mobile version of image (optional)",
+    },
   ],
   options: {
     collapsible: true,

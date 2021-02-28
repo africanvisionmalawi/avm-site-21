@@ -15,4 +15,11 @@ export default {
     collapsible: true,
     collapsed: true,
   },
+  preview: {
+    prepare({}) {
+      return {
+        title: "Video gallery (click to view/edit)",
+      };
+    },
+  },
 };
