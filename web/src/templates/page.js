@@ -6,7 +6,7 @@ import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 import Layout from "../components/Layout";
 // import InfoRows from "../components/InfoRows";
 // import Pricing from "../components/pricing";
-import SEO from "../components/seo";
+// import SEO from "../components/seo";
 
 // export const query = graphql`
 //   query PageTemplateQuery($id: String!) {
@@ -37,10 +37,24 @@ import SEO from "../components/seo";
 //     }
 //   }
 // `;
-export const Page = (props) => {
+
+export const query = graphql`
+  query BlogPostTemplateQuery($id: String!) {
+    page: sanityPage(id: { eq: $id }) {
+      id
+      title
+      slug {
+        current
+      }
+    }
+  }
+`;
+
+const Page = (props) => {
   const { data, errors } = props;
 
   if (errors) {
+    console.log("errors");
     return (
       <Layout>
         <GraphQLErrorList errors={errors} />
@@ -50,11 +64,11 @@ export const Page = (props) => {
 
   const site = (data || {}).site;
 
-  if (!site) {
-    throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-    );
-  }
+  //   if (!site) {
+  //     throw new Error(
+  //       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
+  //     );
+  //   }
 
   const page = data.page || data.route.page;
 
@@ -95,16 +109,20 @@ export const Page = (props) => {
   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
   console.log("here");
   return (
-    <Layout title={pageTitle} description="TODO: description" article={false}>
-      <SEO
-        title={pageTitle}
-        description={site.description}
-        keywords={site.keywords}
-        bodyAttr={{
-          class: "leading-normal tracking-normal text-white gradient",
-        }}
-      />
-      <div>{content}here</div>
-    </Layout>
+    <div>here </div>
+    // <Layout title={pageTitle} description="TODO: description" article={false}>
+    //   <SEO
+    //     title={pageTitle}
+    //     description={site.description}
+    //     keywords={site.keywords}
+    //     bodyAttr={{
+    //       class: "leading-normal tracking-normal text-white gradient",
+    //     }}
+    //   />
+    //   <h2>here is a title</h2>
+    //   <div>{content}here</div>
+    // </Layout>
   );
 };
+
+export default Page;

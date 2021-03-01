@@ -149,7 +149,6 @@ const HeaderInner = styled.div`
 const Wrapper = styled.div`
   background: #fff;
   margin: 0 auto;
-  // max-width: 1920px;
   position: relative;
   width: 100%;
 `;
