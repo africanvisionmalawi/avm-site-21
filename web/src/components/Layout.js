@@ -5,13 +5,13 @@ import { withPrefix } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import { Helmet } from "react-helmet";
-import FeaturedProjectsTiles from "../components/FeaturedProjectsTiles";
-import Footer from "../components/Footer";
+// import FeaturedProjectsTiles from "../components/FeaturedProjectsTiles";
+import Footer from "../components/footer/Footer";
 import Navbar from "../components/nav/main";
 import SubNavBar from "../components/nav/sub";
 import { siteMeta } from "../constants/site";
 // import NavLogo from "../components/NavLogo";
-import "./css/all.css";
+// import "./css/all.css";
 import layoutStyles from "./layout.module.css";
 
 // import useSiteMetadata from "./SiteMetadata";
@@ -115,7 +115,7 @@ const TemplateWrapper = ({ title, description, article, children }) => {
       <Wrapper>
         <div className={layoutStyles.container__top}>
           <div className="main-body">{children}</div>
-          <FeaturedProjectsTiles currentProject="none" displayHeading={true} />
+          {/* <FeaturedProjectsTiles currentProject="none" displayHeading={true} /> */}
         </div>
         <div className={layoutStyles.container__lower}>
           <Footer />
@@ -133,7 +133,6 @@ const TemplateWrapper = ({ title, description, article, children }) => {
 // `;
 
 const Header = styled.div`
-  // background: #c27e34;
   background-color: #c27e34;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239a662e' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
   box-shadow: inset 0px -4px 8px -5px #482a1e;

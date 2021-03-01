@@ -1,46 +1,43 @@
-import { graphql } from "gatsby";
 import React from "react";
-import Hero from "../components/common/hero";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
-import GraphQLErrorList from "../components/graphql/graphql-error-list";
+import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
+// import { BottomWave, TopWave } from "../components/wave";
+import Layout from "../components/Layout";
 // import InfoRows from "../components/InfoRows";
 // import Pricing from "../components/pricing";
 import SEO from "../components/seo";
-// import { BottomWave, TopWave } from "../components/wave";
-import Layout from "../containers/layout";
 
-export const query = graphql`
-  query PageTemplateQuery($id: String!) {
-    route: sanityRoute(id: { eq: $id }) {
-      slug {
-        current
-      }
-      useSiteTitle
-      page {
-        ...PageInfo
-      }
-    }
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-      primaryColor {
-        hex
-      }
-      secondaryColor {
-        hex
-      }
-      title
-      openGraph {
-        title
-        description
-        image {
-          ...SanityImage
-        }
-      }
-    }
-  }
-`;
-
-const Page = (props) => {
+// export const query = graphql`
+//   query PageTemplateQuery($id: String!) {
+//     route: sanityRoute(id: { eq: $id }) {
+//       slug {
+//         current
+//       }
+//       useSiteTitle
+//       page {
+//         ...PageInfo
+//       }
+//     }
+//     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+//       primaryColor {
+//         hex
+//       }
+//       secondaryColor {
+//         hex
+//       }
+//       title
+//       openGraph {
+//         title
+//         description
+//         image {
+//           ...SanityImage
+//         }
+//       }
+//     }
+//   }
+// `;
+export const Page = (props) => {
   const { data, errors } = props;
 
   if (errors) {
@@ -67,21 +64,22 @@ const Page = (props) => {
       let el = null;
       switch (c._type) {
         case "hero":
-          el = <Hero key={c._key} {...c} />;
+          el = "hero";
+          //   el = <Hero key={c._key} {...c} />;
           break;
         case "ctaColumns":
-          el = <CTAColumns key={c._key} {...c} />;
+          //   el = <CTAColumns key={c._key} {...c} />;
           break;
         case "ctaPlug":
-          el = <CTA key={c._key} {...c} />;
+          //   el = <CTA key={c._key} {...c} />;
           break;
         case "uiComponentRef":
           switch (c.name) {
             case "topWave":
-              el = <TopWave />;
+              //   el = <TopWave />;
               break;
             case "bottomWave":
-              el = <BottomWave />;
+              //   el = <BottomWave />;
               break;
             default:
               break;
@@ -93,16 +91,11 @@ const Page = (props) => {
       return el;
     });
 
-  const gradient = {
-    from: (site.primaryColor && site.primaryColor.hex) || "#d53369",
-    to: (site.secondaryColor && site.secondaryColor.hex) || "#daae51",
-  };
-
-  const menuItems = page.navMenu && (page.navMenu.items || []);
+  //   const menuItems = page.navMenu && (page.navMenu.items || []);
   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
-
+  console.log("here");
   return (
-    <Layout navMenuItems={menuItems} textWhite={true}>
+    <Layout title={pageTitle} description="TODO: description" article={false}>
       <SEO
         title={pageTitle}
         description={site.description}
@@ -110,9 +103,8 @@ const Page = (props) => {
         bodyAttr={{
           class: "leading-normal tracking-normal text-white gradient",
         }}
-        gradient={gradient}
       />
-      <div className="pt-24">{content}</div>
+      <div>{content}here</div>
     </Layout>
   );
 };

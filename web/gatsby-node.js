@@ -20,21 +20,64 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   ]);
 };
 
-async function createLandingPages(
-  pathPrefix = "/",
-  graphql,
-  actions,
-  reporter
-) {
+// async function createLandingPages(
+//   pathPrefix = "/",
+//   graphql,
+//   actions,
+//   reporter
+// ) {
+//   const { createPage } = actions;
+//   const result = await graphql(`
+//     {
+//       allSanityRoute(
+//         filter: { slug: { current: { ne: null } }, page: { id: { ne: null } } }
+//       ) {
+//         edges {
+//           node {
+//             id
+//             slug {
+//               current
+//             }
+//           }
+//         }
+//       }
+//     }
+//   `);
+
+//   if (result.errors) throw result.errors;
+
+//   const routeEdges = (result.data.allSanityRoute || {}).edges || [];
+//   routeEdges.forEach((edge) => {
+//     const { id, slug = {} } = edge.node;
+//     const path = [pathPrefix, slug.current, "/"].join("");
+//     reporter.info(`Creating landing page: ${path}`);
+//     createPage({
+//       path,
+//       component: require.resolve("./src/templates/page.js"),
+//       context: { id },
+//     });
+//   });
+// }
+
+async function createPages(pathPrefix = "", graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allSanityRoute(
-        filter: { slug: { current: { ne: null } }, page: { id: { ne: null } } }
+      allSanityPage(
+        filter: {
+          slug: { current: { ne: null } }
+          category: { slug: { current: { ne: null } } }
+        }
       ) {
         edges {
           node {
             id
+            category {
+              title
+              slug {
+                current
+              }
+            }
             slug {
               current
             }
@@ -46,11 +89,11 @@ async function createLandingPages(
 
   if (result.errors) throw result.errors;
 
-  const routeEdges = (result.data.allSanityRoute || {}).edges || [];
-  routeEdges.forEach((edge) => {
+  const pageEdges = (result.data.allSanityPage || {}).edges || [];
+  pageEdges.forEach((edge) => {
     const { id, slug = {} } = edge.node;
-    const path = [pathPrefix, slug.current, "/"].join("");
-    reporter.info(`Creating landing page: ${path}`);
+    const path = `${pathPrefix}${slug.current}/`;
+    reporter.info(`Creating page: ${path}`);
     createPage({
       path,
       component: require.resolve("./src/templates/page.js"),
@@ -102,6 +145,6 @@ async function createLandingPages(
 // }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  await createLandingPages("/", graphql, actions, reporter);
+  await createPages("/", graphql, actions, reporter);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };
