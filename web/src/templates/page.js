@@ -1,10 +1,12 @@
+// import SanityImage from "gatsby-plugin-sanity-image";
 import React from "react";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
+// import InfoRows from "../components/InfoRows";
+import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
 import Layout from "../components/Layout";
-// import InfoRows from "../components/InfoRows";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
 
@@ -45,6 +47,47 @@ export const query = graphql`
       title
       slug {
         current
+      }
+      category {
+        title
+        slug {
+          current
+        }
+      }
+      _rawBody(resolveReferences: { maxDepth: 10 })
+      _rawContent(resolveReferences: { maxDepth: 10 })
+      hero {
+        image {
+          asset {
+            fluid(maxWidth: 700) {
+              ...GatsbySanityImageFluid
+            }
+          }
+          hotspot {
+            _key
+            _type
+            height
+            width
+            x
+            y
+          }
+          asset {
+            _id
+          }
+          alt
+          caption
+          crop {
+            _key
+            _type
+            bottom
+            left
+            right
+            top
+          }
+        }
+        heroMsg {
+          _rawChildren(resolveReferences: { maxDepth: 10 })
+        }
       }
     }
   }
@@ -106,22 +149,23 @@ const Page = (props) => {
     });
 
   //   const menuItems = page.navMenu && (page.navMenu.items || []);
-  const pageTitle = data.route && !data.route.useSiteTitle && page.title;
+  //   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
   console.log("here");
   return (
-    <div>here </div>
-    // <Layout title={pageTitle} description="TODO: description" article={false}>
-    //   <SEO
-    //     title={pageTitle}
-    //     description={site.description}
-    //     keywords={site.keywords}
-    //     bodyAttr={{
-    //       class: "leading-normal tracking-normal text-white gradient",
-    //     }}
-    //   />
-    //   <h2>here is a title</h2>
-    //   <div>{content}here</div>
-    // </Layout>
+    // <div>{page.title} </div>
+    <Layout title={page.title} description="TODO: description" article={false}>
+      {page.hero ? (
+        <Hero
+          fluid={page.hero.image.asset.fluid}
+          displayHeroMsg={true}
+          heroHeading={page.title}
+          heroHeadingType="h1"
+        />
+      ) : (
+        "No hero image"
+      )}
+      {/* <div>{content}here</div> */}
+    </Layout>
   );
 };
 

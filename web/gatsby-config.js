@@ -113,6 +113,13 @@ module.exports = {
         overlayDrafts: true,
       },
     },
+    {
+      resolve: "gatsby-plugin-sanity-image",
+      options: {
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_DATASET,
+      },
+    },
     // {
     //   resolve: "@bundle-analyzer/gatsby-plugin",
     //   options: { token: process.env.BUNDLE_ANALYZER_TOKEN },

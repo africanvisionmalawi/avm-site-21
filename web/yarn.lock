@@ -981,7 +981,7 @@
     "@emotion/utils" "0.11.3"
     "@emotion/weak-memoize" "0.2.5"
 
-"@emotion/core@^10.0.35":
+"@emotion/core@^10.0.35", "@emotion/core@^10.1.1":
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.1.1.tgz#c956c1365f2f2481960064bcb8c4732e5fb612c3"
   integrity sha512-ZMLG6qpXR8x031NXD8HJqugy/AZSkAuMxxqB46pmAR7ze47MhNJ56cdoX243QPZdGctrdfo+s08yZTiwaUcRKA==
@@ -7271,6 +7271,15 @@ gatsby-plugin-react-helmet@^3.0.4:
   integrity sha512-TktmUysb7wDwYOKowNcpXxLJfQiwQ7cSQ8ALH3pJrW63wBaCoBXvAHg3OhgHVR74CrqN2Tb89tr3GXa4JhO4Qw==
   dependencies:
     "@babel/runtime" "^7.12.5"
+
+gatsby-plugin-sanity-image@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sanity-image/-/gatsby-plugin-sanity-image-0.5.0.tgz#7eb37ab3a115c7ee8b21c626e4ebbd8a005de267"
+  integrity sha512-458+DeLFFrO6AHTrDwhqC6f4zDozCEUDVmPFCEQ5r6jNwHeNeUg0qKp3wkXeoK9CL36H2VwC3qwqkug8PgjIKQ==
+  dependencies:
+    "@emotion/core" "^10.1.1"
+    "@sanity/client" "^2.0.1"
+    "@sanity/image-url" "^0.140.19"
 
 gatsby-plugin-sass@^2.0.7:
   version "2.8.0"
