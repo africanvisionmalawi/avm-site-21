@@ -1,4 +1,5 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import { styled } from "linaria/react";
 import React from "react";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
@@ -7,6 +8,7 @@ import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
 import Layout from "../components/Layout";
+import { PortableText } from "../components/portableText/portableText";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
 
@@ -154,19 +156,49 @@ const Page = (props) => {
   return (
     // <div>{page.title} </div>
     <Layout title={page.title} description="TODO: description" article={false}>
-      {page.hero ? (
-        <Hero
-          fluid={page.hero.image.asset.fluid}
-          displayHeroMsg={true}
-          heroHeading={page.title}
-          heroHeadingType="h1"
-        />
-      ) : (
-        "No hero image"
-      )}
-      {/* <div>{content}here</div> */}
+      <article>
+        {page.hero ? (
+          <Hero
+            fluid={page.hero.image.asset.fluid}
+            displayHeroMsg={true}
+            heroHeading={page.title}
+            heroHeadingType="h1"
+          />
+        ) : (
+          "No hero image"
+        )}
+        <Main>
+          <TextSection>
+            {page._rawBody ? <PortableText blocks={page._rawBody} /> : null}
+          </TextSection>
+          {/* <div>{content}here</div> */}
+        </Main>
+      </article>
     </Layout>
   );
 };
+
+const TextSection = styled.section`
+  background: #fff;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  min-height: 24rem;
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  @media (min-width: 768px) {
+    padding: 2em 4em;
+  }
+  @media (min-width: 1040px) {
+    padding: 4em 8em;
+  }
+`;
+
+const Main = styled.main`
+  background: #fff;
+  border-radius: 2px;
+`;
 
 export default Page;
