@@ -3,7 +3,7 @@ import { styled } from "linaria/react";
 import React, { useState } from "react";
 import { navLinks } from "../../constants/nav";
 import CartLink from "../CartLink";
-import CtaButton from "../CtaButton";
+import { CtaButton } from "../common/CtaButton";
 import NavLogo from "../NavLogo";
 // import Search from "../search";
 const searchIndices = [{ name: `Pages`, title: `Pages` }];

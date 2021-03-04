@@ -4,7 +4,7 @@
 import { styled } from "linaria/react";
 import React from "react";
 
-const CtaButton = ({ link, text, placement }) => (
+export const CtaButton = ({ link, text, placement }) => (
   <Btn>
     <BtnLink href={link} className={`${placement}`}>
       {text}
@@ -49,5 +49,3 @@ const BtnLink = styled.a`
     padding: 4px 8px;
   }
 `;
-
-export default CtaButton;

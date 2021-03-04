@@ -1,6 +1,7 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
 import { styled } from "linaria/react";
 import React from "react";
+import { Donate } from "../components/common/Donate";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
@@ -9,6 +10,7 @@ import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
 import Layout from "../components/Layout";
 import { PortableText } from "../components/portableText/portableText";
+import { Videos } from "../components/videos";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
 
@@ -91,6 +93,16 @@ export const query = graphql`
           _rawChildren(resolveReferences: { maxDepth: 10 })
         }
       }
+      content {
+        ... on SanityVideoGallery {
+          _key
+          _type
+          videos {
+            text
+            url
+          }
+        }
+      }
     }
   }
 `;
@@ -121,13 +133,14 @@ const Page = (props) => {
     .filter((c) => !c.disabled)
     .map((c, i) => {
       let el = null;
+      console.log("type ", c._type);
       switch (c._type) {
         case "hero":
           el = "hero";
           //   el = <Hero key={c._key} {...c} />;
           break;
-        case "ctaColumns":
-          //   el = <CTAColumns key={c._key} {...c} />;
+        case "videoGallery":
+          el = <Videos key={c._key} {...c} />;
           break;
         case "ctaPlug":
           //   el = <CTA key={c._key} {...c} />;
@@ -172,7 +185,13 @@ const Page = (props) => {
             {page._rawBody ? <PortableText blocks={page._rawBody} /> : null}
           </TextSection>
           {/* <div>{content}here</div> */}
+          <Donate
+            link="https://www.charitycheckout.co.uk/1113786/"
+            text="Donate"
+            displayImage
+          />
         </Main>
+        {content}
       </article>
     </Layout>
   );

@@ -1,8 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
-import { Hero } from "../../src/components/Hero/Hero";
-import CtaButton from "./CtaButton";
+import { Hero } from "../Hero";
+import { CtaButton } from "./CtaButton";
 
 const Container = styled.div`
   background: #58b5d7;
@@ -11,7 +11,7 @@ const Container = styled.div`
   text-align: center;
 `;
 
-const Donate = (props) => {
+export const Donate = (props) => {
   const donateImage = useStaticQuery(
     graphql`
       query {
@@ -41,9 +41,8 @@ const Donate = (props) => {
     <>
       {props.displayImage ? (
         <Hero
-          desktopImage={donateImage.donateImageDesktop}
-          mobileImage={donateImage.donateImageMobile}
-          hasMobileImage={true}
+          fluid={donateImage.donateImageDesktop.childImageSharp.fluid}
+          fluidMobile={donateImage.donateImageMobile.childImageSharp.fluid}
         >
           <p>
             Donate now to help us help children &amp; vulnerable people in
@@ -59,5 +58,3 @@ const Donate = (props) => {
     </>
   );
 };
-
-export default Donate;

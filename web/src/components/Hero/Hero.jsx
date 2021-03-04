@@ -13,7 +13,8 @@ export const Hero = ({
   desktopImage,
   mobileImage,
   children,
-  fluid
+  fluid,
+  fluidMobile
 }) => {
   let heroHeadingHtml;
   if (heroHeading) {
@@ -25,16 +26,16 @@ export const Hero = ({
   }
   const heroMsgHtml = heroMsg ? <HeroMsg>{heroMsg}</HeroMsg> : null;
 
-  const sources = hasMobileImage
+  const sources = fluidMobile
     ? [
-        mobileImage.childImageSharp.fluid,
+        fluidMobile,
         {
-          ...desktopImage.childImageSharp.fluid,
+          ...fluid,
           media: `(min-width: 580px)`,
         },
       ]
     : fluid;
-  
+
 
   return (
     <HeroContainer className={children ? "lowerPage" : null}>
@@ -48,7 +49,7 @@ export const Hero = ({
         {children && <ChildrenCont>{children}</ChildrenCont>}
 
         <Image
-          fluid={fluid}
+          fluid={fluidMobile ? sources : fluid}
           alt=""
           imgStyle={{ objectFit: "contain" }}
           loading="eager"
