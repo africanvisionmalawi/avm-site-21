@@ -9,7 +9,11 @@ module.exports = {
     siteUrl: "https://www.africanvision.org.uk",
     baseUrl: "https://www.africanvision.org.uk",
   },
-  flags: { PRESERVE_WEBPACK_CACHE: true },
+  flags: {
+    PRESERVE_WEBPACK_CACHE: true,
+    DEV_SSR: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+  },
   plugins: [
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support

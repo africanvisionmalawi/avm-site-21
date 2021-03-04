@@ -9,6 +9,7 @@ import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
 import Layout from "../components/Layout";
+import { PageLinks } from "../components/pageLinks";
 import { PortableText } from "../components/portableText/portableText";
 import { Videos } from "../components/videos";
 // import Pricing from "../components/pricing";
@@ -102,6 +103,33 @@ export const query = graphql`
             url
           }
         }
+        ... on SanityPageLinks {
+          _key
+          _type
+          pageLinks {
+            linkTitle
+            photo {
+              alt
+              _type
+              asset {
+                fluid(maxWidth: 560) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+            _type
+            url {
+              _type
+              category {
+                title
+                slug {
+                  current
+                }
+              }
+              _rawBody(resolveReferences: { maxDepth: 10 })
+            }
+          }
+        }
       }
     }
   }
@@ -142,7 +170,10 @@ const Page = (props) => {
         case "videoGallery":
           el = <Videos key={c._key} {...c} />;
           break;
-        case "ctaPlug":
+        case "pageLinks":
+          // el = <div>pageLinks</div>;
+          // console.log("pageLinks ", ...c);
+          el = <PageLinks key={c._key} {...c} />;
           //   el = <CTA key={c._key} {...c} />;
           break;
         case "uiComponentRef":
