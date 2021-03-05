@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 // import { EventDate } from "../events/EventDate";
-// import { CardContent } from "./CardContent";
+import { CardContent } from "./CardContent";
 
 const ImageCont = styled.div`
   margin: 0;
@@ -26,8 +26,9 @@ const EventDateCont = styled.div`
 //   text-align: center;
 // `;
 
-export const CardSingle = ({ url, title }) => {
+export const CardSingle = ({ url, title, linkText }) => {
   let cardImage;
+  // console.log("linkText ", linkText);
   const hideOtherPhotos = false;
   // if (props.smallImage) {
   //   // console.log("smallImage", props.smallImage);
@@ -41,6 +42,7 @@ export const CardSingle = ({ url, title }) => {
     <div>
       {url && (
         <Link to={url} className="card-image">
+          photo goes here
           {!hideOtherPhotos && (
             <ImageCont>
               {/* {props.displayDate && (
@@ -57,15 +59,15 @@ export const CardSingle = ({ url, title }) => {
           )}
         </Link>
       )}
-      here
-      {/* <CardContent
-        title={props.title}
-        displayLocation={props.displayLocation}
-        location={props.location}
-        linkText={props.linkText}
-        showPageLink={props.showPageLink}
-        url={props.url}
-      /> */}
+
+      <CardContent
+        title={title}
+        // displayLocation={props.displayLocation}
+        // location={props.location}
+        linkText={linkText}
+        // showPageLink={props.showPageLink}
+        url={url}
+      />
     </div>
   );
 };

@@ -108,6 +108,9 @@ export const query = graphql`
           _type
           pageLinks {
             linkTitle
+            linkText {
+              _rawChildren(resolveReferences: { maxDepth: 10 })
+            }
             photo {
               alt
               _type
@@ -125,6 +128,9 @@ export const query = graphql`
                 slug {
                   current
                 }
+              }
+              slug {
+                current
               }
               _rawBody(resolveReferences: { maxDepth: 10 })
             }

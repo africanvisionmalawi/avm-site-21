@@ -1,14 +1,15 @@
 import { styled } from "linaria/react";
 import React from "react";
+import { getPath } from "../../utils/helpers";
 // import { CardDouble } from "../card/CardDouble";
-// import { CardSingle } from "../card/CardSingle";
+import { CardSingle } from "../card/CardSingle";
 
 const Heading = styled.h2`
   text-align: center;
 `;
 
 export const PageLinks = ({ pageLinks }) => {
-  //   console.log("pops ", props);
+  console.log("pageLinks ", pageLinks);
 
   return (
     <>
@@ -19,27 +20,41 @@ export const PageLinks = ({ pageLinks }) => {
             {pageLink.featured ? (
               <div>here</div>
             ) : (
-              //   <CardDouble
-              //     largeImage={pageLink.largeImage}
-              //     url={pageLink.url}
-              //     title={pageLink.linkTitle}
-              //     linkText={pageLink.linkText}
-              //     showPageLink={pageLink.showPageLink}
-              //   />
+              // <CardDouble
+              //   largeImage={pageLink.largeImage}
+              //   url={etPath(
+              //     pageLink.url.category.slug.current,
+              //     pageLink.url.slug.current
+              //   )}
+              //   title={pageLink.linkTitle}
+              //   linkText={pageLink.linkText}
+              //   showPageLink={pageLink.showPageLink}
+              // />
               <>
                 <div>{pageLink.linkTitle}</div>
                 <div>{pageLink.linkText.length}</div>
                 <div>{pageLink.url.category.slug.current}</div>
+                <div>{pageLink.url.slug.current}</div>
+                <div>
+                  {getPath(
+                    pageLink.url.category.slug.current,
+                    pageLink.url.slug.current
+                  )}
+                </div>
+                <CardSingle
+                  // smallImage={pageLink.smallImage}
+                  url={getPath(
+                    pageLink.url.category.slug.current,
+                    pageLink.url.slug.current
+                  )}
+                  title={pageLink.linkTitle}
+                  linkText={pageLink.linkText}
+                  // showPageLink={pageLink.showPageLink}
+                  // hideOtherPhotos={pageLink.hideOtherPhotos}
+                />
               </>
 
-              //   <CardSingle
-              //     // smallImage={pageLink.smallImage}
-              //     url={pageLink.url.category.slug.current}
-              //     title={pageLink.url.category.title}
-              //     // linkText={pageLink.linkText}
-              //     // showPageLink={pageLink.showPageLink}
-              //     // hideOtherPhotos={pageLink.hideOtherPhotos}
-              //   />
+              //
             )}
           </>
         );

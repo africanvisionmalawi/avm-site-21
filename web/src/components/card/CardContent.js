@@ -1,7 +1,7 @@
-// import { Link } from "gatsby";
+import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
-// import { PortableText } from "..//portableText/portableText";
+import { PortableText } from "..//portableText/portableText";
 
 const Content = styled.div`
   padding: 1rem;
@@ -14,18 +14,17 @@ const Heading = styled.h3`
   margin-bottom: 0;
 `;
 
-export const CardContent = (props) => {
+export const CardContent = ({ title, url, linkText }) => {
   return (
     <Content>
-      <Heading>{props.title}</Heading>
-      {props.displayLocation && <span>{props.location}</span>}
-      {/* portable text goes here */}
-      {props.showPageLink && (
-        // <Link to={props.url} className={styles.btn}>
-        //   Find out more
-        // </Link>
+      <Heading>{title}</Heading>
+      {/* {props.displayLocation && <span>{props.location}</span>} */}
+      {linkText ? <PortableText blocks={linkText} /> : null}
+      {/* TODO: add hideLink here */}
+      <>
+        <Link to={url}>Find out more</Link>
         <div>find out more</div>
-      )}
+      </>
     </Content>
   );
 };
