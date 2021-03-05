@@ -1,4 +1,12 @@
+// const { getPath } = require("./src/utils/helpers");
 const { isFuture } = require("date-fns");
+// const getPath = (cat, slug) => {
+//   const pathPrefix = cat == "other" ? "/" : cat + "/";
+//   const newSlug = cat == slug ? "/" : slug;
+//   const path = pathPrefix + newSlug;
+//   return path;
+// };
+
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -93,7 +101,10 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
     const { id, slug = {}, category = {} } = edge.node;
     const pathPrefix =
       category.slug.current === "other" ? "/" : category.slug.current + "/";
-    const path = `${pathPrefix}${slug.current}/`;
+    const path = `${pathPrefix}${
+      slug.current == category.slug.current ? "" : slug.current + "/"
+    }`;
+    // const path = getPath(category.slug.current, slug);
     reporter.info(`Creating page: ${path}`);
     createPage({
       path,
