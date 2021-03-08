@@ -1,8 +1,8 @@
 import { Link } from "gatsby";
+import SanityImage from "gatsby-plugin-sanity-image";
 // import Img from "gatsby-image";
 import { styled } from "linaria/react";
 import React from "react";
-import { Image } from "../Image";
 // import { EventDate } from "../events/EventDate";
 import { CardContent } from "./CardContent";
 
@@ -27,7 +27,7 @@ const EventDateCont = styled.div`
 //   text-align: center;
 // `;
 
-export const CardSingle = ({ url, title, linkText, fixed }) => {
+export const CardSingle = ({ url, title, linkText, fixed, photo }) => {
   let cardImage;
   // console.log("linkText ", linkText);
   const hideOtherPhotos = false;
@@ -43,7 +43,6 @@ export const CardSingle = ({ url, title, linkText, fixed }) => {
     <div>
       {url && (
         <Link to={url} className="card-image">
-          photo goes here
           {!hideOtherPhotos && (
             <ImageCont>
               {/* {props.displayDate && (
@@ -55,7 +54,7 @@ export const CardSingle = ({ url, title, linkText, fixed }) => {
                   />
                 </EventDateCont>
               )} */}
-              <Image fixed={fixed} alt="" />
+              <SanityImage {...photo} width={250} alt={photo.alt} />
             </ImageCont>
           )}
         </Link>

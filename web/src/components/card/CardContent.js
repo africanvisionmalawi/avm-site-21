@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import { PortableText } from "..//portableText/portableText";
+import styles from "../pageLinks/pagelinks.module.css";
 
 const Content = styled.div`
   padding: 1rem;
@@ -22,8 +23,9 @@ export const CardContent = ({ title, url, linkText }) => {
       {linkText ? <PortableText blocks={linkText} /> : null}
       {/* TODO: add hideLink here */}
       <>
-        <Link to={url}>Find out more</Link>
-        <div>find out more</div>
+        <Link to={url} className={styles.btn}>
+          Find out more
+        </Link>
       </>
     </Content>
   );
