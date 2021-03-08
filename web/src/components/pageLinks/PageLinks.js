@@ -9,7 +9,7 @@ const Heading = styled.h2`
 `;
 
 export const PageLinks = ({ pageLinks }) => {
-  console.log("pageLinks ", pageLinks);
+  // console.log("pageLink photo ", pageLinks[0].photo.asset);
 
   return (
     <>
@@ -32,7 +32,7 @@ export const PageLinks = ({ pageLinks }) => {
               // />
               <>
                 <div>{pageLink.linkTitle}</div>
-                <div>{pageLink.linkText.length}</div>
+                <div>{pageLink.photo.alt}</div>
                 <div>{pageLink.url.category.slug.current}</div>
                 <div>{pageLink.url.slug.current}</div>
                 <div>
@@ -49,6 +49,7 @@ export const PageLinks = ({ pageLinks }) => {
                   )}
                   title={pageLink.linkTitle}
                   linkText={pageLink.linkText}
+                  fixed={pageLink.photo.asset.fixed}
                   // showPageLink={pageLink.showPageLink}
                   // hideOtherPhotos={pageLink.hideOtherPhotos}
                 />

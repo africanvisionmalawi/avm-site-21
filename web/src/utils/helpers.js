@@ -61,3 +61,10 @@ export const priceFormatted = (price) => {
 export const slugToTitle = (slug) => {
   return slug.replace("-", " ");
 };
+
+export const getPath = (cat, slug) => {
+  const pathPrefix = cat === "other" ? "/" : cat + "/";
+  const path = `/${pathPrefix}${slug == cat ? "" : slug + "/"}`;
+  // const path = pathPrefix + cat === slug ? "/" : slug;
+  return path;
+};

@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 // import Img from "gatsby-image";
 import { styled } from "linaria/react";
 import React from "react";
+import { Image } from "../Image";
 // import { EventDate } from "../events/EventDate";
 import { CardContent } from "./CardContent";
 
@@ -26,7 +27,7 @@ const EventDateCont = styled.div`
 //   text-align: center;
 // `;
 
-export const CardSingle = ({ url, title, linkText }) => {
+export const CardSingle = ({ url, title, linkText, fixed }) => {
   let cardImage;
   // console.log("linkText ", linkText);
   const hideOtherPhotos = false;
@@ -54,7 +55,7 @@ export const CardSingle = ({ url, title, linkText }) => {
                   />
                 </EventDateCont>
               )} */}
-              {/* {cardImage} */}
+              <Image fixed={fixed} alt="" />
             </ImageCont>
           )}
         </Link>

@@ -118,6 +118,29 @@ export const query = graphql`
                 fluid(maxWidth: 560) {
                   ...GatsbySanityImageFluid
                 }
+                fixed(width: 250, height: 125) {
+                  ...GatsbySanityImageFixed
+                }
+              }
+              hotspot {
+                _key
+                _type
+                height
+                width
+                x
+                y
+              }
+              asset {
+                _id
+              }
+              caption
+              crop {
+                _key
+                _type
+                bottom
+                left
+                right
+                top
               }
             }
             _type
@@ -178,7 +201,7 @@ const Page = (props) => {
           break;
         case "pageLinks":
           // el = <div>pageLinks</div>;
-          // console.log("pageLinks ", ...c);
+          console.log("pageLinks c ", c);
           el = <PageLinks key={c._key} {...c} />;
           //   el = <CTA key={c._key} {...c} />;
           break;
