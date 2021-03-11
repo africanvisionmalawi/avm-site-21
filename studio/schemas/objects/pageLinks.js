@@ -10,6 +10,21 @@ export default {
       name: "pageLinks",
       of: [{ type: "pageLinkPhoto" }],
     },
+    {
+      title: "Hide page link",
+      name: "hidePageLink",
+      type: "boolean",
+    },
+    {
+      title: "Hide Headings",
+      name: "hideHeadings",
+      type: "boolean",
+    },
+    {
+      title: "Remove Box Background",
+      name: "removeBoxBackground",
+      type: "boolean",
+    },
   ],
   options: {
     collapsible: true,

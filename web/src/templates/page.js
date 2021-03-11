@@ -2,6 +2,7 @@
 import { styled } from "linaria/react";
 import React from "react";
 import { Donate } from "../components/common/Donate";
+import { Gallery } from "../components/gallery";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
@@ -131,6 +132,13 @@ export const query = graphql`
             }
           }
         }
+        ... on SanityPhotoGallery {
+          photos {
+            _key
+            alt
+            ...ImageWithPreview
+          }
+        }
       }
     }
   }
@@ -175,6 +183,12 @@ const Page = (props) => {
           // el = <div>pageLinks</div>;
           console.log("pageLinks c ", c);
           el = <PageLinks key={c._key} {...c} />;
+          //   el = <CTA key={c._key} {...c} />;
+          break;
+        case "photoGallery":
+          // el = <div>pageLinks</div>;
+          console.log("photoGallery c ", c);
+          el = <Gallery key={c._key} {...c} />;
           //   el = <CTA key={c._key} {...c} />;
           break;
         case "uiComponentRef":

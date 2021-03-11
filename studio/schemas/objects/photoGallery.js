@@ -14,6 +14,7 @@ export default {
   options: {
     collapsible: true,
     collapsed: true,
+    layout: "grid",
   },
   preview: {
     prepare({}) {
