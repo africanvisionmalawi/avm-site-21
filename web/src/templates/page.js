@@ -173,23 +173,24 @@ const Page = (props) => {
       console.log("type ", c._type);
       switch (c._type) {
         case "hero":
-          el = "hero";
-          //   el = <Hero key={c._key} {...c} />;
+          el = (
+            <Hero
+              fluid={c.image.asset.fluid}
+              displayHeroMsg={false}
+              heroHeading={c.title}
+              heroHeadingType="h2"
+            />
+          );
           break;
         case "videoGallery":
           el = <Videos key={c._key} {...c} />;
           break;
         case "pageLinks":
-          // el = <div>pageLinks</div>;
-          console.log("pageLinks c ", c);
+          // console.log("pageLinks c ", c);
           el = <PageLinks key={c._key} {...c} />;
-          //   el = <CTA key={c._key} {...c} />;
           break;
         case "photoGallery":
-          // el = <div>pageLinks</div>;
-          console.log("photoGallery c ", c);
           el = <Gallery key={c._key} {...c} />;
-          //   el = <CTA key={c._key} {...c} />;
           break;
         case "uiComponentRef":
           switch (c.name) {

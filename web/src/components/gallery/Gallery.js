@@ -88,7 +88,6 @@ export const Gallery = (props) => {
     width: "95vw",
   };
 
-  console.log("photos ", photos);
   return (
     <div className={galleryStyles.container}>
       <div className={galleryStyles.galleryInner}>
