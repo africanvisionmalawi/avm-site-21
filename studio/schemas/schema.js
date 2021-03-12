@@ -17,6 +17,8 @@ import pageLinks from "./objects/pageLinks.js";
 import photoGallery from "./objects/photoGallery";
 import richText from "./objects/richText";
 import richTextSimple from "./objects/richTextSimple";
+import team from "./objects/team";
+import teamMember from "./objects/teamMember";
 import video from "./objects/video";
 import videoGallery from "./objects/videoGallery";
 
@@ -45,5 +47,7 @@ export default createSchema({
     photoGallery,
     bodyPortableText,
     blockPortableText,
+    team,
+    teamMember,
   ]),
 });

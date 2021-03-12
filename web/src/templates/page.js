@@ -96,6 +96,11 @@ export const query = graphql`
         }
       }
       content {
+        ... on SanityBlockPortableText {
+          _key
+          _type
+          _rawBlocks(resolveReferences: { maxDepth: 10 })
+        }
         ... on SanityVideoGallery {
           _key
           _type
@@ -191,6 +196,9 @@ const Page = (props) => {
           break;
         case "photoGallery":
           el = <Gallery key={c._key} {...c} />;
+          break;
+        case "blockPortableText":
+          el = <PortableText key={c._key} {...c} />;
           break;
         case "uiComponentRef":
           switch (c.name) {

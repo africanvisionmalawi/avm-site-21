@@ -50,11 +50,12 @@ export default {
       title: "Page sections",
       description: "Add, edit, and reorder sections",
       of: [
+        { type: "pageLinks" },
+        { type: "videoGallery" },
+        { type: "photoGallery" },
         { type: "hero" },
         { type: "blockPortableText" },
-        { type: "videoGallery" },
-        { type: "pageLinks" },
-        { type: "photoGallery" },
+        { type: "team" },
       ],
     },
     // {
