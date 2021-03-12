@@ -18,7 +18,7 @@ export const PageLinks = ({
   hideOtherPhotos,
 }) => {
   // console.log("pageLink photo ", pageLinks[0].photo.asset);
-
+  console.log("pagelinks", pageLinks);
   return (
     <div>
       {displayHeading && <Heading>{heading}</Heading>}
@@ -29,7 +29,7 @@ export const PageLinks = ({
       >
         {pageLinks.map((pageLink) => {
           return (
-            <>
+            <React.Fragment>
               {pageLink.featured ? (
                 <div>here</div>
               ) : (
@@ -61,7 +61,7 @@ export const PageLinks = ({
 
                 //
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </div>
