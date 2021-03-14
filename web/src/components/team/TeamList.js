@@ -1,5 +1,6 @@
 // import PreviewCompatibleImage from "../PreviewCompatibleImage";
 // import Img from "gatsby-image";
+import SanityImage from "gatsby-plugin-sanity-image";
 import { styled } from "linaria/react";
 import React from "react";
 
@@ -13,6 +14,12 @@ export const TeamList = (props) => {
           <li key={t.name}>
             {t.photo && typeof t.photo === "object" && (
               <TeamPhoto>
+                <SanityImage
+                  {...t.photo}
+                  width={150}
+                  height={150}
+                  alt={t.photo.alt}
+                />
                 {/* <Img fixed={t.photo.childImageSharp.fixed} alt={t.name} /> */}
               </TeamPhoto>
             )}
