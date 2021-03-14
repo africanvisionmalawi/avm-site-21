@@ -12,6 +12,7 @@ import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 import { PageLinks } from "../components/pageLinks";
 import { PortableText } from "../components/portableText/portableText";
+import { TeamList } from "../components/team/TeamList";
 import { Videos } from "../components/videos";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
@@ -100,6 +101,20 @@ export const query = graphql`
           _key
           _type
           _rawBlocks(resolveReferences: { maxDepth: 10 })
+        }
+        ... on SanityTeam {
+          _key
+          _type
+          heading
+          team {
+            _key
+            name
+            role
+            photo {
+              alt
+              ...ImageWithPreview
+            }
+          }
         }
         ... on SanityVideoGallery {
           _key
@@ -199,6 +214,9 @@ const Page = (props) => {
           break;
         case "blockPortableText":
           el = <PortableText key={c._key} {...c} />;
+          break;
+        case "team":
+          el = <TeamList key={c._key} {...c} />;
           break;
         case "uiComponentRef":
           switch (c.name) {
