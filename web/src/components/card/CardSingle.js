@@ -27,7 +27,7 @@ const EventDateCont = styled.div`
 //   text-align: center;
 // `;
 
-export const CardSingle = ({ url, title, linkText, fixed, photo }) => {
+export const CardSingle = ({ url, extUrl, title, linkText, fixed, photo }) => {
   let cardImage;
   // console.log("linkText ", linkText);
   const hideOtherPhotos = false;
@@ -41,8 +41,8 @@ export const CardSingle = ({ url, title, linkText, fixed, photo }) => {
   // const pageTitle = url.category.title;
   return (
     <div>
-      {url && (
-        <Link to={url} className="card-image">
+      {url || extUrl ? (
+        <Link to={url || extUrl} className="card-image">
           {!hideOtherPhotos && (
             <ImageCont>
               {/* {props.displayDate && (
@@ -65,7 +65,7 @@ export const CardSingle = ({ url, title, linkText, fixed, photo }) => {
             </ImageCont>
           )}
         </Link>
-      )}
+      ) : null}
 
       <CardContent
         title={title}

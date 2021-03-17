@@ -20,6 +20,11 @@ export default {
       type: "reference",
       to: [{ type: "page" }],
     },
+    {
+      title: "Or External URL",
+      name: "extUrl",
+      type: "string",
+    },
   ],
   preview: {
     select: {

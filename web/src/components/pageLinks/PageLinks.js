@@ -54,6 +54,7 @@ export const PageLinks = ({
                           )
                         : null
                     }
+                    extUrl={pageLink.extUrl ? pageLink.extUrl : null}
                     title={pageLink.linkTitle ? pageLink.linkTitle : null}
                     linkText={pageLink.linkText ? pageLink.linkText : null}
                     fixed={pageLink.photo ? pageLink.photo.asset.fixed : null}

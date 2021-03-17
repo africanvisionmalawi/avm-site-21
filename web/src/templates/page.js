@@ -150,6 +150,7 @@ export const query = graphql`
               }
               _rawBody(resolveReferences: { maxDepth: 10 })
             }
+            extUrl
           }
         }
         ... on SanityPhotoGallery {
