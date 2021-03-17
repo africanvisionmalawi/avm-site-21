@@ -190,7 +190,7 @@ const Page = (props) => {
     .filter((c) => !c.disabled)
     .map((c, i) => {
       let el = null;
-      console.log("type ", c._type);
+      // console.log("type ", c._type);
       switch (c._type) {
         case "hero":
           el = (
@@ -238,7 +238,7 @@ const Page = (props) => {
 
   //   const menuItems = page.navMenu && (page.navMenu.items || []);
   //   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
-  console.log("here");
+
   return (
     // <div>{page.title} </div>
     <Layout title={page.title} description="TODO: description" article={false}>

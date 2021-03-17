@@ -54,12 +54,14 @@ export const CardSingle = ({ url, title, linkText, fixed, photo }) => {
                   />
                 </EventDateCont>
               )} */}
-              <SanityImage
-                {...photo}
-                width={250}
-                height={125}
-                alt={photo.alt}
-              />
+              {photo ? (
+                <SanityImage
+                  {...photo}
+                  width={250}
+                  height={125}
+                  alt={photo.alt}
+                />
+              ) : null}
             </ImageCont>
           )}
         </Link>

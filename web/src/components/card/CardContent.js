@@ -18,15 +18,15 @@ const Heading = styled.h3`
 export const CardContent = ({ title, url, linkText }) => {
   return (
     <Content>
-      <Heading>{title}</Heading>
+      {title ? <Heading>{title}</Heading> : null}
       {/* {props.displayLocation && <span>{props.location}</span>} */}
       {linkText ? <PortableText blocks={linkText} /> : null}
       {/* TODO: add hideLink here */}
-      <>
+      {url ? (
         <Link to={url} className={styles.btn}>
           Find out more
         </Link>
-      </>
+      ) : null}
     </Content>
   );
 };

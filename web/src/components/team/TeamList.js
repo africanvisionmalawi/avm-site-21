@@ -23,8 +23,8 @@ export const TeamList = (props) => {
                 {/* <Img fixed={t.photo.childImageSharp.fixed} alt={t.name} /> */}
               </TeamPhoto>
             )}
-            <SubHeading>{t.name}</SubHeading>
-            <About>{t.role}</About>
+            {t.name ? <SubHeading>{t.name}</SubHeading> : null}
+            {t.role ? <About>{t.role}</About> : null}
           </li>
         ))}
       </List>

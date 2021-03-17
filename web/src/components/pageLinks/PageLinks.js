@@ -21,7 +21,7 @@ export const PageLinks = ({
   console.log("pagelinks", pageLinks);
   return (
     <div>
-      {displayHeading && <Heading>{heading}</Heading>}
+      {displayHeading ? <Heading>{heading}</Heading> : null}
       <div
         className={`        
           ${featured === true ? styles.cardContWide : styles.cardCont}
@@ -46,14 +46,18 @@ export const PageLinks = ({
                 <>
                   <CardSingle
                     // smallImage={pageLink.smallImage}
-                    url={getPath(
-                      pageLink.url.category.slug.current,
-                      pageLink.url.slug.current
-                    )}
-                    title={pageLink.linkTitle}
-                    linkText={pageLink.linkText}
-                    fixed={pageLink.photo.asset.fixed}
-                    photo={pageLink.photo}
+                    url={
+                      pageLink.url
+                        ? getPath(
+                            pageLink.url.category.slug.current,
+                            pageLink.url.slug.current
+                          )
+                        : null
+                    }
+                    title={pageLink.linkTitle ? pageLink.linkTitle : null}
+                    linkText={pageLink.linkText ? pageLink.linkText : null}
+                    fixed={pageLink.photo ? pageLink.photo.asset.fixed : null}
+                    photo={pageLink.photo ? pageLink.photo : null}
                     // showPageLink={pageLink.showPageLink}
                     // hideOtherPhotos={pageLink.hideOtherPhotos}
                   />

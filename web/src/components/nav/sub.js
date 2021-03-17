@@ -28,7 +28,7 @@ const SubNavBar = () => {
 
   const toggleMenu = () => {
     setDrawerVisible((prev) => !prev);
-    console.log("here", drawerVisible);
+    // console.log("here", drawerVisible);
   };
 
   return (
