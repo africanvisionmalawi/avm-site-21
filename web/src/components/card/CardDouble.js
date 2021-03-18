@@ -27,7 +27,7 @@ const EventDateCont = styled.div`
 //   text-align: center;
 // `;
 
-export const CardDouble = (props) => {
+export const CardDouble = ({ url, extUrl, title, linkText, fixed, photo }) => {
   let cardImage;
   if (props.largeImage) {
     // console.log("largeimage", props.largeImage);

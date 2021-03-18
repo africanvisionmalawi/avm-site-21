@@ -15,6 +15,11 @@ export default {
       type: "richTextSimple",
     },
     {
+      title: "Featured Link?",
+      name: "featured",
+      type: "boolean",
+    },
+    {
       title: "Page to link to",
       name: "url",
       type: "reference",

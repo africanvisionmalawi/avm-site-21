@@ -27,7 +27,15 @@ const EventDateCont = styled.div`
 //   text-align: center;
 // `;
 
-export const CardSingle = ({ url, extUrl, title, linkText, fixed, photo }) => {
+export const CardSingle = ({
+  url,
+  extUrl,
+  title,
+  linkText,
+  fixed,
+  photo,
+  featured,
+}) => {
   let cardImage;
   // console.log("linkText ", linkText);
   const hideOtherPhotos = false;
@@ -57,8 +65,8 @@ export const CardSingle = ({ url, extUrl, title, linkText, fixed, photo }) => {
               {photo ? (
                 <SanityImage
                   {...photo}
-                  width={250}
-                  height={125}
+                  width={featured ? 560 : 250}
+                  height={featured ? 280 : 125}
                   alt={photo.alt}
                 />
               ) : null}
