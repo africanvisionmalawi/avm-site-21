@@ -10,7 +10,10 @@ export default () =>
           S.document().schemaType("siteSettings").documentId("siteSettings")
         ),
       S.listItem()
-        .title("Pages")
+        .title("Homepage")
+        .child(S.document().schemaType("homePage").documentId("homePage")),
+      S.listItem()
+        .title("Pages by Category")
         .child(
           // List out the categories
           S.documentTypeList("pageCategory")
@@ -27,7 +30,13 @@ export default () =>
                 .params({ pagecategoryId })
             )
         ),
+      S.listItem()
+        .title("Our Work")
+        .child(
+          S.document().schemaType("ourWorkShared").documentId("ourWorkShared")
+        ),
       ...S.documentTypeListItems().filter(
-        (listItem) => !["siteSettings", "pages"].includes(listItem.getId())
+        (listItem) =>
+          !["siteSettings", "pages", "ourWorkShared"].includes(listItem.getId())
       ),
     ]);

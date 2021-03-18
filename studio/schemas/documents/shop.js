@@ -12,32 +12,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Body",
-      name: "body",
-      type: "richText",
-    },
-    {
-      title: "templateKey",
-      name: "templateKey",
-      type: "string",
-    },
-    {
-      title: "Published",
-      name: "publish",
-      type: "boolean",
-    },
-    {
-      title: "In Stock amount",
-      name: "inStock",
-      type: "number",
-    },
-    {
-      title: "Featured Image",
-      name: "featured_image",
-      type: "image",
-    },
-
-    {
       title: "Slug",
       name: "slug",
       type: "slug",
@@ -46,33 +20,9 @@ export default {
       },
     },
     {
-      title: "Product Id",
-      name: "productId",
-      type: "string",
-    },
-    {
-      title: "Meta Description",
-      name: "description",
-      type: "string",
-    },
-    {
-      title: "Tags",
-      name: "shopTags",
-      type: "tags",
-    },
-
-    {
-      title: "Related Products",
-      name: "relatedProducts",
-      type: "array",
-      of: [
-        {
-          type: "string",
-        },
-      ],
-      options: {
-        layout: "tags",
-      },
+      title: "Body",
+      name: "body",
+      type: "richText",
     },
     {
       name: "Photos",
@@ -81,10 +31,28 @@ export default {
       of: [{ type: "image" }],
     },
     {
-      title: "Product Image",
-      name: "productImage",
+      title: "In Stock amount",
+      name: "inStock",
       type: "number",
     },
+    {
+      title: "Tags",
+      name: "shopTags",
+      type: "tags",
+    },
+    // {
+    //   title: "Related Products",
+    //   name: "relatedProducts",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       type: "string",
+    //     },
+    //   ],
+    //   options: {
+    //     layout: "tags",
+    //   },
+    // },
     {
       title: "Price",
       name: "price",
@@ -93,11 +61,6 @@ export default {
     {
       title: "Sale Price",
       name: "salePrice",
-      type: "number",
-    },
-    {
-      title: "Total Sales",
-      name: "total_sales",
       type: "number",
     },
     {
@@ -120,14 +83,24 @@ export default {
       name: "height",
       type: "number",
     },
+    // {
+    //   title: "Size",
+    //   name: "size",
+    //   type: "string",
+    // },
+    // {
+    //   title: "Shipping Class",
+    //   name: "shipClass",
+    //   type: "string",
+    // },
     {
-      title: "Size",
-      name: "size",
-      type: "string",
+      title: "Total Sales",
+      name: "total_sales",
+      type: "number",
     },
     {
-      title: "Shipping Class",
-      name: "shipClass",
+      title: "Meta Description",
+      name: "description",
       type: "string",
     },
   ],

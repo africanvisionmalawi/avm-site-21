@@ -3,6 +3,7 @@
 import schemaTypes from "all:part:@sanity/base/schema-type";
 import createSchema from "part:@sanity/base/schema-creator";
 import pageCategory from "./category";
+import ourWorkShared from "./documents/ourWorkShared";
 import page from "./documents/page";
 import post from "./documents/post";
 import shop from "./documents/shop";
@@ -12,6 +13,7 @@ import bodyPortableText from "./objects/bodyPortableText";
 import figure from "./objects/figure";
 import hero from "./objects/hero";
 import mainImage from "./objects/mainImage";
+import ourWorkItem from "./objects/ourWorkItem";
 import pageLinkPhoto from "./objects/pageLinkPhoto.js";
 import pageLinks from "./objects/pageLinks.js";
 import photoGallery from "./objects/photoGallery";
@@ -49,5 +51,7 @@ export default createSchema({
     blockPortableText,
     team,
     teamMember,
+    ourWorkShared,
+    ourWorkItem,
   ]),
 });

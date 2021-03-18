@@ -24,7 +24,9 @@
     "prop-types": "^15.6",
     "react": "^16.2",
     "react-dom": "^16.2",
-    "sanity-plugin-autocomplete-tags": "^1.0.1"
+    "sanity-plugin-autocomplete-tags": "^1.0.1",
+    "sanity-plugin-dark-theme-blue": "^1.0.1",
+    "sanity-plugin-media-library": "^1.0.5"
   },
   "devDependencies": {},
   "repository": {
