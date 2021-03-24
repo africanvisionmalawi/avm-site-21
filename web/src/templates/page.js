@@ -243,7 +243,11 @@ const Page = (props) => {
 
   return (
     // <div>{page.title} </div>
-    <Layout title={page.title} description="TODO: description" article={false}>
+    <Layout
+      title={page.title ? page.title : ""}
+      description="TODO: description"
+      article={false}
+    >
       <article>
         {page.hero ? (
           <Hero
@@ -253,24 +257,45 @@ const Page = (props) => {
             heroHeadingType="h1"
           />
         ) : (
-          "No hero image"
+          <TopSection>
+            <Heading>{page.title ? page.title : ""}</Heading>
+          </TopSection>
         )}
         <Main>
-          <TextSection>
-            {page._rawBody ? <PortableText blocks={page._rawBody} /> : null}
-          </TextSection>
+          {page._rawBody ? (
+            <TextSection>
+              <PortableText blocks={page._rawBody} />
+            </TextSection>
+          ) : null}
           {/* <div>{content}here</div> */}
-          <Donate
-            link="https://www.charitycheckout.co.uk/1113786/"
-            text="Donate"
-            displayImage
-          />
         </Main>
         {content}
+        <Donate
+          link="https://www.charitycheckout.co.uk/1113786/"
+          text="Donate"
+          displayImage
+        />
       </article>
     </Layout>
   );
 };
+
+const Heading = styled.h1`
+  font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
+    "sans-serif";
+  text-align: center;
+`;
+
+const TopSection = styled.div`
+  margin: 0 auto;
+  max-width: 885px;
+  padding: 3rem 1rem 0;
+  position: relative;
+  width: 100%;
+  @media (min-width: 768px) {
+    padding-top: 1rem;
+  }
+`;
 
 const TextSection = styled.section`
   background: #fff;

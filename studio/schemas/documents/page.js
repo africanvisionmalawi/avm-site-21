@@ -30,6 +30,13 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      title: "Index page?",
+      name: "indexPage",
+      type: "boolean",
+      description:
+        "Select if this is an index page with links to other pages in that category",
+    },
+    {
       title: "Hero Image",
       name: "hero",
       type: "hero",
@@ -73,6 +80,7 @@ export default {
     //   name: "tags",
     //   type: "tags",
     // },
+
     {
       title: "Meta Description",
       name: "description",
