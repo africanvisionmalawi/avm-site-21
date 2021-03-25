@@ -52,6 +52,7 @@ export const query = graphql`
     page: sanityPage(id: { eq: $id }) {
       id
       title
+      pageHeading
       slug {
         current
       }
@@ -215,7 +216,11 @@ const Page = (props) => {
           el = <Gallery key={c._key} {...c} />;
           break;
         case "blockPortableText":
-          el = <PortableText key={c._key} {...c} />;
+          el = (
+            <TextSection>
+              <PortableText key={c._key} {...c} />
+            </TextSection>
+          );
           break;
         case "team":
           el = <TeamList key={c._key} {...c} />;
@@ -240,7 +245,11 @@ const Page = (props) => {
 
   //   const menuItems = page.navMenu && (page.navMenu.items || []);
   //   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
-
+  const pageHeading = page.pageHeading
+    ? page.pageHeading
+    : page.title
+    ? page.title
+    : "";
   return (
     // <div>{page.title} </div>
     <Layout
@@ -258,7 +267,7 @@ const Page = (props) => {
           />
         ) : (
           <TopSection>
-            <Heading>{page.title ? page.title : ""}</Heading>
+            <Heading>{pageHeading}</Heading>
           </TopSection>
         )}
         <Main>
@@ -299,8 +308,6 @@ const TopSection = styled.div`
 
 const TextSection = styled.section`
   background: #fff;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
   min-height: 24rem;
   margin: 0 auto;
   max-width: 1180px;

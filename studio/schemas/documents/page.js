@@ -6,9 +6,20 @@ export default {
   type: "document",
   fields: [
     {
-      title: "Title",
+      title: "Page Title",
       name: "title",
       type: "string",
+    },
+    {
+      title: "Page Heading (optional)",
+      description:
+        "Use if you want to display a different heading at the top of the page",
+      name: "pageHeading",
+      type: "string",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     },
     {
       title: "Category",
