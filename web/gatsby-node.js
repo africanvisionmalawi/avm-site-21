@@ -80,6 +80,7 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
         edges {
           node {
             id
+            indexPage
             category {
               slug {
                 current
@@ -98,12 +99,10 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
 
   const pageEdges = (result.data.allSanityPage || {}).edges || [];
   pageEdges.forEach((edge) => {
-    const { id, slug = {}, category = {} } = edge.node;
+    const { id, slug = {}, indexPage, category = {} } = edge.node;
     const pathPrefix =
       category.slug.current === "other" ? "/" : category.slug.current + "/";
-    const path = `${pathPrefix}${
-      slug.current == category.slug.current ? "" : slug.current + "/"
-    }`;
+    const path = `${pathPrefix}${indexPage ? "" : slug.current + "/"}`;
     // const path = getPath(category.slug.current, slug);
     reporter.info(`Creating page: ${path}`);
     createPage({
