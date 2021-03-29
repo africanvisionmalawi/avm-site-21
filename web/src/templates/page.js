@@ -315,10 +315,10 @@ const TextSection = styled.section`
   position: relative;
   width: 100%;
   @media (min-width: 768px) {
-    padding: 2em 4em;
+    padding: 0 4em 2rem;
   }
   @media (min-width: 1040px) {
-    padding: 4em 8em;
+    padding: 0 8em 2rem;
   }
 `;
 
