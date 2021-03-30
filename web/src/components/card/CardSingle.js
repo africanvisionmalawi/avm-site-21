@@ -1,22 +1,15 @@
 import { Link } from "gatsby";
-import SanityImage from "gatsby-plugin-sanity-image";
 // import Img from "gatsby-image";
-import { styled } from "linaria/react";
+// import { styled } from "linaria/react";
 import React from "react";
 // import { EventDate } from "../events/EventDate";
 import { CardContent } from "./CardContent";
+import { PhotoCont } from "./PhotoCont";
 
-const ImageCont = styled.div`
-  margin: 0;
-  position: relative;
-`;
-
-const EventDateCont = styled.div`
-  bottom: 12px;
-  left: calc(50% - 150px);
-  position: absolute;
-  z-index: 100;
-`;
+// const ImageCont = styled.div`
+//   margin: 0;
+//   position: relative;
+// `;
 
 // const Btn = styled.div`
 //   border: 1px solid #f99d1c;
@@ -39,6 +32,7 @@ export const CardSingle = ({
   let cardImage;
   // console.log("linkText ", linkText);
   const hideOtherPhotos = false;
+
   // if (props.smallImage) {
   //   // console.log("smallImage", props.smallImage);
   //   cardImage = <Img fixed={props.smallImage.childImageSharp.fixed} alt="" />;
@@ -50,30 +44,20 @@ export const CardSingle = ({
   return (
     <div>
       {url || extUrl ? (
-        <Link to={url || extUrl} className="card-image">
-          {!hideOtherPhotos && (
-            <ImageCont>
-              {/* {props.displayDate && (
-                <EventDateCont>
-                  <EventDate
-                    date={props.date}
-                    endDate={props.endDate}
-                    layout="card"
-                  />
-                </EventDateCont>
-              )} */}
-              {photo ? (
-                <SanityImage
-                  {...photo}
-                  width={featured ? 560 : 250}
-                  height={featured ? 280 : 125}
-                  alt={photo.alt}
-                />
-              ) : null}
-            </ImageCont>
+        <>
+          {url ? (
+            <Link to={url} className="card-image">
+              <PhotoCont photo={photo} featured={featured} />
+            </Link>
+          ) : (
+            <a href={extUrl} className="card-image">
+              <PhotoCont photo={photo} featured={featured} />
+            </a>
           )}
-        </Link>
-      ) : null}
+        </>
+      ) : (
+        <PhotoCont photo={photo} featured={featured} />
+      )}
 
       <CardContent
         title={title}

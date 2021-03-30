@@ -1,6 +1,6 @@
 import { styled } from "linaria/react";
 import React from "react";
-import { getPath } from "../../utils/helpers";
+import { getFeaturedLinks, getPath } from "../../utils/helpers";
 // import { CardDouble } from "../card/CardDouble";
 import { CardSingle } from "../card/CardSingle";
 import styles from "./pagelinks.module.css";
@@ -17,6 +17,10 @@ export const PageLinks = ({
   hideOtherPhotos,
 }) => {
   // console.log("pageLink photo ", pageLinks[0].photo.asset);
+  const featuredLinks = getFeaturedLinks(pageLinks, true);
+  const otherLinks = getFeaturedLinks(pageLinks, false);
+  console.log("featuredLinks ", featuredLinks);
+  console.log("otherLinks", otherLinks);
 
   return (
     <div>
@@ -25,7 +29,7 @@ export const PageLinks = ({
         {pageLinks.length
           ? pageLinks.map((pageLink) => {
               return (
-                <React.Fragment>
+                <React.Fragment key={pageLink.id}>
                   <CardSingle
                     // smallImage={pageLink.smallImage}
                     url={
