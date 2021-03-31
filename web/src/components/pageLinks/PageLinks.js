@@ -51,7 +51,7 @@ export const PageLinks = ({
   hideOtherPhotos,
 }) => {
   // console.log("pageLink photo ", pageLinks[0].photo.asset);
-  console.log("pageLinks ", pageLinks);
+  // console.log("pageLinks ", pageLinks);
   const featuredLinks = getFeaturedLinks(pageLinks, true);
   const otherLinks = getFeaturedLinks(pageLinks, false);
   // console.log("featuredLinks ", featuredLinks);

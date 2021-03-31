@@ -65,7 +65,7 @@ export const slugToTitle = (slug) => {
 export const getPath = (cat, slug) => {
   if (cat && slug) {
     const pathPrefix = cat === "other" ? "/" : cat + "/";
-    const path = `/${pathPrefix}${slug == cat ? "" : slug + "/"}`;
+    const path = `/${pathPrefix}${slug === cat ? "" : slug + "/"}`;
     // const path = pathPrefix + cat === slug ? "/" : slug;
     return path;
   }
