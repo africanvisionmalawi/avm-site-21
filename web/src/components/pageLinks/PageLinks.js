@@ -17,7 +17,6 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
             return (
               <React.Fragment key={pageLink.id}>
                 <CardSingle
-                  // smallImage={pageLink.smallImage}
                   url={
                     pageLink.url
                       ? getPath(

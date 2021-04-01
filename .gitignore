@@ -10,4 +10,5 @@ yarn-error.log
 avm-site-21.code-workspace
 .linaria-cache
 .env*
+studio/dist/*
 

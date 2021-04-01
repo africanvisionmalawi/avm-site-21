@@ -3,6 +3,7 @@
 import schemaTypes from "all:part:@sanity/base/schema-type";
 import createSchema from "part:@sanity/base/schema-creator";
 import pageCategory from "./category";
+import homePage from "./documents/homePage";
 import ourWorkShared from "./documents/ourWorkShared";
 import page from "./documents/page";
 import post from "./documents/post";
@@ -23,7 +24,6 @@ import team from "./objects/team";
 import teamMember from "./objects/teamMember";
 import video from "./objects/video";
 import videoGallery from "./objects/videoGallery";
-
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -53,5 +53,6 @@ export default createSchema({
     teamMember,
     ourWorkShared,
     ourWorkItem,
+    homePage,
   ]),
 });

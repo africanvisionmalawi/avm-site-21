@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
-import { v4 } from "uuid";
 import pageLinksStyles from "./pagelinks.module.css";
 // import { styled } from "linaria/react";
 
@@ -16,7 +15,7 @@ import pageLinksStyles from "./pagelinks.module.css";
 const PageLinks = ({ pagelinks }) => (
   <div>
     {pagelinks.map((pagelink) => (
-      <article key={v4()} className={pageLinksStyles.linkRow}>
+      <article key={pageLink.id} className={pageLinksStyles.linkRow}>
         <h3 className={pageLinksStyles.linkHeading}>
           <Link to={pagelink.url}>{pagelink.linkTitle}</Link>
         </h3>

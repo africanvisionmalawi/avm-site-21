@@ -1,8 +1,8 @@
 import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
-import { PortableText } from "..//portableText/portableText";
 import styles from "../pageLinks/pagelinks.module.css";
+import { PortableText } from "../portableText/portableText";
 
 const Content = styled.div`
   padding: 1rem;
