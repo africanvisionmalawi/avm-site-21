@@ -95,6 +95,7 @@ export const query = graphql`
           }
         }
         heroMsg {
+          _key
           _rawChildren(resolveReferences: { maxDepth: 10 })
         }
       }
@@ -225,6 +226,7 @@ const Page = (props) => {
               displayHeroMsg={false}
               heroHeading={c.title}
               heroHeadingType="h2"
+              heroMsg={c.heroMsg}
             />
           );
           break;

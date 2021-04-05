@@ -3,7 +3,7 @@ import React from "react";
 import { getFeaturedLinks, getPath } from "../../utils/helpers";
 // import { CardDouble } from "../card/CardDouble";
 import { CardSingle } from "../card/CardSingle";
-import styles from "./pagelinks.module.css";
+import styles from "./pageLinks.module.css";
 
 const Heading = styled.h2`
   text-align: center;

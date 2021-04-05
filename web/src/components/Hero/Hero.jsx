@@ -43,7 +43,14 @@ export const Hero = ({
         {displayHeroMsg && (
           <HeroMsgCont>
             {heroHeadingHtml}
-            <PortableText key={heroMsg._key} blocks={heroMsg._rawChildren} />
+            {heroMsg ? (
+              heroMsg._key && heroMsg._rawChildren ? (
+                <PortableText
+                  key={heroMsg._key}
+                  blocks={heroMsg._rawChildren}
+                />
+              ) : null
+            ) : null}
           </HeroMsgCont>
         )}
         {children && <ChildrenCont>{children}</ChildrenCont>}

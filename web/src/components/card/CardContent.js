@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
-import styles from "../pageLinks/pagelinks.module.css";
+import styles from "../pageLinks/pageLinks.module.css";
 import { PortableText } from "../portableText/portableText";
 
 const Content = styled.div`
