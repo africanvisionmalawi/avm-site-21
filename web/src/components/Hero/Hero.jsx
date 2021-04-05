@@ -1,7 +1,8 @@
 import { styled } from "linaria/react";
 import React from "react";
 import { Divider } from "../common/Divider";
-import { Image } from '../Image';
+import { Image } from "../Image";
+import { PortableText } from "../portableText/portableText";
 
 export const Hero = ({
   heroImage,
@@ -14,7 +15,7 @@ export const Hero = ({
   mobileImage,
   children,
   fluid,
-  fluidMobile
+  fluidMobile,
 }) => {
   let heroHeadingHtml;
   if (heroHeading) {
@@ -36,14 +37,13 @@ export const Hero = ({
       ]
     : fluid;
 
-
   return (
     <HeroContainer className={children ? "lowerPage" : null}>
       <HeroCont>
         {displayHeroMsg && (
           <HeroMsgCont>
             {heroHeadingHtml}
-            {heroMsgHtml}
+            <PortableText key={heroMsg._key} blocks={heroMsg._rawChildren} />
           </HeroMsgCont>
         )}
         {children && <ChildrenCont>{children}</ChildrenCont>}
@@ -185,7 +185,7 @@ const Overlay = styled.div`
 
 const HeroMsgCont = styled.div`
   padding: 1rem;
-  @media (min-width: 1024px) {    
+  @media (min-width: 1024px) {
     bottom: 60px;
     left: 50%;
     // max-height: 540px;

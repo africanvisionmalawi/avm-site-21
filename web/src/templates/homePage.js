@@ -95,6 +95,7 @@ const HomePage = ({ data }) => {
             displayHeroMsg={true}
             heroHeading={page.title}
             heroHeadingType="h1"
+            heroMsg={page.hero.heroMsg}
           />
         ) : (
           <TopSection>
@@ -132,7 +133,10 @@ const HomePage = ({ data }) => {
 
           {page.latestNews ? (
             <TextSection>
-              <PortableText blocks={page._rawLatestNews} />
+              <PortableText
+                key={page.latestNews._key}
+                blocks={page._rawLatestNews}
+              />
             </TextSection>
           ) : null}
         </Main>

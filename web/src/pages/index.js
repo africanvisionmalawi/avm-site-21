@@ -11,7 +11,9 @@ export const query = graphql`
       indexPage
       _rawIntroText(resolveReferences: { maxDepth: 10 })
       introText {
-        _rawChildren(resolveReferences: { maxDepth: 10 })
+        _key
+      }
+      latestNews {
         _key
       }
       _rawLatestNews(resolveReferences: { maxDepth: 10 })
@@ -50,6 +52,7 @@ export const query = graphql`
           }
         }
         heroMsg {
+          _key
           _rawChildren(resolveReferences: { maxDepth: 10 })
         }
       }
