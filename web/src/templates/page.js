@@ -1,4 +1,5 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import { Donate } from "../components/common/Donate";
@@ -162,6 +163,24 @@ export const query = graphql`
             ...ImageWithPreview
           }
         }
+        ... on SanityHomePageSection {
+          _key
+          _type
+          introText {
+            _rawChildren(resolveReferences: { maxDepth: 10 })
+          }
+          promoVideo {
+            text
+            url
+            _type
+            _key
+          }
+        }
+        ... on SanityOurWorkSelect {
+          _key
+          _type
+          displayOurWork
+        }
       }
     }
   }
@@ -169,7 +188,7 @@ export const query = graphql`
 
 const Page = (props) => {
   const { data, errors } = props;
-
+  // console.log("props ", props);
   if (errors) {
     console.log("errors");
     return (
@@ -179,15 +198,19 @@ const Page = (props) => {
     );
   }
 
-  const site = (data || {}).site;
+  // const site = (data || {}).site;
 
   //   if (!site) {
   //     throw new Error(
   //       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
   //     );
   //   }
+  // console.log("data ", data);
 
-  const page = data.page || data.route.page;
+  if (!data) {
+    return "Error! data not found";
+  }
+  const page = data.page;
 
   const content = (page._rawContent || [])
     .filter((c) => !c.disabled)

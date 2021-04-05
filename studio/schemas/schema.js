@@ -13,8 +13,10 @@ import blockPortableText from "./objects/blockPortableText";
 import bodyPortableText from "./objects/bodyPortableText";
 import figure from "./objects/figure";
 import hero from "./objects/hero";
+import homePageSection from "./objects/homePageSection";
 import mainImage from "./objects/mainImage";
 import ourWorkItem from "./objects/ourWorkItem";
+import ourWorkSelect from "./objects/ourWorkSelect";
 import pageLinkPhoto from "./objects/pageLinkPhoto.js";
 import pageLinks from "./objects/pageLinks.js";
 import photoGallery from "./objects/photoGallery";
@@ -54,5 +56,7 @@ export default createSchema({
     ourWorkShared,
     ourWorkItem,
     homePage,
+    ourWorkSelect,
+    homePageSection,
   ]),
 });

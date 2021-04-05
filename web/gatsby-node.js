@@ -104,7 +104,9 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
       category.slug.current === "other" ? "/" : category.slug.current + "/";
     const path = `${pathPrefix}${indexPage ? "" : slug.current + "/"}`;
     // const path = getPath(category.slug.current, slug);
-    reporter.info(`Creating page: ${path}`);
+    reporter.info(
+      `Creating page: ${path} with slug ${slug.current} and id: ${id}`
+    );
     createPage({
       path,
       component: require.resolve("./src/templates/page.js"),
@@ -112,6 +114,36 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
     });
   });
 }
+
+// async function createHomePage(graphql, actions, reporter) {
+//   const { createPage } = actions;
+//   const result = await graphql(`
+//     {
+//       allSanityHomePage {
+//         edges {
+//           node {
+//             title
+//             id
+//           }
+//         }
+//       }
+//     }
+//   `);
+
+//   // enw vode here
+//   const pageEdges = (result.data.allSanityHomePage || {}).edges || [];
+//   pageEdges.forEach((edge) => {
+//     const { id } = edge.node;
+
+//     const path = "/";
+//     reporter.info(`Creating home page: ${path}`);
+//     createPage({
+//       path,
+//       component: require.resolve("./src/templates/homePage.js"),
+//       context: { id },
+//     });
+//   });
+// }
 
 // async function createBlogPostPages(
 //   pathPrefix = "/blog",
@@ -156,6 +188,7 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
 // }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+  // await createHomePage(graphql, actions, reporter);
   await createPages("/", graphql, actions, reporter);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };

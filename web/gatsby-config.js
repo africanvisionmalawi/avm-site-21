@@ -10,7 +10,7 @@ module.exports = {
     baseUrl: "https://www.africanvision.org.uk",
   },
   flags: {
-    PRESERVE_WEBPACK_CACHE: true,
+    // PRESERVE_WEBPACK_CACHE: true,
     DEV_SSR: true,
     PRESERVE_FILE_DOWNLOAD_CACHE: true,
   },

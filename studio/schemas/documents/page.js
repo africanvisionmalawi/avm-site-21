@@ -74,6 +74,8 @@ export default {
         { type: "hero" },
         { type: "blockPortableText" },
         { type: "team" },
+        { type: "homePageSection" },
+        { type: "ourWorkSelect" },
       ],
     },
     // {
