@@ -11,6 +11,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      title: "Page to link to",
+      name: "url",
+      type: "reference",
+      to: [{ type: "page" }],
+    },
+    {
       title: "Slug",
       name: "slug",
       type: "slug",

@@ -1,7 +1,7 @@
 // in post.js
 
 export default {
-  title: "News",
+  title: "Post",
   name: "post",
   type: "document",
   fields: [

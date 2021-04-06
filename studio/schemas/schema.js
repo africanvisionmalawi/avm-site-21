@@ -4,9 +4,10 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import createSchema from "part:@sanity/base/schema-creator";
 import pageCategory from "./category";
 import homePage from "./documents/homePage";
+import news from "./documents/news";
 import ourWorkShared from "./documents/ourWorkShared";
 import page from "./documents/page";
-import post from "./documents/post";
+// import post from "./documents/post";
 import shop from "./documents/shop";
 import siteSettings from "./documents/siteSettings";
 import blockPortableText from "./objects/blockPortableText";
@@ -35,9 +36,9 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     pageCategory,
-    post,
     shop,
     page,
+    news,
     siteSettings,
     richText,
     richTextSimple,
