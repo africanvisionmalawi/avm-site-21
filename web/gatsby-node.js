@@ -115,6 +115,41 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
   });
 }
 
+async function createNews(pathPrefix = "", graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityNews(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const pageEdges = (result.data.allSanityNews || {}).edges || [];
+  pageEdges.forEach((edge) => {
+    const { id, slug = {} } = edge.node;
+    const pathPrefix = "/news/";
+    const path = `${pathPrefix}${slug.current + "/"}`;
+    reporter.info(
+      `Creating news page: ${path} with slug ${slug.current} and id: ${id}`
+    );
+    createPage({
+      path,
+      component: require.resolve("./src/templates/news.js"),
+      context: { id },
+    });
+  });
+}
+
 // async function createHomePage(graphql, actions, reporter) {
 //   const { createPage } = actions;
 //   const result = await graphql(`
@@ -190,5 +225,6 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // await createHomePage(graphql, actions, reporter);
   await createPages("/", graphql, actions, reporter);
+  await createNews("/", graphql, actions, reporter);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };
