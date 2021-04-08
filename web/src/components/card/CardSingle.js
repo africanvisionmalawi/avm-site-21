@@ -32,6 +32,7 @@ export const CardSingle = ({
   let cardImage;
   // console.log("linkText ", linkText);
   const hideOtherPhotos = false;
+  const photoType = featured ? "featured" : "default";
 
   // if (props.smallImage) {
   //   // console.log("smallImage", props.smallImage);
@@ -47,16 +48,16 @@ export const CardSingle = ({
         <>
           {url ? (
             <Link to={url} className="card-image">
-              <PhotoCont photo={photo} featured={featured} />
+              <PhotoCont photo={photo} photoType={photoType} />
             </Link>
           ) : (
             <a href={extUrl} className="card-image">
-              <PhotoCont photo={photo} featured={featured} />
+              <PhotoCont photo={photo} photoType={photoType} />
             </a>
           )}
         </>
       ) : (
-        <PhotoCont photo={photo} featured={featured} />
+        <PhotoCont photo={photo} photoType={photoType} />
       )}
 
       <CardContent

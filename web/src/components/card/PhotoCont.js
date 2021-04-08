@@ -14,8 +14,22 @@ import React from "react";
 // `;
 
 export const PhotoCont = (props) => {
-  const { photo, featured } = props;
-  console.log("featured here ", featured);
+  const { photo, photoType } = props;
+
+  const photoSizes = {
+    default: {
+      w: 280,
+      h: 125,
+    },
+    featured: {
+      w: 560,
+      h: 280,
+    },
+    news: {
+      w: 371,
+      h: 222,
+    },
+  };
   return (
     <>
       {/* {props.displayDate && (
@@ -30,8 +44,8 @@ export const PhotoCont = (props) => {
       {photo ? (
         <SanityImage
           {...photo}
-          width={featured ? 560 : 250}
-          height={featured ? 280 : 125}
+          width={photoSizes[photoType].w}
+          height={photoSizes[photoType].h}
           alt={photo.alt}
         />
       ) : null}

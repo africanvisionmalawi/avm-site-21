@@ -1,7 +1,9 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+// import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import ReactPlayer from "react-player";
+import { CardPost } from "../components/card/CardPost";
 import { Donate } from "../components/common/Donate";
 import { Hero } from "../components/Hero";
 // import InfoRows from "../components/InfoRows";
@@ -11,58 +13,6 @@ import Layout from "../components/Layout";
 import { PortableText } from "../components/portableText/portableText";
 import videoStyles from "../components/videos/videos.module.css";
 // export const query = graphql`
-//   query HomePageTemplateQuery {
-//     sanityHomePage {
-//       id
-//       title
-//       indexPage
-//       latestNews {
-//         _rawChildren(resolveReferences: { maxDepth: 10 })
-//       }
-//       introText {
-//         _rawChildren(resolveReferences: { maxDepth: 10 })
-//       }
-//       promoVideo {
-//         _key
-//         text
-//         url
-//       }
-//       hero {
-//         image {
-//           asset {
-//             fluid(maxWidth: 700) {
-//               ...GatsbySanityImageFluid
-//             }
-//           }
-//           hotspot {
-//             _key
-//             _type
-//             height
-//             width
-//             x
-//             y
-//           }
-//           asset {
-//             _id
-//           }
-//           alt
-//           caption
-//           crop {
-//             _key
-//             _type
-//             bottom
-//             left
-//             right
-//             top
-//           }
-//         }
-//         heroMsg {
-//           _rawChildren(resolveReferences: { maxDepth: 10 })
-//         }
-//       }
-//     }
-//   }
-// `;
 
 const HomePage = ({ data }) => {
   // const { data, errors } = props;
@@ -77,8 +27,8 @@ const HomePage = ({ data }) => {
   //   }
 
   const page = data.sanityHomePage;
-  console.log("page ", page);
-
+  // console.log("page ", page);
+  console.log("newsLinks ", page.newsLinks);
   //   const menuItems = page.navMenu && (page.navMenu.items || []);
   //   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
 
@@ -139,6 +89,25 @@ const HomePage = ({ data }) => {
               />
             </TextSection>
           ) : null}
+
+          {page.newsLinks ? (
+            <>
+              <section>
+                <PostList>
+                  <CardCont>
+                    {page.newsLinks.newsLinks.map((post) => (
+                      <React.Fragment key={post.url.id}>
+                        <CardPost post={post.url} />
+                      </React.Fragment>
+                    ))}
+                  </CardCont>
+                </PostList>
+              </section>
+              {/* <PostsFooter>
+                <Link to="/news/">View all news</Link>
+              </PostsFooter> */}
+            </>
+          ) : null}
         </Main>
 
         <Donate
@@ -184,6 +153,23 @@ const TextSection = styled.section`
   }
 `;
 
+const PostList = styled.div`
+  display: flex;
+  margin: 2rem auto;
+  max-width: 1180px;
+`;
+
+const CardCont = styled.div`
+  align-items: grid-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  grid-gap: 30px;
+  flex-shrink: 2;
+  justify-content: center;
+  max-width: 1525px;
+  width: 100%;
+`;
+
 const VideoSection = styled.div`
   width: 100%;
   @media (min-width: 768px) {
@@ -212,5 +198,36 @@ const Main = styled.main`
   background: #fff;
   border-radius: 2px;
 `;
+
+// const PostsFooter = styled.div`
+//   height: 50px;
+//   margin: 0 auto 3rem;
+//   max-width: 1180px;
+//   position: relative;
+//   &::before {
+//     bottom: 50%;
+//     content: "";
+//     border-bottom: 1px solid #b75906;
+//     position: absolute;
+//     width: 100%;
+//     z-index: 10;
+//   }
+
+//   & a {
+//     background: #fff;
+//     border: 2px solid #b75906;
+//     border-radius: 12px;
+//     display: inline-block;
+//     font-size: 0.8em;
+//     left: 50%;
+//     margin-left: -80px;
+//     padding: 4px 24px;
+//     position: absolute;
+//     text-align: center;
+//     top: 10%;
+//     width: 160px;
+//     z-index: 20;
+//   }
+// `;
 
 export default HomePage;

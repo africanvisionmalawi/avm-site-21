@@ -16,6 +16,9 @@ import figure from "./objects/figure";
 import hero from "./objects/hero";
 import homePageSection from "./objects/homePageSection";
 import mainImage from "./objects/mainImage";
+import newsLink from "./objects/newsLink";
+import newsLinks from "./objects/newsLinks";
+import newsPortableText from "./objects/newsPortableText";
 import ourWorkItem from "./objects/ourWorkItem";
 import ourWorkSelect from "./objects/ourWorkSelect";
 import pageLinkPhoto from "./objects/pageLinkPhoto.js";
@@ -59,5 +62,8 @@ export default createSchema({
     homePage,
     ourWorkSelect,
     homePageSection,
+    newsLink,
+    newsLinks,
+    newsPortableText,
   ]),
 });

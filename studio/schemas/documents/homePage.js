@@ -49,6 +49,12 @@ export default {
         { type: "team" },
       ],
     },
+    {
+      name: "newsLinks",
+      type: "newsLinks",
+      title: "News Links",
+      description: "Add a link to a news article",
+    },
     // {
     //   title: "Page Links",
     //   name: "inks",

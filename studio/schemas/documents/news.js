@@ -9,6 +9,7 @@ export default {
       title: "Page Title",
       name: "title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Publish date",
@@ -18,6 +19,7 @@ export default {
         dateFormat: "YYYY-MM-DD",
         calendarTodayLabel: "Today",
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Slug",
@@ -31,14 +33,23 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Hero Image",
-      name: "hero",
-      type: "hero",
+      title: "Featured photo",
+      name: "photo",
+      type: "figure",
+    },
+    {
+      title: "Excerpt",
+      name: "excerpt",
+      description:
+        "Text used when the news articles is linked to from anotehr page",
+      type: "bodyPortableText",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Body",
       name: "body",
       type: "bodyPortableText",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "content",
@@ -56,6 +67,7 @@ export default {
       title: "Meta Description",
       name: "description",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
   ],
 };

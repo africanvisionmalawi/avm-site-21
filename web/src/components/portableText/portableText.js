@@ -4,7 +4,7 @@ import clientConfig from "../../../client-config";
 import serializers from "./serializers";
 
 export const PortableText = ({ blocks, className }) => {
-  console.log("here ", blocks);
+  // console.log("here ", blocks);
   return (
     <BasePortableText
       blocks={blocks}

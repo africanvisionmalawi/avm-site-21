@@ -25,39 +25,10 @@ export const query = graphql`
       }
       _rawBody(resolveReferences: { maxDepth: 10 })
       _rawContent(resolveReferences: { maxDepth: 10 })
-      hero {
-        image {
-          asset {
-            fluid(maxWidth: 700) {
-              ...GatsbySanityImageFluid
-            }
-          }
-          hotspot {
-            _key
-            _type
-            height
-            width
-            x
-            y
-          }
-          asset {
-            _id
-          }
-          alt
-          caption
-          crop {
-            _key
-            _type
-            bottom
-            left
-            right
-            top
-          }
-        }
-        heroMsg {
-          _key
-          _rawChildren(resolveReferences: { maxDepth: 10 })
-        }
+      photo {
+        _key
+        alt
+        ...ImageWithPreview
       }
       content {
         ... on SanityBlockPortableText {

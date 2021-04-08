@@ -56,6 +56,22 @@ export const query = graphql`
           _rawChildren(resolveReferences: { maxDepth: 10 })
         }
       }
+      newsLinks {
+        newsLinks {
+          url {
+            id
+            title
+            slug {
+              current
+            }
+            photo {
+              alt
+              ...ImageWithPreview
+            }
+            _rawExcerpt(resolveReferences: { maxDepth: 10 })
+          }
+        }
+      }
     }
   }
 `;
