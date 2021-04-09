@@ -8,12 +8,13 @@ import { PhotoCont } from "./PhotoCont";
 
 export const CardPost = (props) => {
   const { slug, title, _rawExcerpt, photo } = props.post;
+  const url = `/news/${slug.current}/`;
   console.log("cardpost ", props);
   return (
     <div>
       {slug ? (
         <>
-          <Link to={slug.current} className="card-image">
+          <Link to={url} className="card-image">
             <PhotoCont photo={photo} photoType="news" />
           </Link>
         </>
@@ -21,7 +22,7 @@ export const CardPost = (props) => {
         <PhotoCont photo={photo} photoType="news" />
       )}
 
-      <CardContent title={title} linkText={_rawExcerpt} url={slug.current} />
+      <CardContent title={title} linkText={_rawExcerpt} url={url} />
     </div>
   );
 };

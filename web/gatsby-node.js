@@ -13,6 +13,22 @@ const { isFuture } = require("date-fns");
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
+/**
+ * Returns the current date in YYYY-MM-DD format
+ */
+function getCurrentDate() {
+  const d = new Date();
+  let month = (d.getMonth() + 1).toString();
+  if (month.length < 2) {
+    month = `0${month}`;
+  }
+  let day = d.getDate().toString();
+  if (day.length < 2) {
+    day = `0${day}`;
+  }
+  return `${d.getFullYear()}-${month}-${day}`;
+}
+
 exports.createSchemaCustomization = ({ actions, schema }) => {
   actions.createTypes([
     schema.buildObjectType({
@@ -150,6 +166,48 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
   });
 }
 
+async function createMarkdownNews(pathPrefix = "", graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+        sort: { order: DESC, fields: [frontmatter___date] }
+      ) {
+        edges {
+          node {
+            excerpt(pruneLength: 400)
+            id
+            frontmatter {
+              title
+              path
+              published
+              tags
+              templateKey
+              date(formatString: "MMMM DD, YYYY")
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const postEdges = (result.data.allMarkdownRemark || {}).edges || [];
+  postEdges.forEach((edge) => {
+    const { id } = edge.node;
+    const path = edge.node.frontmatter.path.replace("/posts", "/news");
+    reporter.info(`Creating markdown news page: ${path} with id: ${id}`);
+    createPage({
+      path,
+      tags: edge.node.frontmatter.tags,
+      component: require.resolve("./src/templates/markdownNews.js"),
+      context: { id, currentDate: getCurrentDate() },
+    });
+  });
+}
+
 // async function createHomePage(graphql, actions, reporter) {
 //   const { createPage } = actions;
 //   const result = await graphql(`
@@ -226,5 +284,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // await createHomePage(graphql, actions, reporter);
   await createPages("/", graphql, actions, reporter);
   await createNews("/", graphql, actions, reporter);
+  await createMarkdownNews("/", graphql, actions, reporter);
+
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };

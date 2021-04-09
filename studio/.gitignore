@@ -10,4 +10,5 @@ yarn-error.log
 avm-gatsby-netlify-cms.code-workspace
 .linaria-cache
 .env*
+*.ndjson
 
