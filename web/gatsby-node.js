@@ -1,5 +1,6 @@
 // const { getPath } = require("./src/utils/helpers");
 const { isFuture } = require("date-fns");
+const createPaginatedPages = require("gatsby-paginate");
 // const getPath = (cat, slug) => {
 //   const pathPrefix = cat == "other" ? "/" : cat + "/";
 //   const newSlug = cat == slug ? "/" : slug;
@@ -28,6 +29,8 @@ function getCurrentDate() {
   }
   return `${d.getFullYear()}-${month}-${day}`;
 }
+
+let allNews = [];
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   actions.createTypes([
@@ -139,9 +142,22 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
         edges {
           node {
             id
+            title
             slug {
               current
             }
+            photo {
+              asset {
+                fluid {
+                  src
+                  srcSet
+                  sizes
+                  aspectRatio
+                }
+              }
+            }
+            _rawExcerpt(resolveReferences: { maxDepth: 10 })
+            _type
           }
         }
       }
@@ -151,6 +167,8 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
   if (result.errors) throw result.errors;
 
   const pageEdges = (result.data.allSanityNews || {}).edges || [];
+  allNews = allNews.concat(pageEdges);
+
   pageEdges.forEach((edge) => {
     const { id, slug = {} } = edge.node;
     const pathPrefix = "/news/";
@@ -195,6 +213,7 @@ async function createMarkdownNews(pathPrefix = "", graphql, actions, reporter) {
   if (result.errors) throw result.errors;
 
   const postEdges = (result.data.allMarkdownRemark || {}).edges || [];
+  allNews = allNews.concat(postEdges);
   postEdges.forEach((edge) => {
     const { id } = edge.node;
     const path = edge.node.frontmatter.path.replace("/posts", "/news");
@@ -205,6 +224,18 @@ async function createMarkdownNews(pathPrefix = "", graphql, actions, reporter) {
       component: require.resolve("./src/templates/markdownNews.js"),
       context: { id, currentDate: getCurrentDate() },
     });
+  });
+}
+
+async function createArticleIndex(actions) {
+  const { createPage } = actions;
+  createPaginatedPages({
+    edges: allNews,
+    createPage: createPage,
+    pageTemplate: "src/templates/articleList.js",
+    pageLength: 10, // This is optional and defaults to 10 if not used
+    pathPrefix: "news", // This is optional and defaults to an empty string if not used
+    context: {}, // This is optional and defaults to an empty object if not used
   });
 }
 
@@ -285,6 +316,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPages("/", graphql, actions, reporter);
   await createNews("/", graphql, actions, reporter);
   await createMarkdownNews("/", graphql, actions, reporter);
-
+  await createArticleIndex(actions);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };
+
+// exports.onCreateNode = ({ node, actions, getNode }) => {
+//   const { createNodeField } = actions;
+//   // fmImagesToRelative(node); // convert image paths for gatsby images
+
+//   if (node.internal.type === `MarkdownRemark`) {
+//     const value = createFilePath({ node, getNode });
+//     createNodeField({
+//       name: `slug`,
+//       node,
+//       value,
+//     });
+//   }
+// };
