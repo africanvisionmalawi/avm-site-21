@@ -287,15 +287,12 @@ const LowerSectionInner = styled.div`
 `;
 
 const H2Heading = styled.h2`
-  // font-size: 3.2em;
   margin: 0 0 0.5em;
   text-align: center;
 `;
 
 const SectionHeading = styled.h2`
   display: block;
-  // font-size: 1.8em;
-  // font-weight: bold;
   padding-right: 12px;
 `;
 
@@ -304,7 +301,6 @@ const TopVideoSection = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto 120px;
-  // max-width: 1080px;
   text-align: center;
   @media (min-width: 778px) {
     text-align: left;

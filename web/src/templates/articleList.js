@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
+// import { CardPost } from "../components/card/CardPost";
 // import BlogRoll from "../components/BlogRoll";
 // import ArticleList from "../components/ArticleList";
 import { Donate } from "../components/common/Donate";
@@ -68,6 +69,12 @@ const PaginationText = styled.div`
   text-align: center;
 `;
 
+const PostList = styled.div`
+  display: flex;
+  margin: 2rem auto;
+  max-width: 1180px;
+`;
+
 const PaginationLink = (props) => {
   if (!props.active) {
     return <Link to={`/news/${props.url}`}>{`${props.text}`}</Link>;
@@ -100,6 +107,28 @@ const NewsIndex = ({ pageContext }) => {
                   <Heading>Latest news</Heading>
                   {/* <NavTags tags={tags} tagsBase={tagsBase} /> */}
                   {/* <ArticleList posts={group} /> */}
+
+                  <PostList>
+                    {group.map((post) => {
+                      console.log("post ", post);
+                      return (
+                        <React.Fragment key={`here`}>
+                          {post.node.title ? "sanity news" : "markdown news"}
+                          <br />
+                          {post.node._type
+                            ? "card post goes here"
+                            : // <CardPost post={post.node} />
+                              "no _type"}
+                          <br />
+                          {post.node.id ? post.node.id : "no id"}
+                          <br />
+                          &nbsp;
+                          <br />
+                          {/* <CardPost post={post.url} /> */}
+                        </React.Fragment>
+                      );
+                    })}
+                  </PostList>
                   <Pagination>
                     {first ? (
                       <PaginationLink
