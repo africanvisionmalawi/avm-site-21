@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
+import { CardPostAlt } from "../components/card/CardPostAlt";
 // import { CardPost } from "../components/card/CardPost";
 // import BlogRoll from "../components/BlogRoll";
 // import ArticleList from "../components/ArticleList";
@@ -111,20 +112,28 @@ const NewsIndex = ({ pageContext }) => {
                   <PostList>
                     {group.map((post) => {
                       console.log("post ", post);
+                      const type = post.node._type ? "sanity" : "markdown";
+                      const title = post.node.title
+                        ? post.node.title
+                        : post.node.frontmatter.title;
+                      const excerpt = post.node._rawExcerpt
+                        ? post.node._rawExcerpt
+                        : post.node.excerpt;
+                      const slug = post.node.slug
+                        ? post.node.slug.current
+                        : post.node.frontmatter.path.replace("/posts/", "/");
+                      const publishDate = post.node.publishDate
+                        ? post.node.publishDate
+                        : post.node.frontmatter.date;
                       return (
-                        <React.Fragment key={`here`}>
-                          {post.node.title ? "sanity news" : "markdown news"}
-                          <br />
-                          {post.node._type
-                            ? "card post goes here"
-                            : // <CardPost post={post.node} />
-                              "no _type"}
-                          <br />
-                          {post.node.id ? post.node.id : "no id"}
-                          <br />
-                          &nbsp;
-                          <br />
-                          {/* <CardPost post={post.url} /> */}
+                        <React.Fragment key={post.node.id}>
+                          <CardPostAlt
+                            type={type}
+                            title={title}
+                            excerpt={excerpt}
+                            slug={slug}
+                            publishDate={publishDate}
+                          />
                         </React.Fragment>
                       );
                     })}

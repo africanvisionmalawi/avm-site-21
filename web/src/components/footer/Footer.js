@@ -106,7 +106,7 @@ const Footer = () => (
 
             <FooterCol xs={12} sm={8}>
               <Heading>
-                <a href="/news">News</a>
+                <a href="/news/">News</a>
               </Heading>
               <ul className={footerStyles.list}>
                 <li>

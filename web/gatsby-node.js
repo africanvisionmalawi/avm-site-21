@@ -158,6 +158,7 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
             }
             _rawExcerpt(resolveReferences: { maxDepth: 10 })
             _type
+            publishDate
           }
         }
       }
