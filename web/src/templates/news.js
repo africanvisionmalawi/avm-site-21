@@ -1,5 +1,5 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import { Donate } from "../components/common/Donate";
@@ -128,6 +128,9 @@ const News = (props) => {
           {/* <div>{content}here</div> */}
         </Main>
         {content}
+        <ViewAll>
+          <Link to="/news/">View all news</Link>
+        </ViewAll>
         <Donate
           link="https://www.charitycheckout.co.uk/1113786/"
           text="Donate"
@@ -174,6 +177,11 @@ const TextSection = styled.section`
 const Main = styled.main`
   background: #fff;
   border-radius: 2px;
+`;
+
+const ViewAll = styled.div`
+  margin: 2.4em 0;
+  text-align: center;
 `;
 
 export default News;
