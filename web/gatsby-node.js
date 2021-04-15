@@ -138,7 +138,10 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allSanityNews(filter: { slug: { current: { ne: null } } }) {
+      allSanityNews(
+        filter: { slug: { current: { ne: null } } }
+        sort: { order: DESC, fields: [publishDate] }
+      ) {
         edges {
           node {
             id
@@ -158,7 +161,7 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
             }
             _rawExcerpt(resolveReferences: { maxDepth: 10 })
             _type
-            publishDate
+            publishDate(formatString: "MMMM DD, YYYY")
           }
         }
       }

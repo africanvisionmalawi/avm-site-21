@@ -71,7 +71,11 @@ const PaginationText = styled.div`
 `;
 
 const PostList = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(1fr, 1fr));
+  grid-gap: 3rem;
+  grid-auto-flow: dense;
   margin: 2rem auto;
   max-width: 1180px;
 `;
