@@ -177,9 +177,9 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
     const { id, slug = {} } = edge.node;
     const pathPrefix = "/news/";
     const path = `${pathPrefix}${slug.current + "/"}`;
-    reporter.info(
-      `Creating news page: ${path} with slug ${slug.current} and id: ${id}`
-    );
+    // reporter.info(
+    //   `Creating news page: ${path} with slug ${slug.current} and id: ${id}`
+    // );
     createPage({
       path,
       component: require.resolve("./src/templates/news.js"),
@@ -221,7 +221,7 @@ async function createMarkdownNews(pathPrefix = "", graphql, actions, reporter) {
   postEdges.forEach((edge) => {
     const { id } = edge.node;
     const path = edge.node.frontmatter.path.replace("/posts", "/news");
-    reporter.info(`Creating markdown news page: ${path} with id: ${id}`);
+    // reporter.info(`Creating markdown news page: ${path} with id: ${id}`);
     createPage({
       path,
       tags: edge.node.frontmatter.tags,
@@ -240,6 +240,42 @@ async function createArticleIndex(actions) {
     pageLength: 10, // This is optional and defaults to 10 if not used
     pathPrefix: "news", // This is optional and defaults to an empty string if not used
     context: {}, // This is optional and defaults to an empty object if not used
+  });
+}
+
+async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityShop(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            title
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const pageEdges = (result.data.allSanityShop || {}).edges || [];
+  pageEdges.forEach((edge) => {
+    const { id, slug = {} } = edge.node;
+    const pathPrefix = "/shop/";
+    const path = `${pathPrefix}${slug.current + "/"}`;
+    reporter.info(
+      `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
+    );
+    createPage({
+      path,
+      component: require.resolve("./src/templates/shop-product.js"),
+      context: { id },
+    });
   });
 }
 
@@ -321,6 +357,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createNews("/", graphql, actions, reporter);
   await createMarkdownNews("/", graphql, actions, reporter);
   await createArticleIndex(actions);
+  await createShopPages("/", graphql, actions, reporter);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };
 

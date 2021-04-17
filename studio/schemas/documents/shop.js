@@ -25,10 +25,9 @@ export default {
       type: "richText",
     },
     {
-      name: "Photos",
-      title: "galleryPhotos",
-      type: "array",
-      of: [{ type: "image" }],
+      name: "photoGallery",
+      title: "Photo Gallery",
+      type: "photoGallery",
     },
     {
       title: "In Stock amount",
