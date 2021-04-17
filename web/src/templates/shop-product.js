@@ -8,6 +8,7 @@ import { Donate } from "../components/common/Donate";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import { BottomWave, TopWave } from "../components/wave";
 import Layout from "../components/Layout";
+import { PortableText } from "../components/portableText/portableText";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
 
@@ -89,21 +90,13 @@ const ShopProduct = (props) => {
       <article>
         <ShopSection>
           <article className="content">
-            <Heading>African Vision Malawi Online Shop</Heading>
+            <Heading>{page.title ? page.title : null}</Heading>
             {/* <NavTags tags={tags} tagsBase={tagsBase} /> */}
-            <ul>
-              shop items go here
-              {/* {data.allMarkdownRemark.edges.map((document) => (
-                <ShopListItem
-                  id={document.node.id}
-                  slug={document.node.fields.slug}
-                  photos={document.node.frontmatter.galleryPhotos}
-                  title={document.node.frontmatter.title}
-                  tags={document.node.frontmatter.shopTags}
-                  price={document.node.frontmatter.price}
-                />
-              ))} */}
-            </ul>
+            {page._rawBody ? (
+              <TextSection>
+                <PortableText blocks={page._rawBody} />
+              </TextSection>
+            ) : null}
           </article>
         </ShopSection>
         <Donate
