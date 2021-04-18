@@ -1,7 +1,6 @@
 import { styled } from "linaria/react";
 import React, { useCallback, useEffect, useRef } from "react";
 import Slider from "react-slick";
-import PreviewCompatibleImage from "../components/PreviewCompatibleImage"; // import LazyLoadImage from "../../../../../../../lazyLoadImage";
 
 const SliderStyles = styled(Slider)`
   box-sizing: border-box;
@@ -46,27 +45,27 @@ const SliderStyles = styled(Slider)`
   }
 `;
 
-const arrowStylesCommon = {
-  borderBottom: "20px solid transparent",
-  borderTop: "20px solid transparent",
-  cursor: "pointer",
-  height: 0,
-  position: "absolute",
-  top: "50%",
-  transform: "translateY(-50%)",
-  width: 0,
-  zIndex: 10,
-};
+// const arrowStylesCommon = {
+//   borderBottom: "20px solid transparent",
+//   borderTop: "20px solid transparent",
+//   cursor: "pointer",
+//   height: 0,
+//   position: "absolute",
+//   top: "50%",
+//   transform: "translateY(-50%)",
+//   width: 0,
+//   zIndex: 10,
+// };
 
-const arrowStylesPrev = {
-  borderRight: "30px solid #fff",
-  left: "30px",
-};
+// const arrowStylesPrev = {
+//   borderRight: "30px solid #fff",
+//   left: "30px",
+// };
 
-const arrowStylesNext = {
-  borderLeft: "30px solid #fff",
-  right: "30px",
-};
+// const arrowStylesNext = {
+//   borderLeft: "30px solid #fff",
+//   right: "30px",
+// };
 
 const AUTOPLAY_INTERVAL = 1500;
 
@@ -78,7 +77,8 @@ export const Carousel = React.memo((props) => {
   const renderGalleryImage = (image) => {
     return (
       <div key={image}>
-        <PreviewCompatibleImage imageInfo={image} />
+        image goes here
+        {/* <PreviewCompatibleImage imageInfo={image} /> */}
       </div>
     );
   };
