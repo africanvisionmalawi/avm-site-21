@@ -1,6 +1,7 @@
 import { styled } from "linaria/react";
 import React, { useCallback, useEffect, useRef } from "react";
 import Slider from "react-slick";
+import { Photo } from "../shop/Photo";
 
 const SliderStyles = styled(Slider)`
   box-sizing: border-box;
@@ -45,43 +46,14 @@ const SliderStyles = styled(Slider)`
   }
 `;
 
-// const arrowStylesCommon = {
-//   borderBottom: "20px solid transparent",
-//   borderTop: "20px solid transparent",
-//   cursor: "pointer",
-//   height: 0,
-//   position: "absolute",
-//   top: "50%",
-//   transform: "translateY(-50%)",
-//   width: 0,
-//   zIndex: 10,
-// };
-
-// const arrowStylesPrev = {
-//   borderRight: "30px solid #fff",
-//   left: "30px",
-// };
-
-// const arrowStylesNext = {
-//   borderLeft: "30px solid #fff",
-//   right: "30px",
-// };
-
 const AUTOPLAY_INTERVAL = 1500;
 
 export const Carousel = React.memo((props) => {
   const { activeIndex, allSizesImages } = props;
+
   // set the slider and timer refs
   const sliderRef = useRef();
   const autoplayInterval = useRef(false);
-  const renderGalleryImage = (image) => {
-    return (
-      <div key={image}>
-        image goes here
-        {/* <PreviewCompatibleImage imageInfo={image} /> */}
-      </div>
-    );
-  };
 
   const autoplayNext = useCallback(() => {
     sliderRef && sliderRef.current.slickNext();
@@ -112,7 +84,15 @@ export const Carousel = React.memo((props) => {
       initialSlide={activeIndex || 0}
       dots="true"
     >
-      {allSizesImages.length ? allSizesImages.map(renderGalleryImage) : <div />}
+      {allSizesImages.photos.length ? (
+        allSizesImages.photos.map((photo, i) => (
+          <div key={photo._key}>
+            <Photo photo={photo} />
+          </div>
+        ))
+      ) : (
+        <div />
+      )}
     </SliderStyles>
   );
 });

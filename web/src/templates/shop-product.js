@@ -8,6 +8,7 @@ import { BuyButton } from "../components/common/BuyButton";
 import { Carousel } from "../components/common/Carousel";
 import { Donate } from "../components/common/Donate";
 import { SectionInner } from "../components/common/SectionInner";
+import { SectionTop } from "../components/common/SectionTop";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
@@ -105,7 +106,7 @@ const Price = styled.span`
 const ShopProduct = (props) => {
   const { siteUrl } = useSiteMetadata();
   const { data, errors } = props;
-  console.log("data ", data);
+  // console.log("data ", data);
   if (errors) {
     console.log("errors");
     return (
@@ -148,7 +149,9 @@ const ShopProduct = (props) => {
       <article>
         <ShopSection>
           <article className="content">
-            <Heading>{page.title ? page.title : null}</Heading>
+            <SectionTop>
+              <Heading>{page.title ? page.title : null}</Heading>
+            </SectionTop>
             <Columns>
               <ColumnMain>
                 {page.photoGallery && page.photoGallery.photos.length > 1 && (
