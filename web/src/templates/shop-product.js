@@ -28,6 +28,19 @@ export const query = graphql`
       slug {
         current
       }
+      description
+      height
+      inStock
+      length
+      price
+      salePrice
+      shopTags {
+        label
+        value
+      }
+      total_sales
+      weight
+      width
       _rawBody(resolveReferences: { maxDepth: 10 })
       photoGallery {
         photos {
@@ -39,6 +52,28 @@ export const query = graphql`
     }
   }
 `;
+
+// allShop: allSanityShop(filter: { slug: { current: { ne: null } } }) {
+//   id
+//   title
+//   slug {
+//     current
+//   }
+//   inStock
+//   price
+//   salePrice
+//   shopTags {
+//     label
+//     value
+//   }
+//   photoGallery {
+//     photos {
+//       _key
+//       alt
+//       ...ImageWithPreview
+//     }
+//   }
+// }
 
 const CarouselCont = styled.div`
   margin-left: auto;
@@ -136,9 +171,7 @@ const ShopProduct = (props) => {
   };
 
   const page = data.page;
-  //   const menuItems = page.navMenu && (page.navMenu.items || []);
-  //   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
-  const pageHeading = page.title ? page.title : "";
+
   return (
     // <div>{page.title} </div>
     <Layout
