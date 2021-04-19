@@ -16,12 +16,13 @@ import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 import Layout from "../components/Layout";
 import { PortableText } from "../components/portableText/portableText";
 import { Photo } from "../components/shop/Photo";
+import { ShopListItem } from "../components/shop/ShopListItem";
 import { TagsList } from "../components/shop/TagsList";
 import useSiteMetadata from "../hooks/use-site-metadata";
 import { priceFormatted } from "../utils/helpers";
 
 export const query = graphql`
-  query ShopProductTemplateQuery($id: String!) {
+  query ShopProductTemplateQuery($id: String!, $tag: String) {
     page: sanityShop(id: { eq: $id }) {
       id
       title
@@ -50,30 +51,40 @@ export const query = graphql`
         }
       }
     }
+
+    allShop: allSanityShop(
+      filter: {
+        slug: { current: { ne: null } }
+        shopTags: { elemMatch: { value: { eq: $tag } } }
+      }
+      limit: 3
+    ) {
+      edges {
+        node {
+          id
+          title
+          slug {
+            current
+          }
+          inStock
+          price
+          salePrice
+          shopTags {
+            label
+            value
+          }
+          photoGallery {
+            photos {
+              _key
+              alt
+              ...ImageWithPreview
+            }
+          }
+        }
+      }
+    }
   }
 `;
-
-// allShop: allSanityShop(filter: { slug: { current: { ne: null } } }) {
-//   id
-//   title
-//   slug {
-//     current
-//   }
-//   inStock
-//   price
-//   salePrice
-//   shopTags {
-//     label
-//     value
-//   }
-//   photoGallery {
-//     photos {
-//       _key
-//       alt
-//       ...ImageWithPreview
-//     }
-//   }
-// }
 
 const CarouselCont = styled.div`
   margin-left: auto;
@@ -115,6 +126,11 @@ const Heading = styled.h1`
   text-align: center;
 `;
 
+const SubHeading = styled.h2`
+  margin-top: 3rem;
+  text-align: center;
+`;
+
 const Columns = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -136,6 +152,26 @@ const Price = styled.span`
   display: block;
   font-size: 2rem;
   margin-bottom: 1.6rem;
+`;
+
+const ShopIndexList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  grid-gap: 40px;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  & li {
+    list-style-type: none;
+    margin: 8px 0;
+    opacity: 0.9;
+    padding: 0;
+    position: relative;
+  }
+  & li:hover {
+    opacity: 1;
+  }
 `;
 
 const ShopProduct = (props) => {
@@ -171,6 +207,8 @@ const ShopProduct = (props) => {
   };
 
   const page = data.page;
+  const relatedProducts = data.allShop.edges;
+  console.log("relatedProducts ", relatedProducts);
 
   return (
     // <div>{page.title} </div>
@@ -237,6 +275,26 @@ const ShopProduct = (props) => {
                 </div>
               </ColumnAside>
             </Columns>
+            {relatedProducts.length ? (
+              <>
+                <SubHeading>Related products</SubHeading>
+                <ShopIndexList>
+                  {relatedProducts.map((item, i) => (
+                    <React.Fragment key={item.node.id}>
+                      {i < 3 ? (
+                        <ShopListItem
+                          id={item.node.id}
+                          slug={item.node.slug.current}
+                          photo={item.node.photoGallery.photos[0]}
+                          title={item.node.title}
+                          price={item.node.price}
+                        />
+                      ) : null}
+                    </React.Fragment>
+                  ))}
+                </ShopIndexList>
+              </>
+            ) : null}
           </article>
         </ShopSection>
         <Donate
