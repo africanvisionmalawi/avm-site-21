@@ -52,7 +52,7 @@ export const query = graphql`
       }
     }
 
-    allShop: allSanityShop(
+    relatedProducts: allSanityShop(
       filter: {
         slug: { current: { ne: null } }
         shopTags: { elemMatch: { value: { eq: $tag } } }
@@ -207,7 +207,7 @@ const ShopProduct = (props) => {
   };
 
   const page = data.page;
-  const relatedProducts = data.allShop.edges;
+  const relatedProducts = data.relatedProducts.edges;
   console.log("relatedProducts ", relatedProducts);
 
   return (
@@ -232,7 +232,10 @@ const ShopProduct = (props) => {
                 )}
                 {page.photoGallery && page.photoGallery.photos.length === 1 && (
                   <PhotoCont>
-                    <Photo photo={page.photoGallery.photos[0]} />
+                    <Photo
+                      photo={page.photoGallery.photos[0]}
+                      photoType="featured"
+                    />
                   </PhotoCont>
                 )}
               </ColumnMain>
@@ -286,6 +289,7 @@ const ShopProduct = (props) => {
                           id={item.node.id}
                           slug={item.node.slug.current}
                           photo={item.node.photoGallery.photos[0]}
+                          photoType="default"
                           title={item.node.title}
                           price={item.node.price}
                         />

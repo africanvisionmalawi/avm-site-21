@@ -5,7 +5,9 @@ import { priceFormatted } from "../../utils/helpers";
 import { Photo } from "./Photo";
 
 const PhotoCont = styled.div`
-  max-width: 600px;
+  max-height: 280px;
+  max-width: 280px;
+  overflow: hidden;
   margin-left: 0;
   @media (min-width: 768px) {
     margin-left: 1rem;
@@ -18,7 +20,7 @@ export const ShopListItem = (props) => {
       <Link to={props.slug}>
         {props.photo && (
           <PhotoCont>
-            <Photo photo={props.photo} />
+            <Photo photo={props.photo} photoType={props.photoType} />
           </PhotoCont>
         )}
         <h2>{props.title}</h2>
