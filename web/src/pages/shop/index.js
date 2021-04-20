@@ -1,10 +1,12 @@
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
+import { NavTags } from "../../components/common/NavTags";
 import { SectionTop } from "../../components/common/SectionTop";
 import Errors from "../../components/errors";
 import Layout from "../../components/Layout";
 import { ShopListItem } from "../../components/shop/ShopListItem";
+import { tagsBase } from "../../constants/shop";
 
 export const query = graphql`
   query ShopTemplateQuery {
@@ -28,6 +30,18 @@ export const query = graphql`
               _key
               alt
               ...ImageWithPreview
+            }
+          }
+        }
+      }
+    }
+    tags: allSanitySiteSettings {
+      edges {
+        node {
+          shopTags {
+            title
+            value {
+              current
             }
           }
         }
@@ -78,12 +92,15 @@ const ShopIndexPage = (props) => {
   const title = "Shop - African Vision Malawi";
   const description = "Welcome to our online shop.";
 
+  const tags = data.tags.edges[0].node.shopTags;
+
   return allShopProducts.length ? (
     <>
       <Layout title={title} description={description} article={false}>
         <article>
           <SectionTop>
             <Heading>{title}</Heading>
+            <NavTags tags={tags} tagsBase={tagsBase} active={null} />
           </SectionTop>
           <ShopIndexList>
             {allShopProducts.map((item, i) => (

@@ -1,10 +1,12 @@
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
+import { NavTags } from "../components/common/NavTags";
 import { SectionTop } from "../components/common/SectionTop";
 import Errors from "../components/errors";
 import Layout from "../components/Layout";
 import { ShopListItem } from "../components/shop/ShopListItem";
+import { tagsBase } from "../constants/shop";
 
 export const query = graphql`
   query ShopTagsTemplateQuery($value: String!) {
@@ -33,6 +35,18 @@ export const query = graphql`
               _key
               alt
               ...ImageWithPreview
+            }
+          }
+        }
+      }
+    }
+    tags: allSanitySiteSettings {
+      edges {
+        node {
+          shopTags {
+            title
+            value {
+              current
             }
           }
         }
@@ -79,9 +93,12 @@ const ShopTagPage = (props) => {
   }
 
   const allShopProducts = data.shopByTagAll.edges;
-  const tag = props.pageContext.title;
-  const title = `${tag}`;
+  const tagTitle = props.pageContext.title;
+  const tag = props.pageContext.value;
+  const title = `${tagTitle}`;
   const description = "Welcome to our online shop.";
+
+  const tags = data.tags.edges[0].node.shopTags;
 
   return allShopProducts.length ? (
     <>
@@ -89,6 +106,7 @@ const ShopTagPage = (props) => {
         <article>
           <SectionTop>
             <Heading>{title}</Heading>
+            <NavTags tags={tags} tagsBase={tagsBase} active={tag} />
           </SectionTop>
           <ShopIndexList>
             {allShopProducts.map((item, i) => (
