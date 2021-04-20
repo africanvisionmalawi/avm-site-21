@@ -247,14 +247,14 @@ const ShopProduct = (props) => {
                       <BuyButton
                         productId={page.id}
                         name={page.title}
-                        description={page.title}
+                        description={page.description}
                         price={page.price}
                         image={
                           page.photoGallery && page.photoGallery.length
                             ? page.photoGallery[0].childImageSharp.fluid.src
                             : null
                         }
-                        url={`${siteUrl}${page.slug.current}`}
+                        url={`${siteUrl}/shop/${page.slug.current}/`}
                         weight={page.weight}
                         length={page.length}
                         width={page.width}
