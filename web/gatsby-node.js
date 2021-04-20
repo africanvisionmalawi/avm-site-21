@@ -1,6 +1,7 @@
 // const { getPath } = require("./src/utils/helpers");
 const { isFuture } = require("date-fns");
 const createPaginatedPages = require("gatsby-paginate");
+// const { lte } = require("lodash-es");
 // const getPath = (cat, slug) => {
 //   const pathPrefix = cat == "other" ? "/" : cat + "/";
 //   const newSlug = cat == slug ? "/" : slug;
@@ -284,6 +285,54 @@ async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
   });
 }
 
+async function createShopCategories(
+  pathPrefix = "",
+  graphql,
+  actions,
+  reporter
+) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanitySiteSettings {
+        edges {
+          node {
+            shopTags {
+              title
+              value {
+                current
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  let tagPages = result.data.allSanitySiteSettings || {};
+  console.log("tagPages here ", tagPages);
+  // tagPages = [...new Set(tagPages)];
+  // console.log("tagPages ", tagPages);
+  // let shopTags = [];
+  // tagPages.forEach((edge) => {
+  //   shopTags = shopTags.concat(edge.node.shopTags.value);
+  // });
+  // shopTags = [...new Set(shopTags)];
+  tagPages.edges[0].node.shopTags.forEach((tag) => {
+    const title = tag.title;
+    const value = tag.value.current;
+    const path = `/shop/category/${value + "/"}`;
+    reporter.info(`Creating shop tag page: ${path}`);
+    createPage({
+      path,
+      component: require.resolve("./src/templates/shop-tags.js"),
+      context: { title, value },
+    });
+  });
+}
+
 // async function createHomePage(graphql, actions, reporter) {
 //   const { createPage } = actions;
 //   const result = await graphql(`
@@ -363,6 +412,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createMarkdownNews("/", graphql, actions, reporter);
   await createArticleIndex(actions);
   await createShopPages("/", graphql, actions, reporter);
+  await createShopCategories("/", graphql, actions, reporter);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };
 

@@ -26,6 +26,7 @@ import pageLinks from "./objects/pageLinks.js";
 import photoGallery from "./objects/photoGallery";
 import richText from "./objects/richText";
 import richTextSimple from "./objects/richTextSimple";
+import shopTag from "./objects/shopTag";
 import team from "./objects/team";
 import teamMember from "./objects/teamMember";
 import video from "./objects/video";
@@ -65,5 +66,6 @@ export default createSchema({
     newsLink,
     newsLinks,
     newsPortableText,
+    shopTag,
   ]),
 });
