@@ -208,7 +208,7 @@ const ShopProduct = (props) => {
 
   const page = data.page;
   const relatedProducts = data.relatedProducts.edges;
-  console.log("relatedProducts ", relatedProducts);
+  // console.log("relatedProducts ", relatedProducts);
 
   return (
     // <div>{page.title} </div>
@@ -245,20 +245,24 @@ const ShopProduct = (props) => {
                     <Price>&pound;{priceFormatted(page.price)}</Price>
                     {displayButtonCheck(page.inStock) ? (
                       <BuyButton
-                        productId={page.id}
-                        name={page.title}
-                        description={page.description}
-                        price={page.price}
+                        productId={page.id ? page.id : null}
+                        name={page.title ? page.title : null}
+                        description={page.description ? page.description : null}
+                        price={page.price ? page.price : null}
                         image={
                           page.photoGallery && page.photoGallery.length
                             ? page.photoGallery[0].childImageSharp.fluid.src
                             : null
                         }
-                        url={`${siteUrl}/shop/${page.slug.current}/`}
-                        weight={page.weight}
-                        length={page.length}
-                        width={page.width}
-                        height={page.height}
+                        url={
+                          page.slug
+                            ? `${siteUrl}/shop/${page.slug.current}/`
+                            : null
+                        }
+                        weight={page.weight ? page.weight : null}
+                        length={page.length ? page.length : null}
+                        width={page.width ? page.width : null}
+                        height={page.height ? page.height : null}
                       />
                     ) : (
                       <p>

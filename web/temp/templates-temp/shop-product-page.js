@@ -179,20 +179,20 @@ const ShopProductTemplate = ({
                   </span>
                   {displayButtonCheck(inStock, publish) ? (
                     <BuyButton
-                      productId={productId}
-                      name={title}
-                      description={title}
-                      price={price}
+                      productId={productId ? productId : null}
+                      name={title ? title : null}
+                      description={title ? title : null}
+                      price={price ? price :}
                       image={
                         galleryPhotos && galleryPhotos.length
                           ? galleryPhotos[0].childImageSharp.fluid.src
                           : null
                       }
-                      url={`${siteUrl}${slug}`}
-                      weight={weight}
-                      length={length}
-                      width={width}
-                      height={height}
+                      url={slug ? `${siteUrl}${slug}` : null}
+                      weight={weight ? weight : null}
+                      length={length ? length : null}
+                      width={width ? width : null}
+                      height={height ? height : null}
                     />
                   ) : (
                     <p>

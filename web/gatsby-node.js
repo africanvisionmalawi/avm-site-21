@@ -312,7 +312,7 @@ async function createShopCategories(
   if (result.errors) throw result.errors;
 
   let tagPages = result.data.allSanitySiteSettings || {};
-  console.log("tagPages here ", tagPages);
+  // console.log("tagPages here ", tagPages);
   // tagPages = [...new Set(tagPages)];
   // console.log("tagPages ", tagPages);
   // let shopTags = [];

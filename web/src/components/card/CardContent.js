@@ -16,7 +16,7 @@ const Heading = styled.h3`
 `;
 
 export const CardContent = ({ title, url, linkText }) => {
-  console.log("cardcontent");
+  // console.log("cardcontent");
   return (
     <Content>
       {title ? <Heading>{title}</Heading> : null}

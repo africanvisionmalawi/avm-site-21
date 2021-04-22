@@ -99,7 +99,7 @@ const NewsIndex = ({ pageContext }) => {
   const title = "Latest news - African Vision Malawi";
   const description = "Latest news from African Vision Malawi.";
 
-  console.log("group ", group);
+  // console.log("group ", group);
 
   return (
     <Layout title={title} description={description} article={false}>
@@ -115,7 +115,7 @@ const NewsIndex = ({ pageContext }) => {
 
                   <PostList>
                     {group.map((post) => {
-                      console.log("post ", post);
+                      // console.log("post ", post);
                       const type = post.node._type ? "sanity" : "markdown";
                       const title = post.node.title
                         ? post.node.title
