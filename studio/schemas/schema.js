@@ -3,6 +3,7 @@
 import schemaTypes from "all:part:@sanity/base/schema-type";
 import createSchema from "part:@sanity/base/schema-creator";
 import pageCategory from "./category";
+import event from "./documents/event";
 import homePage from "./documents/homePage";
 import news from "./documents/news";
 import ourWorkShared from "./documents/ourWorkShared";
@@ -67,5 +68,6 @@ export default createSchema({
     newsLinks,
     newsPortableText,
     shopTag,
+    event,
   ]),
 });
