@@ -26,9 +26,16 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      title: "Brief summary of the event (used on index page)",
+      name: "summary",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       title: "Main description of the event",
       name: "body",
       type: "richText",
+      validation: (Rule) => Rule.required(),
     },
     {
       title: "Start Date",
