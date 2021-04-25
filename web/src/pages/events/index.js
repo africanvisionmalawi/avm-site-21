@@ -1,6 +1,7 @@
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
+import { CardPostAlt } from "../../components/card/CardPostAlt";
 import { SectionTop } from "../../components/common/SectionTop";
 import Errors from "../../components/errors";
 import Layout from "../../components/Layout";
@@ -18,11 +19,16 @@ export const query = graphql`
           slug {
             current
           }
+          _rawExcerpt(resolveReferences: { maxDepth: 10 })
+          _rawBody(resolveReferences: { maxDepth: 10 })
           telephone
           location
           url
           cost
+          date
+          endDate
           allDay
+          hideTime
           contact
           meta_description
           featured_image {
@@ -114,14 +120,16 @@ const EventsIndexPage = (props) => {
               return (
                 <>
                   <React.Fragment key={post.node.id}>
-                    {post.node.title}
-                    {/* <CardPostAlt
-                      type={sanity}
-                      title={title}
-                      excerpt={excerpt}
-                      slug={slug}
-                      publishDate={publishDate}
-                    /> */}
+                    <CardPostAlt
+                      type="event"
+                      title={post.node.title}
+                      excerpt={post.node._rawExcerpt}
+                      slug={post.node.slug}
+                      date={post.node.date}
+                      endDate={post.node.endDate}
+                      hideTime={post.node.hideTime}
+                      allDay={post.node.allDay}
+                    />
                   </React.Fragment>
                 </>
               );

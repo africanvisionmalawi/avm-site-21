@@ -3,6 +3,7 @@ import { styled } from "linaria/react";
 // import Img from "gatsby-image";
 // import { styled } from "linaria/react";
 import React from "react";
+import { EventDate } from "../events/EventDate";
 import { PortableText } from "../portableText/portableText";
 import { PhotoCont } from "./PhotoCont";
 
@@ -44,11 +45,16 @@ export const CardPostAlt = ({
   slug,
   publishDate,
   photo,
+  date,
+  endDate,
+  hideTime,
+  allDay,
 }) => {
-  const url = `/news/${slug}/`;
+  const baseFolder = type === "event" ? "events" : "news";
+  const url = `/${baseFolder}/${slug}/`;
 
   const text =
-    type === "sanity" ? (
+    type === "sanity" || type === "event" ? (
       <PortableText blocks={excerpt} />
     ) : (
       <div>{excerpt}</div>
@@ -71,6 +77,14 @@ export const CardPostAlt = ({
         <Content>
           {title ? (
             <Heading>{slug ? <Link to={url}>{title}</Link> : title}</Heading>
+          ) : null}
+          {date ? (
+            <EventDate
+              date={date}
+              endDate={endDate ? endDate : null}
+              hideTime={hideTime ? hideTime : false}
+              allDay={allDay ? allDay : false}
+            />
           ) : null}
           {publishDate ? <SubHeading>{publishDate}</SubHeading> : null}
           {excerpt ? text : null}

@@ -7,7 +7,7 @@ dayjs.extend(advancedFormat);
 
 // todo: tidy up this mess of if satements
 
-export const EventDate = ({ date, endDate, allDay, layout }) => {
+export const EventDate = ({ date, endDate, allDay, layout, hideTime }) => {
   let dateString = "";
   let timeString = "";
   let timeStringEnd = "";
@@ -21,7 +21,7 @@ export const EventDate = ({ date, endDate, allDay, layout }) => {
     )
   ) {
     // display the time if we need to
-    if (allDay === false) {
+    if (allDay === false && hideTime === false) {
       timeString =
         ", " +
         dayjs(date).format("HH:mm") +
@@ -34,15 +34,14 @@ export const EventDate = ({ date, endDate, allDay, layout }) => {
       dayjs(endDate).format("Do MMMM, YYYY") +
       timeString;
   } else {
-    if (allDay === false) {
+    if (allDay === false && hideTime === false) {
       if (
         dayjs(endDate, "MMMM DD, YYYY").isAfter(
           dayjs(date).format("MMMM DD, YYYY"),
           "hour"
         )
       ) {
-        timeStringEnd =
-          "<span> to " + dayjs(endDate).format("HH:mm") + "</span>";
+        timeStringEnd = " to " + dayjs(endDate).format("HH:mm");
       }
       timeString = " at " + dayjs(date).format("HH:mm") + timeStringEnd;
     }
@@ -57,7 +56,7 @@ export const EventDate = ({ date, endDate, allDay, layout }) => {
   if (layout && layout === "card") {
     dateHtml = <Notice>{dateString}</Notice>;
   } else {
-    dateHtml = <span>Dates: {dateString}</span>;
+    dateHtml = <DatesHeading>Dates: {dateString}</DatesHeading>;
   }
 
   return dateHtml;
@@ -72,6 +71,11 @@ const Notice = styled.div`
   padding: 12px;
   text-align: center;
   width: 300px;
+`;
+
+const DatesHeading = styled.div`
+  color: #ababad;
+  font-size: 0.9rem;
 `;
 
 export default EventDate;
