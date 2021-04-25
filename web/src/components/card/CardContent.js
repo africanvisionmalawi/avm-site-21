@@ -1,8 +1,7 @@
-import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
-import styles from "../pageLinks/pageLinks.module.css";
 import { PortableText } from "../portableText/portableText";
+import { MoreButton } from "./MoreButton";
 
 const Content = styled.div`
   padding: 1rem;
@@ -23,11 +22,7 @@ export const CardContent = ({ title, url, linkText }) => {
       {/* {props.displayLocation && <span>{props.location}</span>} */}
       {linkText ? <PortableText blocks={linkText} /> : null}
       {/* TODO: add hideLink here */}
-      {url ? (
-        <Link to={url} className={styles.btn}>
-          Find out more
-        </Link>
-      ) : null}
+      {url ? <MoreButton url={url} /> : null}
     </Content>
   );
 };

@@ -5,6 +5,7 @@ import { styled } from "linaria/react";
 import React from "react";
 import { EventDate } from "../events/EventDate";
 import { PortableText } from "../portableText/portableText";
+import { MoreButton } from "./MoreButton";
 import { PhotoCont } from "./PhotoCont";
 
 const Card = styled.div`
@@ -49,6 +50,7 @@ export const CardPostAlt = ({
   endDate,
   hideTime,
   allDay,
+  displayMoreButton,
 }) => {
   const baseFolder = type === "event" ? "events" : "news";
   const url = `/${baseFolder}/${slug}/`;
@@ -90,6 +92,7 @@ export const CardPostAlt = ({
           {excerpt ? text : null}
           {/* TODO: add hideLink here */}
         </Content>
+        {url && displayMoreButton ? <MoreButton url={url} /> : null}
       </div>
     </Card>
   );

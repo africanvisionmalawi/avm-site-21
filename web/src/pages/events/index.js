@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
@@ -5,6 +7,7 @@ import { CardPostAlt } from "../../components/card/CardPostAlt";
 import { SectionTop } from "../../components/common/SectionTop";
 import Errors from "../../components/errors";
 import Layout from "../../components/Layout";
+dayjs.extend(advancedFormat);
 
 export const query = graphql`
   query EventsTemplateQuery {
@@ -41,7 +44,7 @@ export const query = graphql`
   }
 `;
 
-const Heading = styled.h1`
+const TopHeading = styled.h1`
   font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
     "sans-serif";
   text-align: center;
@@ -77,6 +80,12 @@ const PostList = styled.div`
   max-width: 1180px;
 `;
 
+const Heading = styled.h2`
+  font-size: 2.4em;
+  margin: 2rem 0 0;
+  text-align: center;
+`;
+
 const EventsIndexPage = (props) => {
   const { data, errors } = props;
 
@@ -90,6 +99,34 @@ const EventsIndexPage = (props) => {
 
   const allEvents = data.shopAll.edges;
 
+  let futureEvents = [];
+  let pastEvents = [];
+  allEvents.forEach(({ node: event }) => {
+    if (event.endDate) {
+      if (
+        dayjs(event.endDate, "MMMM DD, YYYY").isAfter(
+          dayjs().format("MMMM DD, YYYY")
+        )
+      ) {
+        futureEvents.push(event);
+      } else {
+        pastEvents.push(event);
+      }
+    } else {
+      if (
+        dayjs(event.date, "MMMM DD, YYYY").isAfter(
+          dayjs().format("MMMM DD, YYYY")
+        )
+      ) {
+        futureEvents.push(event);
+      } else {
+        pastEvents.push(event);
+      }
+    }
+  });
+
+  // console.log("pastEvents ", pastEvents);
+
   const title = "Latest events - African Vision Malawi";
   const description = "Latest events from African Vision Malawi.";
 
@@ -98,27 +135,51 @@ const EventsIndexPage = (props) => {
       <Layout title={title} description={description} article={false}>
         <article>
           <SectionTop>
-            <Heading>{title}</Heading>
+            <TopHeading>{title}</TopHeading>
           </SectionTop>
           <PostList>
-            {allEvents.map(({ node: post }) => {
-              return (
-                <>
-                  <React.Fragment key={post.id}>
-                    <CardPostAlt
-                      type="event"
-                      title={post.title}
-                      excerpt={post._rawExcerpt}
-                      slug={post.slug}
-                      date={post.date}
-                      endDate={post.endDate}
-                      hideTime={post.hideTime}
-                      allDay={post.allDay}
-                    />
-                  </React.Fragment>
-                </>
-              );
-            })}
+            {futureEvents.length &&
+              futureEvents.map((post) => {
+                return (
+                  <>
+                    <React.Fragment key={post.id}>
+                      <CardPostAlt
+                        type="event"
+                        title={post.title}
+                        excerpt={post._rawExcerpt}
+                        slug={post.slug}
+                        date={post.date}
+                        endDate={post.endDate}
+                        hideTime={post.hideTime}
+                        allDay={post.allDay}
+                        displayMoreButton
+                      />
+                    </React.Fragment>
+                  </>
+                );
+              })}
+          </PostList>
+          <Heading>Past events</Heading>
+          <PostList>
+            {pastEvents.length &&
+              pastEvents.map((post) => {
+                return (
+                  <>
+                    <React.Fragment key={post.id}>
+                      <CardPostAlt
+                        type="event"
+                        title={post.title}
+                        excerpt={post._rawExcerpt}
+                        slug={post.slug}
+                        date={post.date}
+                        endDate={post.endDate}
+                        hideTime={post.hideTime}
+                        allDay={post.allDay}
+                      />
+                    </React.Fragment>
+                  </>
+                );
+              })}
           </PostList>
         </article>
       </Layout>
