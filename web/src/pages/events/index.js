@@ -101,34 +101,19 @@ const EventsIndexPage = (props) => {
             <Heading>{title}</Heading>
           </SectionTop>
           <PostList>
-            {allEvents.map((post) => {
-              // console.log("post ", post);
-
-              // const type = post.node._type ? "sanity" : "markdown";
-              // const title = post.node.title
-              //   ? post.node.title
-              //   : post.node.frontmatter.title;
-              // const excerpt = post.node._rawExcerpt
-              //   ? post.node._rawExcerpt
-              //   : post.node.excerpt;
-              // const slug = post.node.slug
-              //   ? post.node.slug.current
-              //   : post.node.frontmatter.path.replace("/posts/", "/");
-              // const publishDate = post.node.publishDate
-              //   ? post.node.publishDate
-              //   : post.node.frontmatter.date;
+            {allEvents.map(({ node: post }) => {
               return (
                 <>
-                  <React.Fragment key={post.node.id}>
+                  <React.Fragment key={post.id}>
                     <CardPostAlt
                       type="event"
-                      title={post.node.title}
-                      excerpt={post.node._rawExcerpt}
-                      slug={post.node.slug}
-                      date={post.node.date}
-                      endDate={post.node.endDate}
-                      hideTime={post.node.hideTime}
-                      allDay={post.node.allDay}
+                      title={post.title}
+                      excerpt={post._rawExcerpt}
+                      slug={post.slug}
+                      date={post.date}
+                      endDate={post.endDate}
+                      hideTime={post.hideTime}
+                      allDay={post.allDay}
                     />
                   </React.Fragment>
                 </>
