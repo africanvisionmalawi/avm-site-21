@@ -29,6 +29,10 @@ export const PhotoCont = (props) => {
       w: 371,
       h: 222,
     },
+    event: {
+      w: 371,
+      h: 222,
+    },
   };
   return (
     <>

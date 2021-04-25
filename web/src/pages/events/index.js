@@ -50,26 +50,6 @@ const TopHeading = styled.h1`
   text-align: center;
 `;
 
-const ShopIndexList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 280px);
-  grid-gap: 40px;
-  justify-content: center;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  & li {
-    list-style-type: none;
-    margin: 8px 0;
-    opacity: 0.9;
-    padding: 0;
-    position: relative;
-  }
-  & li:hover {
-    opacity: 1;
-  }
-`;
-
 const PostList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -147,11 +127,12 @@ const EventsIndexPage = (props) => {
                         type="event"
                         title={post.title}
                         excerpt={post._rawExcerpt}
-                        slug={post.slug}
+                        slug={post.slug.current}
                         date={post.date}
                         endDate={post.endDate}
                         hideTime={post.hideTime}
                         allDay={post.allDay}
+                        photo={post.featured_image}
                         displayMoreButton
                       />
                     </React.Fragment>
@@ -170,7 +151,7 @@ const EventsIndexPage = (props) => {
                         type="event"
                         title={post.title}
                         excerpt={post._rawExcerpt}
-                        slug={post.slug}
+                        slug={post.slug.current}
                         date={post.date}
                         endDate={post.endDate}
                         hideTime={post.hideTime}

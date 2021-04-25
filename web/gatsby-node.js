@@ -333,6 +333,44 @@ async function createShopCategories(
   });
 }
 
+async function createEventPages(pathPrefix = "", graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityEvent(
+        filter: { slug: { current: { ne: null } } }
+        sort: { order: DESC, fields: date }
+      ) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const pageEdges = (result.data.allSanityEvent || {}).edges || [];
+  pageEdges.forEach((edge) => {
+    const { id, slug = {} } = edge.node;
+    const pathPrefix = "/events/";
+    const path = `${pathPrefix}${slug.current + "/"}`;
+    reporter.info(
+      `Creating event page: ${path} with slug ${slug.current} and id: ${id}`
+    );
+    createPage({
+      path,
+      component: require.resolve("./src/templates/event.js"),
+      context: { id },
+    });
+  });
+}
+
 // async function createHomePage(graphql, actions, reporter) {
 //   const { createPage } = actions;
 //   const result = await graphql(`
@@ -413,6 +451,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createArticleIndex(actions);
   await createShopPages("/", graphql, actions, reporter);
   await createShopCategories("/", graphql, actions, reporter);
+  await createEventPages("/", graphql, actions, reporter);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };
 

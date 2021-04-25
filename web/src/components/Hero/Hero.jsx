@@ -1,3 +1,4 @@
+import SanityImage from "gatsby-plugin-sanity-image";
 import { styled } from "linaria/react";
 import React from "react";
 import { Divider } from "../common/Divider";
@@ -16,6 +17,7 @@ export const Hero = ({
   children,
   fluid,
   fluidMobile,
+  sanityImage,
 }) => {
   let heroHeadingHtml;
   if (heroHeading) {
@@ -55,12 +57,28 @@ export const Hero = ({
         )}
         {children && <ChildrenCont>{children}</ChildrenCont>}
 
-        <Image
-          fluid={fluidMobile ? sources : fluid}
-          alt=""
-          imgStyle={{ objectFit: "contain" }}
-          loading="eager"
-        />
+        {fluid ? (
+          <Image
+            fluid={fluidMobile ? sources : fluid}
+            alt=""
+            imgStyle={{ objectFit: "contain" }}
+            loading="eager"
+          />
+        ) : null}
+
+        {sanityImage ? (
+          <SanityImage
+            {...sanityImage}
+            width={1024}
+            height={400}
+            alt=""
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+            }}
+          />
+        ) : null}
 
         {children ? null : <Overlay />}
         {/* {heroMsg !== "null" ? (
@@ -195,7 +213,6 @@ const HeroMsgCont = styled.div`
   @media (min-width: 1024px) {
     bottom: 60px;
     left: 50%;
-    // max-height: 540px;
     max-width: 880px;
     position: absolute;
     transform: translateX(-50%);
