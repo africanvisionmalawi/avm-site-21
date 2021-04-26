@@ -1,4 +1,5 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import { Donate } from "components/common/Donate";
 import { OurWork } from "components/ourwork";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
@@ -8,7 +9,6 @@ import React from "react";
 import ReactPlayer from "react-player";
 import { CardPost } from "../components/card/CardPost";
 import { CardPostAlt } from "../components/card/CardPostAlt";
-import { Donate } from "../components/common/Donate";
 import { Hero } from "../components/Hero";
 // import InfoRows from "../components/InfoRows";
 // import { Hero } from "../components/Hero";
