@@ -23,6 +23,7 @@ const HomePage = ({ data }) => {
   // console.log("newsLinks ", page.newsLinks);
 
   const allEvents = data.shopAll.edges;
+  const ourWork = data.ourWork.edges;
 
   let futureEvents = [];
   if (allEvents.length) {
@@ -97,12 +98,13 @@ const HomePage = ({ data }) => {
           </TopVideoSection>
 
           {page.latestNews ? (
-            <TextSection>
+            <LatestNews>
+              <h2>Latest news</h2>
               <PortableText
                 key={page.latestNews._key}
                 blocks={page._rawLatestNews}
               />
-            </TextSection>
+            </LatestNews>
           ) : null}
 
           {page.newsLinks ? (
@@ -189,11 +191,25 @@ const TextSection = styled.section`
   padding: 1rem;
   position: relative;
   width: 100%;
+`;
+
+const LatestNews = styled.div`
+  background: #f7f7f7;
+  padding: 2.5em 0;
+  min-height: 24rem;
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
   @media (min-width: 768px) {
-    padding: 0 4em 2rem;
+    padding: 2rem 4em 2rem;
   }
   @media (min-width: 1040px) {
-    padding: 0 8em 2rem;
+    padding: 2rem 8em 2rem;
+  }
+  h2 {
+    text-align: center;
   }
 `;
 
@@ -212,6 +228,9 @@ const CardCont = styled.div`
   justify-content: center;
   max-width: 1525px;
   width: 100%;
+  @media (min-width: 414px) {
+    grid-template-columns: repeat(auto-fill, 373px);
+  }
 `;
 
 const VideoSection = styled.div`
@@ -225,7 +244,7 @@ const TopVideoSection = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto 120px;
+  margin: 0 auto 80px;
   text-align: center;
   @media (min-width: 778px) {
     text-align: left;
@@ -235,6 +254,9 @@ const TopVideoSection = styled.div`
 const TopVideoSectionInner = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 3em 2em 1em;
   width: 100%;
 `;
 

@@ -99,6 +99,24 @@ export const query = graphql`
         }
       }
     }
+    ourWork: allSanityOurWorkShared {
+      edges {
+        node {
+          ourWork {
+            _key
+            title
+            photo {
+              alt
+              ...ImageWithPreview
+            }
+            _rawBody(resolveReferences: { maxDepth: 10 })
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
