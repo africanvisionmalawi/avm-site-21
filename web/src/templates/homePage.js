@@ -1,7 +1,8 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
-// import { Link } from "gatsby";
+import { OurWork } from "components/ourwork";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import ReactPlayer from "react-player";
@@ -97,6 +98,18 @@ const HomePage = ({ data }) => {
             </TopVideoSectionInner>
           </TopVideoSection>
 
+          <Donate
+            link="https://www.charitycheckout.co.uk/1113786/"
+            text="Donate"
+            displayImage
+          />
+
+          {ourWork ? (
+            <Container>
+              <OurWork displayHeading ourWork={ourWork[0].node.ourWork} />
+            </Container>
+          ) : null}
+
           {page.latestNews ? (
             <LatestNews>
               <h2>Latest news</h2>
@@ -120,9 +133,9 @@ const HomePage = ({ data }) => {
                   </CardCont>
                 </PostList>
               </section>
-              {/* <PostsFooter>
+              <PostsFooter>
                 <Link to="/news/">View all news</Link>
-              </PostsFooter> */}
+              </PostsFooter>
             </>
           ) : null}
 
@@ -149,22 +162,22 @@ const HomePage = ({ data }) => {
                   </CardCont>
                 </PostList>
               </section>
-              {/* <PostsFooter>
+              <PostsFooter>
                 <Link to="/news/">View all news</Link>
-              </PostsFooter> */}
+              </PostsFooter>
             </>
           ) : null}
         </Main>
-
-        <Donate
-          link="https://www.charitycheckout.co.uk/1113786/"
-          text="Donate"
-          displayImage
-        />
       </article>
     </Layout>
   );
 };
+
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 3em 0;
+`;
 
 const Heading = styled.h1`
   font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
@@ -244,7 +257,7 @@ const TopVideoSection = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto 80px;
+  margin: 0 auto 1rem;
   text-align: center;
   @media (min-width: 778px) {
     text-align: left;
@@ -265,35 +278,35 @@ const Main = styled.main`
   border-radius: 2px;
 `;
 
-// const PostsFooter = styled.div`
-//   height: 50px;
-//   margin: 0 auto 3rem;
-//   max-width: 1180px;
-//   position: relative;
-//   &::before {
-//     bottom: 50%;
-//     content: "";
-//     border-bottom: 1px solid #b75906;
-//     position: absolute;
-//     width: 100%;
-//     z-index: 10;
-//   }
+const PostsFooter = styled.div`
+  height: 50px;
+  margin: 0 auto 3rem;
+  max-width: 1180px;
+  position: relative;
+  &::before {
+    bottom: 50%;
+    content: "";
+    border-bottom: 1px solid #b75906;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+  }
 
-//   & a {
-//     background: #fff;
-//     border: 2px solid #b75906;
-//     border-radius: 12px;
-//     display: inline-block;
-//     font-size: 0.8em;
-//     left: 50%;
-//     margin-left: -80px;
-//     padding: 4px 24px;
-//     position: absolute;
-//     text-align: center;
-//     top: 10%;
-//     width: 160px;
-//     z-index: 20;
-//   }
-// `;
+  & a {
+    background: #fff;
+    border: 2px solid #b75906;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 0.8em;
+    left: 50%;
+    margin-left: -80px;
+    padding: 4px 24px;
+    position: absolute;
+    text-align: center;
+    top: 10%;
+    width: 160px;
+    z-index: 20;
+  }
+`;
 
 export default HomePage;

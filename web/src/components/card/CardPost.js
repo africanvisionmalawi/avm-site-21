@@ -9,7 +9,7 @@ import { PhotoCont } from "./PhotoCont";
 export const CardPost = (props) => {
   const { slug, title, _rawExcerpt, photo } = props.post;
   const url = `/news/${slug.current}/`;
-  console.log("cardpost ", props);
+  // console.log("cardpost ", props);
 
   return (
     <div>

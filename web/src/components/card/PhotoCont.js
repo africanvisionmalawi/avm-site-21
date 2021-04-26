@@ -33,6 +33,10 @@ export const PhotoCont = (props) => {
       w: 371,
       h: 222,
     },
+    ourWork: {
+      w: 381,
+      h: 240,
+    },
   };
   return (
     <>
