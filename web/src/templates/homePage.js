@@ -1,9 +1,12 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
 // import { Link } from "gatsby";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 import { styled } from "linaria/react";
 import React from "react";
 import ReactPlayer from "react-player";
 import { CardPost } from "../components/card/CardPost";
+import { CardPostAlt } from "../components/card/CardPostAlt";
 import { Donate } from "../components/common/Donate";
 import { Hero } from "../components/Hero";
 // import InfoRows from "../components/InfoRows";
@@ -12,25 +15,37 @@ import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 import { PortableText } from "../components/portableText/portableText";
 import videoStyles from "../components/videos/videos.module.css";
+dayjs.extend(advancedFormat);
 // export const query = graphql`
 
 const HomePage = ({ data }) => {
-  // const { data, errors } = props;
-  // console.log("props ", props);
+  const page = data.homeQuery;
+  // console.log("newsLinks ", page.newsLinks);
 
-  //   const site = (data || {}).site;
+  const allEvents = data.shopAll.edges;
 
-  //   if (!site) {
-  //     throw new Error(
-  //       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-  //     );
-  //   }
-
-  const page = data.sanityHomePage;
-  // console.log("page ", page);
-  console.log("newsLinks ", page.newsLinks);
-  //   const menuItems = page.navMenu && (page.navMenu.items || []);
-  //   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
+  let futureEvents = [];
+  if (allEvents.length) {
+    allEvents.forEach(({ node: event }) => {
+      if (event.endDate) {
+        if (
+          dayjs(event.endDate, "MMMM DD, YYYY").isAfter(
+            dayjs().format("MMMM DD, YYYY")
+          )
+        ) {
+          futureEvents.push(event);
+        }
+      } else {
+        if (
+          dayjs(event.date, "MMMM DD, YYYY").isAfter(
+            dayjs().format("MMMM DD, YYYY")
+          )
+        ) {
+          futureEvents.push(event);
+        }
+      }
+    });
+  }
 
   return (
     <Layout
@@ -98,6 +113,35 @@ const HomePage = ({ data }) => {
                     {page.newsLinks.newsLinks.map((post) => (
                       <React.Fragment key={post.url.id}>
                         <CardPost post={post.url} />
+                      </React.Fragment>
+                    ))}
+                  </CardCont>
+                </PostList>
+              </section>
+              {/* <PostsFooter>
+                <Link to="/news/">View all news</Link>
+              </PostsFooter> */}
+            </>
+          ) : null}
+
+          {futureEvents ? (
+            <>
+              <section>
+                <PostList>
+                  <CardCont>
+                    {futureEvents.map((post) => (
+                      <React.Fragment key={post.id}>
+                        <CardPostAlt
+                          type="event"
+                          title={post.title}
+                          excerpt={post._rawExcerpt}
+                          slug={post.slug.current}
+                          date={post.date}
+                          endDate={post.endDate}
+                          hideTime={post.hideTime}
+                          allDay={post.allDay}
+                          photo={post.featured_image}
+                        />
                       </React.Fragment>
                     ))}
                   </CardCont>

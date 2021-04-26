@@ -9,6 +9,16 @@ const createPaginatedPages = require("gatsby-paginate");
 //   return path;
 // };
 
+const path = require("path");
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+    },
+  });
+};
+
 /**
  * Implement Gatsby's Node APIs in this file.
  *

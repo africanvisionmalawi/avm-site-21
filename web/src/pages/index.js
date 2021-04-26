@@ -5,7 +5,7 @@ import HomePage from "../templates/homePage";
 
 export const query = graphql`
   query HomePageTemplateQuery {
-    sanityHomePage {
+    homeQuery: sanityHomePage {
       id
       title
       indexPage
@@ -69,6 +69,32 @@ export const query = graphql`
               ...ImageWithPreview
             }
             _rawExcerpt(resolveReferences: { maxDepth: 10 })
+          }
+        }
+      }
+    }
+    shopAll: allSanityEvent(
+      filter: { slug: { current: { ne: null } } }
+      sort: { order: DESC, fields: date }
+      limit: 3
+    ) {
+      edges {
+        node {
+          id
+          title
+          slug {
+            current
+          }
+          _rawExcerpt(resolveReferences: { maxDepth: 10 })
+          location
+          url
+          date
+          endDate
+          allDay
+          hideTime
+          featured_image {
+            _key
+            ...ImageWithPreview
           }
         }
       }
