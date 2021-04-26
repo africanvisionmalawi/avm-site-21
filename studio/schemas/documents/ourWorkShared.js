@@ -4,6 +4,12 @@ export default {
   type: "document",
   fields: [
     {
+      title: "Intro text",
+      name: "body",
+      type: "richTextSimple",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       type: "array",
       name: "ourWork",
       of: [{ type: "ourWorkItem" }],

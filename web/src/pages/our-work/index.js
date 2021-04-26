@@ -2,6 +2,7 @@ import { Donate } from "components/common/Donate";
 import Errors from "components/errors";
 import Layout from "components/Layout";
 import { OurWork } from "components/ourwork";
+import { PortableText } from "components/portableText/portableText";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
@@ -11,6 +12,7 @@ export const query = graphql`
     ourWork: allSanityOurWorkShared {
       edges {
         node {
+          _rawBody(resolveReferences: { maxDepth: 10 })
           ourWork {
             _key
             title
@@ -46,14 +48,7 @@ const IndexPage = (props) => {
       <article>
         <TopSection>
           <Heading>Our work</Heading>
-          <p>
-            We work with and through communities to develop long-term and
-            sustainable solutions to the welfare of orphans and vulnerable
-            people in four key areas: self-sufficiency, health, education and
-            water and sanitation. Additionally we are passionate about the
-            environment, paying close attention to ecological building,
-            reforestation and permaculture.
-          </p>
+          {ourWork ? <PortableText blocks={ourWork[0].node._rawBody} /> : null}
         </TopSection>
         {ourWork ? (
           <Container>
