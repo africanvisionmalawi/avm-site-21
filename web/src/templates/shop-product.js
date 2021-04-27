@@ -227,7 +227,10 @@ const ShopProduct = (props) => {
               <ColumnMain>
                 {page.photoGallery && page.photoGallery.photos.length > 1 && (
                   <CarouselCont>
-                    <Carousel allSizesImages={page.photoGallery} />
+                    <Carousel
+                      allSizesImages={page.photoGallery}
+                      photoType="featured"
+                    />
                   </CarouselCont>
                 )}
                 {page.photoGallery && page.photoGallery.photos.length === 1 && (

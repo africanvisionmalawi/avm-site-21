@@ -49,7 +49,7 @@ const SliderStyles = styled(Slider)`
 const AUTOPLAY_INTERVAL = 1500;
 
 export const Carousel = React.memo((props) => {
-  const { activeIndex, allSizesImages } = props;
+  const { activeIndex, allSizesImages, photoType } = props;
 
   // set the slider and timer refs
   const sliderRef = useRef();
@@ -87,7 +87,7 @@ export const Carousel = React.memo((props) => {
       {allSizesImages.photos.length ? (
         allSizesImages.photos.map((photo, i) => (
           <div key={photo._key}>
-            <Photo photo={photo} />
+            <Photo photo={photo} photoType={photoType} />
           </div>
         ))
       ) : (
