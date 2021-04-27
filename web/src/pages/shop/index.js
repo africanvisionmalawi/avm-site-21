@@ -105,16 +105,14 @@ const ShopIndexPage = (props) => {
           <ShopIndexList>
             {allShopProducts.map((item, i) => (
               <React.Fragment key={item.node.id}>
-                {i < 3 ? (
-                  <ShopListItem
-                    id={item.node.id}
-                    slug={item.node.slug.current}
-                    photo={item.node.photoGallery.photos[0]}
-                    photoType="default"
-                    title={item.node.title}
-                    price={item.node.price}
-                  />
-                ) : null}
+                <ShopListItem
+                  id={item.node.id}
+                  slug={item.node.slug.current}
+                  photo={item.node.photoGallery.photos[0]}
+                  photoType="default"
+                  title={item.node.title}
+                  price={item.node.price}
+                />
               </React.Fragment>
             ))}
           </ShopIndexList>
