@@ -17,7 +17,7 @@ const PhotoCont = styled.div`
 export const ShopListItem = (props) => {
   return (
     <li key={props.id}>
-      <Link to={props.slug}>
+      <Link to={`/shop/${props.slug}/`}>
         {props.photo && (
           <PhotoCont>
             <Photo photo={props.photo} photoType={props.photoType} />
