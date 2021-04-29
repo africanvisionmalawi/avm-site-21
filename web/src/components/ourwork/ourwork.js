@@ -6,7 +6,7 @@ import { styled } from "linaria/react";
 import React from "react";
 
 export const OurWork = ({ displayHeading, ourWork }) => {
-  //   console.log("our work ", ourWork);
+  console.log("our work ", ourWork);
   return (
     <>
       {displayHeading ? <Heading>What we do</Heading> : null}
@@ -14,7 +14,7 @@ export const OurWork = ({ displayHeading, ourWork }) => {
         {ourWork.length
           ? ourWork.map((project) => (
               <Tile key={project._key}>
-                <Link to={`${project.url}`}>
+                <Link to={`/${project.slug.current}/`}>
                   {project.photo && project.photo.asset ? (
                     <PhotoCont photo={project.photo} photoType="ourWork" />
                   ) : null}
@@ -25,7 +25,7 @@ export const OurWork = ({ displayHeading, ourWork }) => {
                     {project._rawBody ? (
                       <PortableText blocks={project._rawBody} />
                     ) : null}
-                    <MoreButton url={project.url} />
+                    <MoreButton url={`/${project.slug.current}/`} />
                   </div>
                 </TextCont>
               </Tile>

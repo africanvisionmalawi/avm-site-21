@@ -91,10 +91,12 @@ export const Hero = ({
 };
 
 const ChildrenCont = styled.div`
-  background: #58b5d7;
-  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
-    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-  color: #fff;
+  background: #fff;
+  border: 8px solid #58b5d7;
+  box-shadow: 0 3px 6px -4px rgba(255, 255, 255, 0.12),
+    0 6px 16px 0 rgba(255, 255, 255, 0.08),
+    0 9px 28px 8px rgba(255, 255, 255, 0.05);
+  color: #000;
   padding: 1rem;
   text-align: center;
   width: 100%;
@@ -103,14 +105,12 @@ const ChildrenCont = styled.div`
     margin-bottom: 0.5rem;
   }
   @media (min-width: 750px) {
-    border-radius: 0 8px 0 0;
     bottom: 0;
     left: 0;
     position: absolute;
     max-width: 480px;
   }
   @media (min-width: 800px) {
-    border-radius: 8px;
     bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
