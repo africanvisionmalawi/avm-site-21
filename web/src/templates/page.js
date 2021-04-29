@@ -303,7 +303,7 @@ const Page = (props) => {
           ) : null}
           {/* <div>{content}here</div> */}
         </Main>
-        {content}
+        <Container>{content}</Container>
         <Donate
           link="https://www.charitycheckout.co.uk/1113786/"
           text="Donate"
@@ -313,6 +313,12 @@ const Page = (props) => {
     </Layout>
   );
 };
+
+const Container = styled.section`
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 0 3rem;
+`;
 
 const Heading = styled.h1`
   font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",

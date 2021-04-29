@@ -2,7 +2,6 @@ import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import { NavTags } from "../../components/common/NavTags";
-import { SectionTop } from "../../components/common/SectionTop";
 import Errors from "../../components/errors";
 import Layout from "../../components/Layout";
 import { ShopListItem } from "../../components/shop/ShopListItem";
@@ -76,6 +75,12 @@ const ShopIndexList = styled.div`
   }
 `;
 
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 0 3rem;
+`;
+
 const ShopIndexPage = (props) => {
   const { data, errors } = props;
 
@@ -98,24 +103,24 @@ const ShopIndexPage = (props) => {
     <>
       <Layout title={title} description={description} article={false}>
         <article>
-          <SectionTop>
-            <Heading>{title}</Heading>
-            <NavTags tags={tags} tagsBase={tagsBase} active={null} />
-          </SectionTop>
-          <ShopIndexList>
-            {allShopProducts.map((item, i) => (
-              <React.Fragment key={item.node.id}>
-                <ShopListItem
-                  id={item.node.id}
-                  slug={item.node.slug.current}
-                  photo={item.node.photoGallery.photos[0]}
-                  photoType="default"
-                  title={item.node.title}
-                  price={item.node.price}
-                />
-              </React.Fragment>
-            ))}
-          </ShopIndexList>
+          <Heading>{title}</Heading>
+          <NavTags tags={tags} tagsBase={tagsBase} active={null} />
+          <Container>
+            <ShopIndexList>
+              {allShopProducts.map((item, i) => (
+                <React.Fragment key={item.node.id}>
+                  <ShopListItem
+                    id={item.node.id}
+                    slug={item.node.slug.current}
+                    photo={item.node.photoGallery.photos[0]}
+                    photoType="default"
+                    title={item.node.title}
+                    price={item.node.price}
+                  />
+                </React.Fragment>
+              ))}
+            </ShopIndexList>
+          </Container>
         </article>
       </Layout>
     </>
