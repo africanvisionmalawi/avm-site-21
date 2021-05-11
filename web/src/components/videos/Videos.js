@@ -4,12 +4,22 @@ import ReactPlayer from "react-player";
 import videoStyles from "./videos.module.css";
 
 const Container = styled.div`
+  background: #f7f7f7;
+  border-top: 1px solid #d7dade;
+  border-bottom: 1px solid #d7dade;
+  margin-bottom: 4rem;
+  padding: 2rem 1rem 0;
+  p {
+    background: #f7f7f7;
+  }
+`;
+
+const VideosCont = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(380px, 1fr));
   grid-gap: 1rem;
   grid-auto-flow: dense;
-  padding: 15px;
 `;
 
 const Heading = styled.h2`
@@ -28,22 +38,24 @@ const checkUrl = (url) => {
 
 export const Videos = ({ videos }) => (
   <div>
-    <Heading>Videos</Heading>
     <Container>
-      {videos.map((video) => (
-        <div key={video.videourl}>
-          <div className={videoStyles.playerWrapper}>
-            <ReactPlayer
-              url={video.url}
-              width="100%"
-              height="100%"
-              className={videoStyles.reactPlayer}
-              controls={true}
-            />
+      <Heading>Videos</Heading>
+      <VideosCont>
+        {videos.map((video) => (
+          <div key={video.videourl}>
+            <div className={videoStyles.playerWrapper}>
+              <ReactPlayer
+                url={video.url}
+                width="100%"
+                height="100%"
+                className={videoStyles.reactPlayer}
+                controls={true}
+              />
+            </div>
+            <p className={videoStyles.vidText}>{video.text}</p>
           </div>
-          <p className={videoStyles.vidText}>{video.text}</p>
-        </div>
-      ))}
+        ))}
+      </VideosCont>
     </Container>
   </div>
 );

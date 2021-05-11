@@ -1,4 +1,5 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import { BannerMsg } from "components/banner-msg";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
@@ -94,10 +95,10 @@ export const query = graphql`
             top
           }
         }
-        heroMsg {
-          _key
-          _rawChildren(resolveReferences: { maxDepth: 10 })
-        }
+      }
+      bannerMsg {
+        source
+        _rawMessage(resolveReferences: { maxDepth: 10 })
       }
       content {
         ... on SanityBlockPortableText {
@@ -226,7 +227,6 @@ const Page = (props) => {
               displayHeroMsg={false}
               heroHeading={c.title}
               heroHeadingType="h2"
-              heroMsg={c.heroMsg}
             />
           );
           break;
@@ -275,6 +275,8 @@ const Page = (props) => {
     : page.title
     ? page.title
     : "";
+
+  // console.log("page._rawBody ", page._rawBody);
   return (
     // <div>{page.title} </div>
     <Layout
@@ -296,6 +298,12 @@ const Page = (props) => {
           </TopSection>
         )}
         <Main>
+          {page.bannerMsg ? (
+            <BannerMsg
+              msg={page.bannerMsg._rawMessage}
+              source={page.bannerMsg.source}
+            />
+          ) : null}
           {page._rawBody ? (
             <TextSection>
               <PortableText blocks={page._rawBody} />
@@ -316,7 +324,6 @@ const Page = (props) => {
 
 const Container = styled.section`
   margin: 0 auto;
-  max-width: 1180px;
   padding: 0 0 3rem;
 `;
 
@@ -339,17 +346,16 @@ const TopSection = styled.div`
 
 const TextSection = styled.section`
   background: #fff;
-  min-height: 24rem;
   margin: 0 auto;
   max-width: 1180px;
   padding: 1rem;
   position: relative;
   width: 100%;
   @media (min-width: 768px) {
-    padding: 0 4em 2rem;
+    padding: 2rem 4em;
   }
   @media (min-width: 1040px) {
-    padding: 0 8em 2rem;
+    padding: 2rem 8em;
   }
 `;
 

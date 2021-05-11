@@ -3,14 +3,11 @@ import { styled } from "linaria/react";
 import React from "react";
 import { Divider } from "../common/Divider";
 import { Image } from "../Image";
-import { PortableText } from "../portableText/portableText";
 
 export const Hero = ({
   heroImage,
-  heroMsg,
   heroHeading,
   heroHeadingType,
-  displayHeroMsg,
   hasMobileImage,
   desktopImage,
   mobileImage,
@@ -27,7 +24,6 @@ export const Hero = ({
       heroHeadingHtml = <HeroHeadingH2>{heroHeading}</HeroHeadingH2>;
     }
   }
-  const heroMsgHtml = heroMsg ? <HeroMsg>{heroMsg}</HeroMsg> : null;
 
   const sources = fluidMobile
     ? [
@@ -42,19 +38,7 @@ export const Hero = ({
   return (
     <HeroContainer className={children ? "lowerPage" : null}>
       <HeroCont>
-        {displayHeroMsg && (
-          <HeroMsgCont>
-            {heroHeadingHtml}
-            {heroMsg ? (
-              heroMsg._key && heroMsg._rawChildren ? (
-                <PortableText
-                  key={heroMsg._key}
-                  blocks={heroMsg._rawChildren}
-                />
-              ) : null
-            ) : null}
-          </HeroMsgCont>
-        )}
+        {heroHeadingHtml && <HeroMsgCont>{heroHeadingHtml}</HeroMsgCont>}
         {children && <ChildrenCont>{children}</ChildrenCont>}
 
         {fluid ? (
@@ -81,9 +65,6 @@ export const Hero = ({
         ) : null}
 
         {children ? null : <Overlay />}
-        {/* {heroMsg !== "null" ? (
-          <div className={heroStyles.heroText}>{heroMsg}</div>
-        ) : null} */}
       </HeroCont>
       {children ? null : <Divider />}
     </HeroContainer>

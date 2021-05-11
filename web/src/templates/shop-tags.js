@@ -81,6 +81,12 @@ const ShopIndexList = styled.div`
   }
 `;
 
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 0 3rem;
+`;
+
 const ShopTagPage = (props) => {
   const { data, errors } = props;
 
@@ -108,22 +114,24 @@ const ShopTagPage = (props) => {
             <Heading>{title}</Heading>
             <NavTags tags={tags} tagsBase={tagsBase} active={tag} />
           </SectionTop>
-          <ShopIndexList>
-            {allShopProducts.map((item, i) => (
-              <React.Fragment key={item.node.id}>
-                {i < 3 ? (
-                  <ShopListItem
-                    id={item.node.id}
-                    slug={item.node.slug.current}
-                    photo={item.node.photoGallery.photos[0]}
-                    photoType="default"
-                    title={item.node.title}
-                    price={item.node.price}
-                  />
-                ) : null}
-              </React.Fragment>
-            ))}
-          </ShopIndexList>
+          <Container>
+            <ShopIndexList>
+              {allShopProducts.map((item, i) => (
+                <React.Fragment key={item.node.id}>
+                  {i < 3 ? (
+                    <ShopListItem
+                      id={item.node.id}
+                      slug={item.node.slug.current}
+                      photo={item.node.photoGallery.photos[0]}
+                      photoType="default"
+                      title={item.node.title}
+                      price={item.node.price}
+                    />
+                  ) : null}
+                </React.Fragment>
+              ))}
+            </ShopIndexList>
+          </Container>
         </article>
       </Layout>
     </>
