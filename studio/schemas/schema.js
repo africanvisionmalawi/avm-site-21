@@ -11,9 +11,11 @@ import page from "./documents/page";
 // import post from "./documents/post";
 import shop from "./documents/shop";
 import siteSettings from "./documents/siteSettings";
+import bannerMsg from "./objects/bannerMsg";
 import blockPortableText from "./objects/blockPortableText";
 import bodyPortableText from "./objects/bodyPortableText";
 import figure from "./objects/figure";
+import googlemap from "./objects/googlemap";
 import hero from "./objects/hero";
 import homePageSection from "./objects/homePageSection";
 import mainImage from "./objects/mainImage";
@@ -69,5 +71,7 @@ export default createSchema({
     newsPortableText,
     shopTag,
     event,
+    googlemap,
+    bannerMsg,
   ]),
 });

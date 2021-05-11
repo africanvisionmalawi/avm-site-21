@@ -27,8 +27,8 @@ export default {
     },
     {
       title: "Brief summary of the event (used on index page)",
-      name: "summary",
-      type: "text",
+      name: "excerpt",
+      type: "richTextSimple",
       validation: (Rule) => Rule.required(),
     },
     {

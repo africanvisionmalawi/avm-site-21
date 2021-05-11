@@ -2,6 +2,7 @@ export default {
   title: "Our Work",
   name: "ourWorkShared",
   type: "document",
+  __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
   fields: [
     {
       title: "Intro text",

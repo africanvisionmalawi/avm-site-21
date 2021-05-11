@@ -4,6 +4,7 @@ export default {
   title: "Site Settings",
   name: "siteSettings",
   type: "document",
+  __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
   fields: [
     {
       title: "Meta Title",

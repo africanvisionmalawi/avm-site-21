@@ -53,6 +53,11 @@ export default {
       type: "hero",
     },
     {
+      title: "Banner message",
+      name: "bannerMsg",
+      type: "bannerMsg",
+    },
+    {
       title: "Body",
       name: "body",
       type: "bodyPortableText",
@@ -76,6 +81,7 @@ export default {
         { type: "team" },
         { type: "homePageSection" },
         { type: "ourWorkSelect" },
+        { type: "googlemap" },
       ],
     },
     // {

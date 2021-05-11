@@ -4,6 +4,7 @@ export default {
   title: "Home Page",
   name: "homePage",
   type: "document",
+  __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
   fields: [
     {
       title: "Page Title",
