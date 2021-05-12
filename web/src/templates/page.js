@@ -156,6 +156,7 @@ export const query = graphql`
             }
             extUrl
             featured
+            hideLink
           }
         }
         ... on SanityPhotoGallery {

@@ -30,6 +30,11 @@ export default {
       name: "extUrl",
       type: "string",
     },
+    {
+      title: "Hide link",
+      name: "hideLink",
+      type: "boolean",
+    },
   ],
   preview: {
     select: {
