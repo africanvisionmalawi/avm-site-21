@@ -1,8 +1,8 @@
 // youtube.js
 export default {
+  title: "Googlemap",
   name: "googlemap",
   type: "object",
-  title: "Googlemap",
   fields: [
     {
       title: "Googlemap URL",
@@ -15,4 +15,15 @@ export default {
       type: "string",
     },
   ],
+  preview: {
+    select: {
+      title: "Googlemap (click to view)",
+    },
+
+    prepare({}) {
+      return {
+        title: "Googlemap (click to view/edit)",
+      };
+    },
+  },
 };

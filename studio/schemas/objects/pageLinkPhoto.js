@@ -1,6 +1,7 @@
 export default {
   type: "object",
   name: "pageLinkPhoto",
+  title: "Page link",
   fields: [
     {
       name: "photo",
