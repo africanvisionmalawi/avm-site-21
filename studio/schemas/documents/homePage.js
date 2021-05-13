@@ -75,15 +75,13 @@ export default {
       title: "Index page?",
       name: "indexPage",
       type: "boolean",
-      description:
-        "Select if this is an index page with links to other pages in that category",
+      hidden: true,
     },
     {
       title: "Slug",
       name: "slug",
       type: "slug",
-      description:
-        "This will have whatever category you select above prefixed to it",
+      hidden: true,
       options: {
         source: (doc) => `${doc.title}`,
       },

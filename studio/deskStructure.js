@@ -39,15 +39,45 @@ export default () =>
       S.listItem()
         .title("News")
         .icon(ImNewspaper)
-        .child(S.document().schemaType("news").documentId("news")),
+        .child(
+          S.documentTypeList("news")
+            .title("News")
+            .child(() =>
+              // load a new document list
+              S.documentList()
+                .title("News")
+                .defaultOrdering([{ field: "publishDate", direction: "desc" }])
+                .filter('_type == "news"')
+            )
+        ),
       S.listItem()
         .title("Events")
         .icon(ImTicket)
-        .child(S.document().schemaType("events").documentId("events")),
+        .child(
+          S.documentTypeList("event")
+            .title("Events")
+            .child(() =>
+              // load a new document list
+              S.documentList()
+                .title("Events")
+                .defaultOrdering([{ field: "date", direction: "desc" }])
+                .filter('_type == "event"')
+            )
+        ),
       S.listItem()
         .title("Shop")
         .icon(MdShoppingCart)
-        .child(S.document().schemaType("shop").documentId("shop")),
+        .child(
+          S.documentTypeList("shop")
+            .title("Shop")
+            .child(() =>
+              // load a new document list
+              S.documentList()
+                .title("Shop")
+                .defaultOrdering([{ field: "title", direction: "desc" }])
+                .filter('_type == "shop"')
+            )
+        ),
       S.listItem()
         .title("Our Work")
         .icon(ImOffice)
@@ -64,11 +94,29 @@ export default () =>
       S.listItem()
         .title("Page Categories")
         .child(
-          S.document().schemaType("pageCategory").documentId("pageCategory")
+          S.documentTypeList("pageCategory")
+            .title("Page Categories")
+            .child(() =>
+              // load a new document list
+              S.documentList()
+                .title("Page Categories")
+                .defaultOrdering([{ field: "title", direction: "desc" }])
+                .filter('_type == "pageCategory"')
+            )
         ),
       S.listItem()
         .title("All Pages")
-        .child(S.document().schemaType("page").documentId("page")),
+        .child(
+          S.documentTypeList("page")
+            .title("All Pages")
+            .child(() =>
+              // load a new document list
+              S.documentList()
+                .title("All Pages")
+                .defaultOrdering([{ field: "title", direction: "desc" }])
+                .filter('_type == "page"')
+            )
+        ),
       ...S.documentTypeListItems().filter(
         (listItem) =>
           ![
