@@ -12,6 +12,14 @@
 .container__lower {
   flex-shrink: 0;
 }
+blockquote {
+  border-left: 10px solid #d1c9c6;
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 2rem 0;
+  max-width: 700px;
+  padding: 0 1rem;
+}
 /* html {
   overflow: hidden;
 }
