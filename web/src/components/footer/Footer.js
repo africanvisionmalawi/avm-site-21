@@ -106,29 +106,14 @@ const Footer = () => (
 
             <FooterCol xs={12} sm={8}>
               <Heading>
-                <a href="/news/">News</a>
+                <a href="/news/">Latest news &amp; events</a>
               </Heading>
               <ul className={footerStyles.list}>
                 <li>
+                  <a href="/news/">News</a>
+                </li>
+                <li>
                   <a href="/events/">Events</a>
-                </li>
-                <li>
-                  <a href="/tags/general/">General News</a>
-                </li>
-                <li>
-                  <a href="/tags/fundraising/">Fundraising News</a>
-                </li>
-                <li>
-                  <a href="/tags/malawi/">News from Malawi</a>
-                </li>
-                <li>
-                  <a href="/tags/uk/">News from the UK</a>
-                </li>
-                <li>
-                  <a href="/tags/reports/">Reports</a>
-                </li>
-                <li>
-                  <a href="/tags/newsletters/">Newsletters</a>
                 </li>
               </ul>
             </FooterCol>

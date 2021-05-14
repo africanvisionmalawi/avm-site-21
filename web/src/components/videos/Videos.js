@@ -1,6 +1,6 @@
+import { Video } from "components/videos/";
 import { styled } from "linaria/react";
 import React from "react";
-import ReactPlayer from "react-player";
 import videoStyles from "./videos.module.css";
 
 const Container = styled.div`
@@ -43,15 +43,7 @@ export const Videos = ({ videos }) => (
       <VideosCont>
         {videos.map((video) => (
           <div key={video.videourl}>
-            <div className={videoStyles.playerWrapper}>
-              <ReactPlayer
-                url={video.url}
-                width="100%"
-                height="100%"
-                className={videoStyles.reactPlayer}
-                controls={true}
-              />
-            </div>
+            <Video url={video.videourl} />
             <p className={videoStyles.vidText}>{video.text}</p>
           </div>
         ))}
