@@ -1,8 +1,8 @@
+import { BiLink, BiLinkExternal } from "react-icons/bi";
 import {
   highlightIcon,
   highlightRender,
 } from "../components/PortableTextEditorComponents";
-
 export default {
   name: "bodyPortableText",
   type: "array",
@@ -60,6 +60,7 @@ export default {
             name: "link",
             type: "object",
             title: "External link",
+            icon: BiLinkExternal,
             fields: [
               {
                 name: "href",
@@ -78,6 +79,7 @@ export default {
             name: "internalLink",
             type: "object",
             title: "Internal link",
+            icon: BiLink,
             fields: [
               {
                 name: "reference",
@@ -85,8 +87,8 @@ export default {
                 title: "Reference",
                 to: [
                   { type: "page" },
-                  { type: "post" },
                   { type: "shop" },
+                  { type: "news" },
                   // other types you may want to link to
                 ],
               },

@@ -1,8 +1,10 @@
 // in post.js
+import { MdShoppingCart } from "react-icons/md";
 
 export default {
   title: "Shop",
   name: "shop",
+  icon: MdShoppingCart,
   type: "document",
   fields: [
     {

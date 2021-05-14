@@ -1,5 +1,6 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
 import { BannerMsg } from "components/banner-msg";
+import { GoogleMap } from "components/google-map";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
@@ -184,6 +185,12 @@ export const query = graphql`
           _type
           displayOurWork
         }
+        ... on SanityGooglemap {
+          _key
+          _type
+          text
+          url
+        }
       }
     }
   }
@@ -251,6 +258,9 @@ const Page = (props) => {
         case "team":
           el = <TeamList key={c._key} {...c} />;
           break;
+        case "googlemap":
+          console.log("has map");
+          el = <GoogleMap key={c._key} {...c} />;
         case "uiComponentRef":
           switch (c.name) {
             case "topWave":

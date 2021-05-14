@@ -1,9 +1,11 @@
 // in post.js
+import { ImNewspaper } from "react-icons/im";
 
 export default {
   title: "News",
   name: "news",
   type: "document",
+  icon: ImNewspaper,
   fields: [
     {
       title: "Page Title",
