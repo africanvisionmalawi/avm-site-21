@@ -62,7 +62,6 @@ const HomePage = ({ data }) => {
             displayHeroMsg={true}
             heroHeading={page.title}
             heroHeadingType="h1"
-            heroMsg={page.hero.heroMsg}
             heroSubHeading={page.subTitle}
           />
         ) : (

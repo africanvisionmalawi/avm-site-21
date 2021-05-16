@@ -6,7 +6,6 @@ import { styled } from "linaria/react";
 import React from "react";
 
 export const OurWork = ({ displayHeading, ourWork }) => {
-  console.log("our work ", ourWork);
   return (
     <>
       {displayHeading ? <Heading>What we do</Heading> : null}
