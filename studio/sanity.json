@@ -13,10 +13,11 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "autocomplete-tags",    
+    "autocomplete-tags",
     "media-library",
     "@sanity/dashboard",
-    "dashboard-widget-gatsby"
+    "dashboard-widget-gatsby",
+    "snipcart-orders"
   ],
   "env": {
     "development": {

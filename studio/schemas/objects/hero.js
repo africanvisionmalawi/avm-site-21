@@ -4,10 +4,6 @@ export default {
   name: "hero",
   fields: [
     {
-      name: "heroMsg",
-      type: "richTextSimple",
-    },
-    {
       name: "image",
       type: "mainImage",
     },

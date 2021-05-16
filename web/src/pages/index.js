@@ -8,6 +8,7 @@ export const query = graphql`
     homeQuery: sanityHomePage {
       id
       title
+      subTitle
       indexPage
       _rawIntroText(resolveReferences: { maxDepth: 10 })
       introText {
@@ -50,10 +51,6 @@ export const query = graphql`
             right
             top
           }
-        }
-        heroMsg {
-          _key
-          _rawChildren(resolveReferences: { maxDepth: 10 })
         }
       }
       newsLinks {

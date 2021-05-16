@@ -256,7 +256,11 @@ const Page = (props) => {
           );
           break;
         case "team":
-          el = <TeamList key={c._key} {...c} />;
+          el = (
+            <TextSection>
+              <TeamList key={c._key} {...c} />
+            </TextSection>
+          );
           break;
         case "googlemap":
           console.log("has map");

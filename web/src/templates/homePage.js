@@ -63,10 +63,12 @@ const HomePage = ({ data }) => {
             heroHeading={page.title}
             heroHeadingType="h1"
             heroMsg={page.hero.heroMsg}
+            heroSubHeading={page.subTitle}
           />
         ) : (
           <TopSection>
             <Heading>{page.title}</Heading>
+            {page.subTitle ? page.subTitle : null}
           </TopSection>
         )}
         <Main>
