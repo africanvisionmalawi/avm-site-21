@@ -59,15 +59,16 @@ export const CardSingle = ({
       ) : (
         <PhotoCont photo={photo} photoType={photoType} />
       )}
-
-      <CardContent
-        title={title}
-        // displayLocation={props.displayLocation}
-        // location={props.location}
-        linkText={linkText}
-        // showPageLink={props.showPageLink}
-        url={url}
-      />
+      {title && linkText && url ? (
+        <CardContent
+          title={title}
+          // displayLocation={props.displayLocation}
+          // location={props.location}
+          linkText={linkText}
+          // showPageLink={props.showPageLink}
+          url={url}
+        />
+      ) : null}
     </div>
   );
 };
