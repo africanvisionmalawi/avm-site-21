@@ -1,7 +1,6 @@
 import { Video } from "components/videos/";
 import { styled } from "linaria/react";
 import React from "react";
-import videoStyles from "./videos.module.css";
 
 const Container = styled.div`
   background: #f7f7f7;
@@ -42,9 +41,8 @@ export const Videos = ({ videos }) => (
       <Heading>Videos</Heading>
       <VideosCont>
         {videos.map((video) => (
-          <div key={video.videourl}>
-            <Video url={video.videourl} />
-            <p className={videoStyles.vidText}>{video.text}</p>
+          <div key={video.url}>
+            <Video url={video.url} text={video.text} />
           </div>
         ))}
       </VideosCont>

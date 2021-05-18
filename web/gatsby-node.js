@@ -134,9 +134,9 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
       category.slug.current === "other" ? "/" : category.slug.current + "/";
     const path = `${pathPrefix}${indexPage ? "" : slug.current + "/"}`;
     // const path = getPath(category.slug.current, slug);
-    reporter.info(
-      `Creating page: ${path} with slug ${slug.current} and id: ${id}`
-    );
+    // reporter.info(
+    //   `Creating page: ${path} with slug ${slug.current} and id: ${id}`
+    // );
     createPage({
       path,
       component: require.resolve("./src/templates/page.js"),
@@ -284,9 +284,9 @@ async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
     const pathPrefix = "/shop/";
     const path = `${pathPrefix}${slug.current + "/"}`;
     const tag = shopTags.length ? shopTags[0].value : null;
-    reporter.info(
-      `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
-    );
+    // reporter.info(
+    //   `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
+    // );
     createPage({
       path,
       component: require.resolve("./src/templates/shop-product.js"),
@@ -334,7 +334,7 @@ async function createShopCategories(
     const title = tag.title;
     const value = tag.value.current;
     const path = `/shop/category/${value + "/"}`;
-    reporter.info(`Creating shop tag page: ${path}`);
+    // reporter.info(`Creating shop tag page: ${path}`);
     createPage({
       path,
       component: require.resolve("./src/templates/shop-tags.js"),
@@ -370,9 +370,9 @@ async function createEventPages(pathPrefix = "", graphql, actions, reporter) {
     const { id, slug = {} } = edge.node;
     const pathPrefix = "/events/";
     const path = `${pathPrefix}${slug.current + "/"}`;
-    reporter.info(
-      `Creating event page: ${path} with slug ${slug.current} and id: ${id}`
-    );
+    // reporter.info(
+    //   `Creating event page: ${path} with slug ${slug.current} and id: ${id}`
+    // );
     createPage({
       path,
       component: require.resolve("./src/templates/event.js"),

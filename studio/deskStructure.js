@@ -68,16 +68,13 @@ export default () =>
         .title("Shop")
         .icon(MdShoppingCart)
         .child(
-          S.documentTypeList("shop")
+          // load a new document list
+          S.documentList()
             .title("Shop")
-            .child(() =>
-              // load a new document list
-              S.documentList()
-                .title("Shop")
-                .defaultOrdering([{ field: "title", direction: "desc" }])
-                .filter('_type == "shop"')
-            )
+            .defaultOrdering([{ field: "title", direction: "desc" }])
+            .filter('_type == "shop"')
         ),
+
       S.listItem()
         .title("Our Work")
         .icon(ImOffice)
@@ -94,15 +91,10 @@ export default () =>
       S.listItem()
         .title("Page Categories")
         .child(
-          S.documentTypeList("pageCategory")
+          S.documentList()
             .title("Page Categories")
-            .child(() =>
-              // load a new document list
-              S.documentList()
-                .title("Page Categories")
-                .defaultOrdering([{ field: "title", direction: "desc" }])
-                .filter('_type == "pageCategory"')
-            )
+            .defaultOrdering([{ field: "title", direction: "desc" }])
+            .filter('_type == "pageCategory"')
         ),
       S.listItem()
         .title("All Pages")
