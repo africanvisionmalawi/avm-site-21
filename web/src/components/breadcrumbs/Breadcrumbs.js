@@ -2,38 +2,51 @@ import { Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 
-let crumbLink = "";
-let crumbLinkArray = [];
-const getLinks = (currentLink, index) => {
-  crumbLink = crumbLink + "/" + currentLink;
-  crumbLinkArray.push(crumbLink);
-
-  return crumbLinkArray[index];
-};
-
-export const Breadcrumbs = (props) => {
-  //   console.log("path is " + props.path);
-  const crumb = props.path.split("/");
-  const crumbFiltered = crumb.filter(
-    (value) => Object.keys(value).length !== 0
-  );
-
-  //   console.log("crumb is " + crumbFiltered);
+export const Breadcrumbs = ({ path, indexPage }) => {
+  // console.log("path is  " + path);
+  // console.log("indexpage ", indexPage);
+  // console.log("path length ", path.length);
+  if (indexPage) {
+    path.pop();
+  }
+  // console.log("path length ", path.length);
   return (
-    <Links>
-      <Link to="/">Home</Link>
-      {crumbFiltered.map((c, i) => (
-        <React.Fragment key={i}>
-          {i < crumbFiltered.length - 1 ? (
-            <Link to={`${getLinks(c, i)}/`}>{c.replace(/-/g, " ")}</Link>
-          ) : (
-            <CrumbCurrent>{c.replace(/-/g, " ")}</CrumbCurrent>
-          )}
-        </React.Fragment>
-      ))}
-    </Links>
+    <Container>
+      <Links>
+        <Link to="/">Home</Link>
+        {path.length
+          ? path.map((c, i) => (
+              <React.Fragment key={i}>
+                {i < path.length - 1 ? (
+                  <Link to={`/${c.slug}/`}>{c.title}</Link>
+                ) : (
+                  <CrumbCurrent>{c.title}</CrumbCurrent>
+                )}
+              </React.Fragment>
+            ))
+          : null}
+      </Links>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: none;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 0.5rem 100px;
+  position: relative;
+  width: 100%;
+  @media (min-width: 480px) {
+    display: block;
+  }
+  @media (min-width: 768px) {
+    padding-left: 120px;
+  }
+  @media (min-width: 1140px) {
+    padding: 0.5rem 0 0.5rem 90px;
+  }
+`;
 
 const Links = styled.div`
   max-width: 750px;

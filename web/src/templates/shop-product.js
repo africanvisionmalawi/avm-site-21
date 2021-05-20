@@ -1,4 +1,5 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import { Breadcrumbs } from "components/breadcrumbs";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
@@ -211,6 +212,17 @@ const ShopProduct = (props) => {
   const relatedProducts = data.relatedProducts.edges;
   // console.log("relatedProducts ", relatedProducts);
 
+  const path = [
+    {
+      title: "Shop",
+      slug: "shop",
+    },
+    {
+      title: page.title,
+      slug: page.slug.current,
+    },
+  ];
+
   return (
     // <div>{page.title} </div>
     <Layout
@@ -218,6 +230,7 @@ const ShopProduct = (props) => {
       description="TODO: description"
       article={false}
     >
+      {path ? <Breadcrumbs path={path} /> : null}
       <article>
         <ShopSection>
           <article className="content">

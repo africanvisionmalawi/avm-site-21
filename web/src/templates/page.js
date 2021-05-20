@@ -1,5 +1,7 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
 import { BannerMsg } from "components/banner-msg";
+// import Pricing from "../components/pricing";
+import { Breadcrumbs } from "components/breadcrumbs";
 import { GoogleMap } from "components/google-map";
 import { graphql } from "gatsby";
 import { styled } from "linaria/react";
@@ -17,7 +19,6 @@ import { PageLinks } from "../components/pageLinks";
 import { PortableText } from "../components/portableText/portableText";
 import { TeamList } from "../components/team/TeamList";
 import { Videos } from "../components/videos";
-// import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
 
 // export const query = graphql`
@@ -55,6 +56,7 @@ export const query = graphql`
     page: sanityPage(id: { eq: $id }) {
       id
       title
+      indexPage
       pageHeading
       slug {
         current
@@ -291,6 +293,17 @@ const Page = (props) => {
     ? page.title
     : "";
 
+  const path = [
+    {
+      title: page.category.title ? page.category.title : null,
+      slug: page.category.slug.current ? page.category.slug.current : null,
+    },
+    {
+      title: page.title,
+      slug: page.slug.current,
+    },
+  ];
+
   // console.log("page._rawBody ", page._rawBody);
   return (
     // <div>{page.title} </div>
@@ -298,7 +311,9 @@ const Page = (props) => {
       title={page.title ? page.title : ""}
       description="TODO: description"
       article={false}
+      path={path}
     >
+      {path ? <Breadcrumbs path={path} indexPage={page.indexPage} /> : null}
       <article>
         {page.hero ? (
           <Hero

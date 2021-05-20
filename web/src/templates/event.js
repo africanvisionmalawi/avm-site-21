@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "components/breadcrumbs";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql, Link } from "gatsby";
@@ -97,6 +98,17 @@ const EventPage = (props) => {
 
   const event = data.event;
 
+  const path = [
+    {
+      title: "Events",
+      slug: "events",
+    },
+    {
+      title: event.title,
+      slug: event.slug.current,
+    },
+  ];
+
   // console.log("pastEvents ", pastEvents);
 
   return (
@@ -106,6 +118,7 @@ const EventPage = (props) => {
         description={event.description}
         article={false}
       >
+        {path ? <Breadcrumbs path={path} /> : null}
         <article>
           <section>
             {event.featured_image && (

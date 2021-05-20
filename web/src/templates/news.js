@@ -1,4 +1,5 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import { Breadcrumbs } from "components/breadcrumbs";
 import { graphql, Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
@@ -99,6 +100,17 @@ const News = (props) => {
   //   const menuItems = page.navMenu && (page.navMenu.items || []);
   //   const pageTitle = data.route && !data.route.useSiteTitle && page.title;
   const pageHeading = page.title ? page.title : "";
+  const path = [
+    {
+      title: "News",
+      slug: "news",
+    },
+    {
+      title: page.title,
+      slug: page.slug.current,
+    },
+  ];
+
   return (
     // <div>{page.title} </div>
     <Layout
@@ -106,6 +118,7 @@ const News = (props) => {
       description="TODO: description"
       article={false}
     >
+      {path ? <Breadcrumbs path={path} /> : null}
       <article>
         {page.hero ? (
           <Hero

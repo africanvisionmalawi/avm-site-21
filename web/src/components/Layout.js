@@ -16,7 +16,7 @@ import layoutStyles from "./layout.module.css";
 
 // import useSiteMetadata from "./SiteMetadata";
 
-const TemplateWrapper = ({ title, description, article, children }) => {
+const TemplateWrapper = ({ title, description, article, children, path }) => {
   // const { siteTitle, siteDescription } = useSiteMetadata();
   return (
     <div className={`mainContainer ${layoutStyles.container}`}>
