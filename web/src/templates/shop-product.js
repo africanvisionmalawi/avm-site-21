@@ -109,16 +109,10 @@ const PhotoCont = styled.div`
   }
 `;
 
-const Section = styled.section`
-  margin: 0 auto;
-  max-width: 980px;
-  width: 100%;
-`;
-
 const ShopSection = styled.section`
   margin: 0 auto;
   max-width: 1180px;
-  padding: 4rem 1rem;
+  padding: 0 1rem;
   width: 100%;
 `;
 

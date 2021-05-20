@@ -1,6 +1,7 @@
 import "@fontsource/raleway";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
+import { OurWorkTiles } from "components/ourwork";
 import { withPrefix } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
@@ -13,6 +14,7 @@ import { siteMeta } from "../constants/site";
 // import NavLogo from "../components/NavLogo";
 import "./css/all.css";
 import layoutStyles from "./layout.module.css";
+
 
 // import useSiteMetadata from "./SiteMetadata";
 
@@ -115,7 +117,7 @@ const TemplateWrapper = ({ title, description, article, children, path }) => {
       <Wrapper>
         <div className={layoutStyles.container__top}>
           <div className="main-body">{children}</div>
-          {/* <FeaturedProjectsTiles currentProject="none" displayHeading={true} /> */}
+          <OurWorkTiles displayHeading={true} />
         </div>
         <div className={layoutStyles.container__lower}>
           <Footer />
