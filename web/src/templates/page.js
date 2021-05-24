@@ -245,7 +245,11 @@ const Page = (props) => {
           break;
         case "pageLinks":
           // console.log("pageLinks c ", c);
-          el = <PageLinks key={c._key} {...c} />;
+          el = (
+            <ContentSection>
+              <PageLinks key={c._key} {...c} />
+            </ContentSection>
+          );
           break;
         case "photoGallery":
           el = <Gallery key={c._key} {...c} />;
@@ -387,6 +391,12 @@ const TextSection = styled.section`
   @media (min-width: 1040px) {
     padding: 2rem 8em;
   }
+`;
+
+const ContentSection = styled.section`
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 0 3rem;
 `;
 
 const Main = styled.main`
