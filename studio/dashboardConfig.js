@@ -7,7 +7,7 @@ export default {
     {
       name: "snipcart-orders",
       options: {
-        apiKey: process.env.SNIPCART_SECRET,
+        apiKey: process.env.SANITY_STUDIO_SNIPCART_SECRET,
       },
     },
   ],
