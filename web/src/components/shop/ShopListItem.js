@@ -15,6 +15,11 @@ const PhotoCont = styled.div`
 `;
 
 export const ShopListItem = (props) => {
+  const productPrice = props.salePrice
+    ? props.salePrice
+    : props.price
+    ? props.price
+    : null;
   return (
     <li key={props.id}>
       <Link to={`/shop/${props.slug}/`}>
@@ -26,7 +31,7 @@ export const ShopListItem = (props) => {
         <h2>{props.title}</h2>
         <span>
           &pound;
-          {priceFormatted(props.price)}
+          {priceFormatted(productPrice)}
         </span>
       </Link>
     </li>

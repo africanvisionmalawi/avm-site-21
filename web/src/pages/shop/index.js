@@ -116,6 +116,7 @@ const ShopIndexPage = (props) => {
                     photoType="default"
                     title={item.node.title}
                     price={item.node.price}
+                    salePrice={item.node.salePrice}
                   />
                 </React.Fragment>
               ))}

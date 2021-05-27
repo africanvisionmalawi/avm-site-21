@@ -217,6 +217,12 @@ const ShopProduct = (props) => {
     },
   ];
 
+  const productPrice = page.salePrice
+    ? page.salePrice
+    : page.price
+    ? page.price
+    : null;
+
   return (
     // <div>{page.title} </div>
     <Layout
@@ -253,13 +259,13 @@ const ShopProduct = (props) => {
               <ColumnAside>
                 <div>
                   <SectionInner>
-                    <Price>&pound;{priceFormatted(page.price)}</Price>
+                    <Price>&pound;{priceFormatted(productPrice)}</Price>
                     {displayButtonCheck(page.inStock) ? (
                       <BuyButton
                         productId={page.id ? page.id : null}
                         name={page.title ? page.title : null}
                         description={page.description ? page.description : null}
-                        price={page.price ? page.price : null}
+                        price={productPrice}
                         image={
                           page.photoGallery && page.photoGallery.length
                             ? page.photoGallery[0].childImageSharp.fluid.src
@@ -307,6 +313,7 @@ const ShopProduct = (props) => {
                           photoType="default"
                           title={item.node.title}
                           price={item.node.price}
+                          salePrice={item.node.salePrice}
                         />
                       ) : null}
                     </React.Fragment>
