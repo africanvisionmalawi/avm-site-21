@@ -19,11 +19,11 @@ const HeroMsgDiv = styled.div`
   }
 `;
 
-const Content = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: 1.6em;
-  text-align: center;
-`;
+// const Content = styled.div`
+//   font-family: "Roboto", sans-serif;
+//   font-size: 1.6em;
+//   text-align: center;
+// `;
 
 const Citation = styled.div`
   font-size: 0.8em;

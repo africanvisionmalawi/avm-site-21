@@ -25,15 +25,15 @@ const Heading = styled.h2`
   text-align: center;
 `;
 
-const checkUrl = (url) => {
-  if (url.includes("youtube")) {
-    return "youtube";
-  } else if (url.includes("vimeo")) {
-    return "youtube";
-  } else {
-    return "all";
-  }
-};
+// const checkUrl = (url) => {
+//   if (url.includes("youtube")) {
+//     return "youtube";
+//   } else if (url.includes("vimeo")) {
+//     return "youtube";
+//   } else {
+//     return "all";
+//   }
+// };
 
 export const Videos = ({ videos }) => (
   <div>

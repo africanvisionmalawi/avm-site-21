@@ -29,9 +29,9 @@ export const CardSingle = ({
   photo,
   featured,
 }) => {
-  let cardImage;
+  // let cardImage;
   // console.log("linkText ", linkText);
-  const hideOtherPhotos = false;
+  // const hideOtherPhotos = false;
   const photoType = featured ? "featured" : "default";
 
   // if (props.smallImage) {

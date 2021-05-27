@@ -55,6 +55,11 @@ export const PhotoCont = (props) => {
           width={photoSizes[photoType].w}
           height={photoSizes[photoType].h}
           alt={photo.alt}
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+          }}
         />
       ) : null}
     </>

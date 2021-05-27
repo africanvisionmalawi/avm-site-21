@@ -44,11 +44,6 @@ const TileGrid = styled.div`
   }
 `;
 
-const ImageCont = styled.div`
-  border-radius: 4px 4px 0 0;
-  overflow: hidden;
-`;
-
 const TextCont = styled.div`
   margin-top: 16px;
   padding-left: 16px;

@@ -271,6 +271,7 @@ const Page = (props) => {
         case "googlemap":
           console.log("has map");
           el = <GoogleMap key={c._key} {...c} />;
+          break;
         case "uiComponentRef":
           switch (c.name) {
             case "topWave":

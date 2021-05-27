@@ -177,8 +177,8 @@ const IconCont = styled.div`
   top: 0;
 `;
 
-const NavIcons = styled.div`
-  display: flex;
-`;
+// const NavIcons = styled.div`
+//   display: flex;
+// `;
 
 export default Navbar;

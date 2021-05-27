@@ -26,16 +26,16 @@ const SubHeading = styled.div`
   margin-bottom: 2rem;
 `;
 
-const HeroCont = styled.div`
-  margin: 0 auto;
-  max-width: 1024px;
-  width: 100%;
-`;
+// const HeroCont = styled.div`
+//   margin: 0 auto;
+//   max-width: 1024px;
+//   width: 100%;
+// `;
 
-const ViewAll = styled.div`
-  margin: 2.4em 0;
-  text-align: center;
-`;
+// const ViewAll = styled.div`
+//   margin: 2.4em 0;
+//   text-align: center;
+// `;
 
 const HTMLContent = ({ content, className }) => (
   <div

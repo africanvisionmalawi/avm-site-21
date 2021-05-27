@@ -1,36 +1,33 @@
-// import PropTypes from "prop-types";
-// import { useStaticQuery, graphql } from "gatsby";
-import { navigate } from "gatsby-link";
 import { styled } from "linaria/react";
 import React from "react";
 
-function encode(data) {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-}
+// function encode(data) {
+//   return Object.keys(data)
+//     .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+//     .join("&");
+// }
 
-export const MailingForm = () => {
+export const FooterForm = () => {
   const [state, setState] = React.useState({});
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": form.getAttribute("name"),
-        ...state,
-      }),
-    })
-      .then(() => navigate(form.getAttribute("action")))
-      .catch((error) => alert(error));
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+  //   fetch("/", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //     body: encode({
+  //       "form-name": form.getAttribute("name"),
+  //       ...state,
+  //     }),
+  //   })
+  //     .then(() => navigate(form.getAttribute("action")))
+  //     .catch((error) => alert(error));
+  // };
 
   return (
     <FormCont>
@@ -157,5 +154,3 @@ const Button = styled.button`
     margin-top: 0;
   }
 `;
-
-export default MailingForm;

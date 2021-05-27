@@ -6,7 +6,7 @@ import CartLink from "../CartLink";
 import { CtaButton } from "../common/CtaButton";
 import NavLogo from "../NavLogo";
 // import Search from "../search";
-const searchIndices = [{ name: `Pages`, title: `Pages` }];
+// const searchIndices = [{ name: `Pages`, title: `Pages` }];
 // const { SubMenu } = Menu;
 
 const SubNavBar = () => {
@@ -174,15 +174,6 @@ const DrawerContent = styled.div`
     transform: translateX(0);
     transition: transform 0.4s ease-in-out;
   }
-
-  // height: 100%;
-  // min-width: 50vw;
-  // max-width: calc(100vw - 20px);
-  // overflow-y: auto;
-  // position: absolute;
-  // background-color: #fff;
-  // width: 300px;
-  // z-index: 120;
 `;
 
 const NavInner = styled.div`

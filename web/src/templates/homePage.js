@@ -3,7 +3,7 @@ import { Donate } from "components/common/Donate";
 import { OurWork } from "components/ourwork";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
 import ReactPlayer from "react-player";

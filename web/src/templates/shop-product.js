@@ -326,41 +326,4 @@ const ShopProduct = (props) => {
   );
 };
 
-const TopSection = styled.div`
-  margin: 0 auto;
-  max-width: 885px;
-  padding: 3rem 1rem 0;
-  position: relative;
-  width: 100%;
-  @media (min-width: 768px) {
-    padding-top: 1rem;
-  }
-`;
-
-const TextSection = styled.section`
-  background: #fff;
-  min-height: 24rem;
-  margin: 0 auto;
-  max-width: 1180px;
-  padding: 1rem;
-  position: relative;
-  width: 100%;
-  @media (min-width: 768px) {
-    padding: 0 4em 2rem;
-  }
-  @media (min-width: 1040px) {
-    padding: 0 8em 2rem;
-  }
-`;
-
-const Main = styled.main`
-  background: #fff;
-  border-radius: 2px;
-`;
-
-const ViewAll = styled.div`
-  margin: 2.4em 0;
-  text-align: center;
-`;
-
 export default ShopProduct;
