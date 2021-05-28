@@ -26,6 +26,7 @@ import ourWorkItem from "./objects/ourWorkItem";
 import ourWorkSelect from "./objects/ourWorkSelect";
 import pageLinkPhoto from "./objects/pageLinkPhoto.js";
 import pageLinks from "./objects/pageLinks.js";
+import pdf from "./objects/pdfUpload";
 import photoGallery from "./objects/photoGallery";
 import richText from "./objects/richText";
 import richTextSimple from "./objects/richTextSimple";
@@ -73,5 +74,6 @@ export default createSchema({
     event,
     googlemap,
     bannerMsg,
+    pdf,
   ]),
 });

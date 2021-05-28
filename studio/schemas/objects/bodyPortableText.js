@@ -1,4 +1,4 @@
-import { BiLink, BiLinkExternal } from "react-icons/bi";
+import { BiLink, BiLinkExternal, ImFilePdf } from "react-icons/bi";
 import {
   highlightIcon,
   highlightRender,
@@ -106,6 +106,10 @@ export default {
     {
       type: "mainImage",
       options: { hotspot: true },
+    },
+    {
+      type: "pdf",
+      icon: ImFilePdf,
     },
   ],
 };

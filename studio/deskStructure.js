@@ -1,4 +1,5 @@
 import S from "@sanity/desk-tool/structure-builder";
+import React from "react";
 import {
   ImCogs,
   ImFilesEmpty,
@@ -8,6 +9,19 @@ import {
   ImTicket,
 } from "react-icons/im";
 import { MdShoppingCart } from "react-icons/md";
+
+// Simple example of web preview
+const url = "https://preview-avmsite21.gtsb.io/";
+const WebPreview = ({ document }) => {
+  const { displayed } = document;
+  console.log("document ", displayed.category);
+  const category = document.category ? document.category.slug.current : "";
+  const pathPrefix = category === "other" ? null : category;
+  const path = `${pathPrefix}${
+    document.indexPage ? "" : displayed.slug.current + "/"
+  }`;
+  return <iframe src={url + path} frameBorder={0} height="100%" width="100%" />;
+};
 
 export default () =>
   S.list()
@@ -40,29 +54,19 @@ export default () =>
         .title("News")
         .icon(ImNewspaper)
         .child(
-          S.documentTypeList("news")
+          S.documentList()
             .title("News")
-            .child(() =>
-              // load a new document list
-              S.documentList()
-                .title("News")
-                .defaultOrdering([{ field: "publishDate", direction: "desc" }])
-                .filter('_type == "news"')
-            )
+            .defaultOrdering([{ field: "publishDate", direction: "desc" }])
+            .filter('_type == "news"')
         ),
       S.listItem()
         .title("Events")
         .icon(ImTicket)
         .child(
-          S.documentTypeList("event")
+          S.documentList()
             .title("Events")
-            .child(() =>
-              // load a new document list
-              S.documentList()
-                .title("Events")
-                .defaultOrdering([{ field: "date", direction: "desc" }])
-                .filter('_type == "event"')
-            )
+            .defaultOrdering([{ field: "date", direction: "desc" }])
+            .filter('_type == "event"')
         ),
       S.listItem()
         .title("Shop")
@@ -99,14 +103,19 @@ export default () =>
       S.listItem()
         .title("All Pages")
         .child(
-          S.documentTypeList("page")
+          S.documentList()
             .title("All Pages")
-            .child(() =>
-              // load a new document list
-              S.documentList()
-                .title("All Pages")
-                .defaultOrdering([{ field: "title", direction: "desc" }])
-                .filter('_type == "page"')
+            .defaultOrdering([{ field: "title", direction: "desc" }])
+            .filter('_type == "page"')
+        ),
+      S.listItem()
+        .title("Unpublished changes")
+        .child(
+          S.documentList()
+            .title("Pages with changes waiting to be published")
+            .defaultOrdering([{ field: "title", direction: "desc" }])
+            .filter(
+              '(_type == "page" || _type == "event" || _type == "shop" || _type == "news" || _type == "ourWorkShared")  && count(*[_id in [^._id, "drafts." + ^._id]]) > 1'
             )
         ),
       ...S.documentTypeListItems().filter(
@@ -124,3 +133,13 @@ export default () =>
           ].includes(listItem.getId())
       ),
     ]);
+
+export const getDefaultDocumentNode = ({ schemaType }) => {
+  // Conditionally return a different configuration based on the schema type
+  if (schemaType === "page") {
+    return S.document().views([
+      S.view.form(),
+      S.view.component(WebPreview).title("Web"),
+    ]);
+  }
+};
