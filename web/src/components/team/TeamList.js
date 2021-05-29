@@ -20,6 +20,10 @@ export const TeamList = (props) => {
                   height={150}
                   alt={t.photo.alt}
                   sizes="130px"
+                  style={{
+                    width: "130px",
+                    height: "130px",
+                  }}
                 />
                 {/* <Img fixed={t.photo.childImageSharp.fixed} alt={t.name} /> */}
               </TeamPhoto>
