@@ -60,6 +60,7 @@ export const PhotoCont = (props) => {
             height: "auto",
             objectFit: "cover",
           }}
+          sizes={`${photoSizes[photoType].w}px`}
         />
       ) : null}
     </>

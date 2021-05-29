@@ -42,6 +42,7 @@ export const CardSingle = ({
   // }
   // const pageUrl = url.category.slug.current;
   // const pageTitle = url.category.title;
+  console.log("linkText ", linkText);
   return (
     <div>
       {url || extUrl ? (
@@ -59,14 +60,14 @@ export const CardSingle = ({
       ) : (
         <PhotoCont photo={photo} photoType={photoType} />
       )}
-      {title && linkText && url ? (
+      {title && linkText ? (
         <CardContent
           title={title}
           // displayLocation={props.displayLocation}
           // location={props.location}
           linkText={linkText}
           // showPageLink={props.showPageLink}
-          url={url}
+          url={url ? url : null}
         />
       ) : null}
     </div>
