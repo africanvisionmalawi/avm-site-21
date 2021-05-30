@@ -68,6 +68,7 @@ export const Hero = ({
               height: "auto",
               objectFit: "cover",
             }}
+            sizes="(max-width: 1140px) 100vw, 1140px"
           />
         ) : null}
 

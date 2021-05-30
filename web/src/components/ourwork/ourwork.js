@@ -41,6 +41,10 @@ const TileGrid = styled.div`
   grid-template-columns: 1fr;
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
+    padding: 0 1rem;
+  }
+  @media (min-width: 1200px) {
+    padding: 0;
   }
 `;
 

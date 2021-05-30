@@ -20,6 +20,7 @@ export const PhotoCont = (props) => {
     default: {
       w: 280,
       h: 125,
+      cssW: "280px",
     },
     featured: {
       w: 560,
@@ -36,7 +37,7 @@ export const PhotoCont = (props) => {
     ourWork: {
       w: 381,
       h: 240,
-      cssW: "",
+      sizes: "(max-width: 480px) 100vw, 480px",
     },
   };
   return (
@@ -57,11 +58,15 @@ export const PhotoCont = (props) => {
           height={photoSizes[photoType].h}
           alt={photo.alt}
           style={{
-            width: `100%`,
+            width: photoSizes[photoType].cssW
+              ? photoSizes[photoType].cssW
+              : "100%",
             height: "auto",
             objectFit: "cover",
           }}
-          sizes={`${photoSizes[photoType].w}px`}
+          sizes={
+            photoSizes[photoType].sizes ? photoSizes[photoType].sizes : "unset"
+          }
         />
       ) : null}
     </>

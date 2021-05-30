@@ -19,37 +19,6 @@ import { PageLinks } from "../components/pageLinks";
 import { PortableText } from "../components/portableText/portableText";
 import { TeamList } from "../components/team/TeamList";
 import { Videos } from "../components/videos";
-// import SEO from "../components/seo";
-
-// export const query = graphql`
-//   query PageTemplateQuery($id: String!) {
-//     route: sanityRoute(id: { eq: $id }) {
-//       slug {
-//         current
-//       }
-//       useSiteTitle
-//       page {
-//         ...PageInfo
-//       }
-//     }
-//     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-//       primaryColor {
-//         hex
-//       }
-//       secondaryColor {
-//         hex
-//       }
-//       title
-//       openGraph {
-//         title
-//         description
-//         image {
-//           ...SanityImage
-//         }
-//       }
-//     }
-//   }
-// `;
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
@@ -72,7 +41,7 @@ export const query = graphql`
       hero {
         image {
           asset {
-            fluid(maxWidth: 700) {
+            fluid(maxWidth: 1918, maxHeight: 540) {
               ...GatsbySanityImageFluid
             }
           }
