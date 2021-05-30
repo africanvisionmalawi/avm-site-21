@@ -36,6 +36,7 @@ export const PhotoCont = (props) => {
     ourWork: {
       w: 381,
       h: 240,
+      cssW: "",
     },
   };
   return (
@@ -56,7 +57,7 @@ export const PhotoCont = (props) => {
           height={photoSizes[photoType].h}
           alt={photo.alt}
           style={{
-            width: `${photoSizes[photoType].w}px`,
+            width: `100%`,
             height: "auto",
             objectFit: "cover",
           }}
