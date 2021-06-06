@@ -9,17 +9,43 @@ import {
   ImTicket,
 } from "react-icons/im";
 import { MdShoppingCart } from "react-icons/md";
+const sanityClient = require("@sanity/client");
+const client = sanityClient({
+  // TODO: replace this with env vars
+  projectId: "hh4wbbfo",
+  dataset: "production",
+  apiVersion: "2019-01-29", // use current UTC date - see "specifying API version"!
+  // token: "sanity-auth-token", // or leave blank for unauthenticated usage
+  useCdn: true, // `false` if you want to ensure fresh data
+});
+
+async function getCategorySlug(id) {
+  const query = '*[_type == "pageCategory" && _id == $id] {title, slug}';
+  const params = { id: id };
+  try {
+    const result = await client.fetch(query, params);
+    if (result) {
+      return result;
+    }
+  } catch (err) {
+    console.log("error");
+  }
+}
 
 // Simple example of web preview
 const url = "https://preview-avmsite21.gtsb.io/";
+let catSlug;
 const WebPreview = ({ document }) => {
   const { displayed } = document;
-  console.log("document ", displayed.category);
-  const category = document.category ? document.category.slug.current : "";
+
+  getCategorySlug(displayed.category._ref).then((res) => (catSlug = res));
+
+  const category = catSlug ? catSlug[0].slug.current + "/" : "";
   const pathPrefix = category === "other" ? null : category;
   const path = `${pathPrefix}${
     document.indexPage ? "" : displayed.slug.current + "/"
   }`;
+  console.log("path is  ", path);
   return <iframe src={url + path} frameBorder={0} height="100%" width="100%" />;
 };
 
