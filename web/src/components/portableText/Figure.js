@@ -1,4 +1,4 @@
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { getFluidGatsbyImage } from "gatsby-source-sanity";
 import React from "react";
 import clientConfig from "../../../client-config";
@@ -14,7 +14,7 @@ export default ({ node }) => {
   );
   return (
     <figure>
-      <Img fluid={fluidProps} alt={node.alt} />
+      <GatsbyImage image={fluidProps} alt={node.alt} />
       <figcaption>{node.caption}</figcaption>
     </figure>
   );

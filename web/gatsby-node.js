@@ -162,12 +162,7 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
             }
             photo {
               asset {
-                fluid {
-                  src
-                  srcSet
-                  sizes
-                  aspectRatio
-                }
+                
               }
             }
             _rawExcerpt(resolveReferences: { maxDepth: 10 })

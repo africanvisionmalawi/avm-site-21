@@ -13,48 +13,43 @@ const Container = styled.div`
 
 export const Donate = (props) => {
   const donateImage = useStaticQuery(
-    graphql`
-      query {
-        donateImageDesktop: file(
-          relativePath: { eq: "hero/donate-desktop.jpg" }
-        ) {
-          childImageSharp {
-            fluid(maxWidth: 1918, maxHeight: 540, quality: 60) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
-        }
-        donateImageMobile: file(
-          relativePath: { eq: "hero/donate-mobile.jpg" }
-        ) {
-          childImageSharp {
-            fluid(maxWidth: 480, maxHeight: 300, quality: 60) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
-        }
-      }
-    `
+    graphql`{
+  donateImageDesktop: file(relativePath: {eq: "hero/donate-desktop.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(quality: 60, placeholder: TRACED_SVG, layout: FULL_WIDTH)
+    }
+  }
+  donateImageMobile: file(relativePath: {eq: "hero/donate-mobile.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(
+        width: 480
+        height: 300
+        quality: 60
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
+}
+`
   );
 
-  return (
-    <>
-      {props.displayImage ? (
-        <Hero
-          fluid={donateImage.donateImageDesktop.childImageSharp.fluid}
-          fluidMobile={donateImage.donateImageMobile.childImageSharp.fluid}
-        >
-          <p>
-            Donate now to help us help children &amp; vulnerable people in
-            Malawi.
-          </p>
-          <CtaButton link={props.link} text={props.text} placement="alt" />
-        </Hero>
-      ) : (
-        <Container>
-          <CtaButton link={props.link} text={props.text} placement="alt" />
-        </Container>
-      )}
-    </>
-  );
+  return <>
+    {props.displayImage ? (
+      <Hero
+        fluid={donateImage.donateImageDesktop.childImageSharp.gatsbyImageData}
+        fluidMobile={donateImage.donateImageMobile.childImageSharp.gatsbyImageData}
+      >
+        <p>
+          Donate now to help us help children &amp; vulnerable people in
+          Malawi.
+        </p>
+        <CtaButton link={props.link} text={props.text} placement="alt" />
+      </Hero>
+    ) : (
+      <Container>
+        <CtaButton link={props.link} text={props.text} placement="alt" />
+      </Container>
+    )}
+  </>;
 };

@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { styled } from "linaria/react";
 import React from "react";
 import { EventDate } from "../events/EventDate";
@@ -32,13 +32,12 @@ export const CardDouble = ({ url, extUrl, title, linkText, fixed, photo }) => {
   if (props.largeImage) {
     // console.log("largeimage", props.largeImage);
     cardImage = (
-      <Img
-        fluid={props.largeImage.childImageSharp.fluid}
+      <GatsbyImage
+        image={props.largeImage.childImageSharp.gatsbyImageData}
         alt=""
         imgStyle={{ objectFit: "contain" }}
         backgroundColor={true}
-        objectFit="contain"
-      />
+        objectFit="contain" />
     );
   } else {
     cardImage = <img src="/img/default/default-landscape.jpg" alt="" />;

@@ -1,6 +1,6 @@
 // import BackgroundImage from "gatsby-background-image";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { styled } from "linaria/react";
 import React from "react";
 
@@ -62,23 +62,19 @@ export const OurWorkTiles = ({ currentProject, displayHeading }) => {
                     {project.name} {project.fullWidth}
                   </SubHeading>
                 </Overlay>
-                <Img
-                  fluid={
-                    project.hasMobileImage === true
-                      ? [
-                          featuredImage[project.imageIdMobile].childImageSharp
-                            .fluid,
-                          {
-                            ...featuredImage[project.imageIdDesktop]
-                              .childImageSharp.fluid,
-                            media: `(min-width: 576px)`,
-                          },
-                        ]
-                      : featuredImage[project.imageId].childImageSharp.fluid
-                  }
+                <GatsbyImage
+                  image={project.hasMobileImage === true
+                    ? [
+                        featuredImage[project.imageIdMobile].childImageSharp.gatsbyImageData,
+                        {
+                          ...featuredImage[project.imageIdDesktop]
+                            .childImageSharp.gatsbyImageData,
+                          media: `(min-width: 576px)`,
+                        },
+                      ]
+                    : featuredImage[project.imageId].childImageSharp.gatsbyImageData}
                   alt=""
-                  imgStyle={{ objectFit: "contain" }}
-                />
+                  imgStyle={{ objectFit: "contain" }} />
               </Link>
             </Tile>
           ))}

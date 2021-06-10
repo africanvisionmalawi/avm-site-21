@@ -1,4 +1,4 @@
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 
 export const Image = ({ fluid, fixed, alt, src }) => {
@@ -6,11 +6,11 @@ export const Image = ({ fluid, fixed, alt, src }) => {
   //   const { childImageSharp, image } = imageInfo;
   //   const alt = imageInfo ? imageInfo.alt : "";
   if (fluid) {
-    return <Img style={imageStyle} fluid={fluid} alt={alt} />;
+    return <GatsbyImage image={fluid} style={imageStyle} alt={alt} />;
   }
 
   if (fixed) {
-    return <Img style={imageStyle} fixed={fixed} alt={alt} />;
+    return <GatsbyImage image={fixed} style={imageStyle} alt={alt} />;
   }
 
   if (src) return <img style={imageStyle} src={src} alt={alt} />;

@@ -19,24 +19,28 @@ import videoStyles from "../components/videos/videos.module.css";
 dayjs.extend(advancedFormat);
 // export const query = graphql`
 
-export const lgRectImage = graphql`
-  fragment photoTileFixedLgRect on File {
-    childImageSharp {
-      fluid(maxWidth: 980, maxHeight: 300) {
-        ...GatsbyImageSharpFluid_withWebp_tracedSVG
-      }
-    }
+export const lgRectImage = graphql`fragment photoTileFixedLgRect on File {
+  childImageSharp {
+    gatsbyImageData(
+      width: 980
+      height: 300
+      placeholder: TRACED_SVG
+      layout: CONSTRAINED
+    )
   }
+}
 `;
 
-export const mdRectImage = graphql`
-  fragment photoTileFixedMdRect on File {
-    childImageSharp {
-      fluid(maxWidth: 480, maxHeight: 300) {
-        ...GatsbyImageSharpFluid_withWebp_tracedSVG
-      }
-    }
+export const mdRectImage = graphql`fragment photoTileFixedMdRect on File {
+  childImageSharp {
+    gatsbyImageData(
+      width: 480
+      height: 300
+      placeholder: TRACED_SVG
+      layout: CONSTRAINED
+    )
   }
+}
 `;
 
 const HomePage = ({ data }) => {

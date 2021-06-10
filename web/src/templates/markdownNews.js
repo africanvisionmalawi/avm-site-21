@@ -148,24 +148,21 @@ BlogPost.propTypes = {
 
 export default BlogPost;
 
-export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      id
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        title
-        excerpt
-        tags
-        featuredImage {
-          childImageSharp {
-            fluid(maxWidth: 1100, maxHeight: 440, quality: 50) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
+export const pageQuery = graphql`query BlogPostByID($id: String!) {
+  markdownRemark(id: {eq: $id}) {
+    id
+    html
+    frontmatter {
+      date(formatString: "MMMM DD, YYYY")
+      title
+      excerpt
+      tags
+      featuredImage {
+        childImageSharp {
+          gatsbyImageData(quality: 50, placeholder: TRACED_SVG, layout: FULL_WIDTH)
         }
       }
     }
   }
+}
 `;

@@ -268,7 +268,7 @@ const ShopProduct = (props) => {
                         price={productPrice}
                         image={
                           page.photoGallery && page.photoGallery.length
-                            ? page.photoGallery[0].childImageSharp.fluid.src
+                            ? page.photoGallery[0].childImageSharp.gatsbyImageData.src
                             : null
                         }
                         url={
