@@ -3,7 +3,7 @@ import React from "react";
 import { getFeaturedLinks, getPath } from "../../utils/helpers";
 // import { CardDouble } from "../card/CardDouble";
 import { CardSingle } from "../card/CardSingle";
-import styles from "./pageLinks.module.css";
+import * as styles from "./pageLinks.module.css";
 
 const Heading = styled.h2`
   text-align: center;
@@ -13,11 +13,11 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
   return (
     <>
       {pageLinks.length
-        ? pageLinks.map((pageLink) => {
+        ? pageLinks.map((pageLink, i) => {
             return (
-              <>
+              <React.Fragment key={`id${i}-${pageLink.id}`}>
                 {!pageLink.hideLink ? (
-                  <React.Fragment key={pageLink.id}>
+                  <>
                     <CardSingle
                       url={
                         pageLink.url
@@ -36,9 +36,9 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
                       // showPageLink={pageLink.showPageLink}
                       // hideOtherPhotos={pageLink.hideOtherPhotos}
                     />
-                  </React.Fragment>
+                  </>
                 ) : null}
-              </>
+              </React.Fragment>
             );
           })
         : null}

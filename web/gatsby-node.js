@@ -9,12 +9,28 @@ const createPaginatedPages = require("gatsby-paginate");
 //   return path;
 // };
 
-const path = require("path");
+const path = require(`path`);
+// exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       alias: {
+//         "@reach/router": path.dirname(
+//           require.resolve(`@gatsbyjs/reach-router/package.json`)
+//         ),
+//       },
+//     },
+//   });
+// };
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       modules: [path.resolve(__dirname, "src"), "node_modules"],
+      alias: {
+        "@reach/router": path.dirname(
+          require.resolve(`@gatsbyjs/reach-router/package.json`)
+        ),
+      },
     },
   });
 };
@@ -58,45 +74,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   ]);
 };
 
-// async function createLandingPages(
-//   pathPrefix = "/",
-//   graphql,
-//   actions,
-//   reporter
-// ) {
-//   const { createPage } = actions;
-//   const result = await graphql(`
-//     {
-//       allSanityRoute(
-//         filter: { slug: { current: { ne: null } }, page: { id: { ne: null } } }
-//       ) {
-//         edges {
-//           node {
-//             id
-//             slug {
-//               current
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `);
-
-//   if (result.errors) throw result.errors;
-
-//   const routeEdges = (result.data.allSanityRoute || {}).edges || [];
-//   routeEdges.forEach((edge) => {
-//     const { id, slug = {} } = edge.node;
-//     const path = [pathPrefix, slug.current, "/"].join("");
-//     reporter.info(`Creating landing page: ${path}`);
-//     createPage({
-//       path,
-//       component: require.resolve("./src/templates/page.js"),
-//       context: { id },
-//     });
-//   });
-// }
-
 async function createPages(pathPrefix = "", graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -133,10 +110,7 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
     const pathPrefix =
       category.slug.current === "other" ? "/" : category.slug.current + "/";
     const path = `${pathPrefix}${indexPage ? "" : slug.current + "/"}`;
-    // const path = getPath(category.slug.current, slug);
-    // reporter.info(
-    //   `Creating page: ${path} with slug ${slug.current} and id: ${id}`
-    // );
+
     createPage({
       path,
       component: require.resolve("./src/templates/page.js"),
@@ -160,11 +134,7 @@ async function createNews(pathPrefix = "", graphql, actions, reporter) {
             slug {
               current
             }
-            photo {
-              asset {
-                
-              }
-            }
+
             _rawExcerpt(resolveReferences: { maxDepth: 10 })
             _type
             publishDate(formatString: "MMMM DD, YYYY")

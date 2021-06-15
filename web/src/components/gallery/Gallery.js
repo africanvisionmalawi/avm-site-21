@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { v4 } from "uuid";
 // import { Image } from "../Image";
 // import PreviewCompatibleImage from "../PreviewCompatibleImage";
-import galleryStyles from "./gallery.module.css";
+import * as galleryStyles from "./gallery.module.css";
 
 const Heading = styled.h2`
   text-align: center;

@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
-import styles from "../pageLinks/pageLinks.module.css";
+import * as styles from "../pageLinks/pageLinks.module.css";
 
 export const MoreButton = ({ url }) => {
   return (

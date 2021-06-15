@@ -3,7 +3,7 @@ import { styled } from "linaria/react";
 import React from "react";
 import logo from "../../img/logo-full.png";
 import { getCurrentYear } from "../../utils/helpers";
-import footerStyles from "./footer.module.css";
+import * as footerStyles from "./footer.module.css";
 import { FooterForm } from "./FooterForm";
 
 const LogoImg = styled.img`

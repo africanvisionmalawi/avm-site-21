@@ -1,6 +1,3 @@
-// import PropTypes from 'prop-types'
-// import { Link } from 'gatsby'
-// import buttonStyles from './button.module.css'
 import { styled } from "linaria/react";
 import React from "react";
 

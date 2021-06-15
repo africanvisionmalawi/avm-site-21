@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getFluidGatsbyImage } from "gatsby-source-sanity";
+import { getGatsbyImageData } from "gatsby-source-sanity";
 import React from "react";
 import clientConfig from "../../../client-config";
 
@@ -7,7 +7,7 @@ export default ({ node }) => {
   if (!node || !node.asset || !node.asset._id) {
     return null;
   }
-  const fluidProps = getFluidGatsbyImage(
+  const fluidProps = getGatsbyImageData(
     node.asset._id,
     { maxWidth: 675 },
     clientConfig.sanity

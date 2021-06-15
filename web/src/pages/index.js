@@ -26,9 +26,7 @@ export const query = graphql`
       hero {
         image {
           asset {
-            fluid(maxWidth: 1918, maxHeight: 540) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(layout: FULL_WIDTH)
           }
           hotspot {
             _key

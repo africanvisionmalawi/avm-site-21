@@ -8,9 +8,6 @@ import { CardPostAlt } from "../components/card/CardPostAlt";
 import { Donate } from "../components/common/Donate";
 // import { NavTags } from "../components/common/nav-tags";
 import Layout from "../components/Layout";
-// import paginationStyles from "../components/pagination.module.css";
-// import postStyles from "../components/posts.module.css";
-// import { tags, tagsBase } from "../constants/news";
 
 // const Section = styled.section`
 //   margin: 0 auto;

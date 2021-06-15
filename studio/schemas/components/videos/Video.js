@@ -1,6 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import videoStyles from "./videos.module.css";
+import * as videoStyles from "./videos.module.css";
 
 export const Video = ({ url, text }) => (
   <>

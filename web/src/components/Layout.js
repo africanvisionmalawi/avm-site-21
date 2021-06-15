@@ -13,8 +13,7 @@ import SubNavBar from "../components/nav/sub";
 import { siteMeta } from "../constants/site";
 // import NavLogo from "../components/NavLogo";
 import "./css/all.css";
-import layoutStyles from "./layout.module.css";
-
+import * as layoutStyles from "./layout.module.css";
 
 // import useSiteMetadata from "./SiteMetadata";
 
