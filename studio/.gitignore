@@ -11,4 +11,5 @@ avm-gatsby-netlify-cms.code-workspace
 .linaria-cache
 .env*
 *.ndjson
+/dist
 

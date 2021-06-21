@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const VideosCont = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(380px, 1fr));
   grid-gap: 1rem;
   grid-auto-flow: dense;
@@ -36,16 +36,14 @@ const Heading = styled.h2`
 // };
 
 export const Videos = ({ videos }) => (
-  <div>
-    <Container>
-      <Heading>Videos</Heading>
-      <VideosCont>
-        {videos.map((video) => (
-          <div key={video.url}>
-            <Video url={video.url} text={video.text} />
-          </div>
-        ))}
-      </VideosCont>
-    </Container>
-  </div>
+  <Container>
+    <Heading>Videos</Heading>
+    <VideosCont>
+      {videos.map((video) => (
+        <div key={video.url}>
+          <Video url={video.url} text={video.text} />
+        </div>
+      ))}
+    </VideosCont>
+  </Container>
 );

@@ -206,7 +206,7 @@ const HeroMsgCont = styled.div`
     position: absolute;
     transform: translateX(-50%);
     width: 100%;
-    z-index: 100;
+    z-index: 6;
   }
   @media (min-width: 1280px) {
     max-width: 1080px;

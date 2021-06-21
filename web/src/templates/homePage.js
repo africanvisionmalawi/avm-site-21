@@ -290,7 +290,7 @@ const TopVideoSectionInner = styled.div`
   flex-wrap: wrap;
   margin: 0 auto;
   max-width: 1280px;
-  padding: 3em 2em 1em;
+  padding: 3em 1em 1em;
   width: 100%;
 `;
 
