@@ -137,6 +137,7 @@ const EventPage = (props) => {
                     endDate={event.endDate}
                     hideTime={event.hideTime}
                     allDay={event.allDay}
+                    layout="mainHeading"
                   />
                 </li>
                 {event.location ? <li>Location: {event.location}</li> : null}

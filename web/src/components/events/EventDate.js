@@ -53,10 +53,14 @@ export const EventDate = ({ date, endDate, allDay, layout, hideTime }) => {
     endDate: PropTypes.string,
   };
 
-  if (layout && layout === "card") {
-    dateHtml = <Notice>{dateString}</Notice>;
+  if (layout) {
+    if (layout === "card") {
+      dateHtml = <Notice>{dateString}</Notice>;
+    } else {
+      dateHtml = <DatesHeading>Dates: {dateString}</DatesHeading>;
+    }
   } else {
-    dateHtml = <DatesHeading>Dates: {dateString}</DatesHeading>;
+    dateHtml = <DatesSubHeading>Dates: {dateString}</DatesSubHeading>;
   }
 
   return dateHtml;
@@ -73,9 +77,15 @@ const Notice = styled.div`
   width: 300px;
 `;
 
-const DatesHeading = styled.div`
+const DatesSubHeading = styled.div`
   color: #ababad;
   font-size: 0.9rem;
+`;
+
+const DatesHeading = styled.div`
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 export default EventDate;

@@ -157,7 +157,7 @@ const ShopIndexList = styled.div`
   justify-content: center;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 2rem;
   & li {
     list-style-type: none;
     margin: 8px 0;

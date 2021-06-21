@@ -14,6 +14,14 @@ const PhotoCont = styled.div`
   }
 `;
 
+const Heading = styled.h2`
+  margin-bottom: 0.5rem;
+`;
+
+const Container = styled.div`
+  padding: 0 1rem;
+`;
+
 export const ShopListItem = (props) => {
   const productPrice = props.salePrice
     ? props.salePrice
@@ -28,11 +36,13 @@ export const ShopListItem = (props) => {
             <Photo photo={props.photo} photoType={props.photoType} />
           </PhotoCont>
         )}
-        <h2>{props.title}</h2>
-        <span>
-          &pound;
-          {priceFormatted(productPrice)}
-        </span>
+        <Container>
+          <Heading>{props.title}</Heading>
+          <span>
+            &pound;
+            {priceFormatted(productPrice)}
+          </span>
+        </Container>
       </Link>
     </li>
   );
