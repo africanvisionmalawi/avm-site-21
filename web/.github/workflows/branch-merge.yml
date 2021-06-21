@@ -1,0 +1,15 @@
+on:
+  repository_dispatch:
+    types:
+      - webhook-publish
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: everlytic/branch-merge@1.1.0
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          source_ref: forestry-cms
+          target_branch: "master"
+          commit_message_template: "[Automated] Merged {source_ref} into target {target_branch}"
