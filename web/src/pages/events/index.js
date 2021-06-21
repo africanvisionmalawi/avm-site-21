@@ -58,6 +58,7 @@ const PostList = styled.div`
   grid-auto-flow: dense;
   margin: 2rem auto;
   max-width: 1180px;
+  padding: 0 1rem;
 `;
 
 const Heading = styled.h2`

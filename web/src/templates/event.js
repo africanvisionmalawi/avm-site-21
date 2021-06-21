@@ -53,10 +53,7 @@ const TextSection = styled.section`
   position: relative;
   width: 100%;
   @media (min-width: 768px) {
-    padding: 1em 4em;
-  }
-  @media (min-width: 1040px) {
-    padding: 1em 8em;
+    padding: 1em 2em;
   }
 `;
 
@@ -133,7 +130,6 @@ const EventPage = (props) => {
 
           <Main>
             <TextSection>
-              <TopHeading>{event.title}</TopHeading>
               <EventDetails>
                 <li>
                   <EventDate
