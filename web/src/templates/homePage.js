@@ -184,7 +184,7 @@ const HomePage = ({ data }) => {
                 </PostList>
               </section>
               <PostsFooter>
-                <Link to="/news/">View all news</Link>
+                <Link to="/events/">View all events</Link>
               </PostsFooter>
             </>
           ) : null}

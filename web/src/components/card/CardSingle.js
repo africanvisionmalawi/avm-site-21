@@ -42,7 +42,7 @@ export const CardSingle = ({
   // }
   // const pageUrl = url.category.slug.current;
   // const pageTitle = url.category.title;
-  console.log("linkText ", linkText);
+  // console.log("linkText ", linkText);
   return (
     <div>
       {url || extUrl ? (
