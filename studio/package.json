@@ -30,6 +30,7 @@
     "react-player": "^2.9.0",
     "sanity-plugin-autocomplete-tags": "^1.0.1",
     "sanity-plugin-dashboard-widget-gatsby": "^1.0.9",
+    "sanity-plugin-dashboard-widget-netlify": "^1.1.0",
     "sanity-plugin-media-library": "^1.0.5",
     "sanity-plugin-snipcart-orders": "^3.0.0"
   },

@@ -43,7 +43,7 @@ const HomePage = ({ data }) => {
   const page = data.homeQuery;
   // console.log("newsLinks ", page.newsLinks);
 
-  const allEvents = data.shopAll.edges;
+  const allEvents = data.homeEventsAll.edges;
   const ourWork = data.ourWork.edges;
 
   let futureEvents = [];
@@ -68,6 +68,8 @@ const HomePage = ({ data }) => {
       }
     });
   }
+
+  const latestEvents = [...futureEvents].reverse();
 
   return (
     <Layout
@@ -160,12 +162,12 @@ const HomePage = ({ data }) => {
             </>
           ) : null}
 
-          {futureEvents ? (
+          {latestEvents ? (
             <>
               <section>
                 <PostList>
                   <CardCont>
-                    {futureEvents.map((post) => (
+                    {latestEvents.map((post) => (
                       <React.Fragment key={post.id}>
                         <CardPostAlt
                           type="event"

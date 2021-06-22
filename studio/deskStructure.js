@@ -144,6 +144,16 @@ export default () =>
               '(_type == "page" || _type == "event" || _type == "shop" || _type == "news" || _type == "ourWorkShared")  && count(*[_id in [^._id, "drafts." + ^._id]]) > 1'
             )
         ),
+      // S.listItem()
+      //   .title("Missing meta")
+      //   .child(
+      //     S.documentList()
+      //       .title("Pages with no meta description")
+      //       .defaultOrdering([{ field: "title", direction: "desc" }])
+      //       .filter(
+      //         '(_type == "page" || _type == "shop") && description == ""'
+      //       )
+      //   ),
       ...S.documentTypeListItems().filter(
         (listItem) =>
           ![

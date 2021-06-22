@@ -111,6 +111,8 @@ const EventsIndexPage = (props) => {
   const title = "Latest events - African Vision Malawi";
   const description = "Latest events from African Vision Malawi.";
 
+  const latestEvents = [...futureEvents].reverse();
+
   return allEvents.length ? (
     <>
       <Layout title={title} description={description} article={false}>
@@ -119,8 +121,8 @@ const EventsIndexPage = (props) => {
             <TopHeading>{title}</TopHeading>
           </SectionTop>
           <PostList>
-            {futureEvents.length &&
-              futureEvents.map((post) => {
+            {latestEvents.length &&
+              latestEvents.map((post) => {
                 return (
                   <>
                     <React.Fragment key={post.id}>

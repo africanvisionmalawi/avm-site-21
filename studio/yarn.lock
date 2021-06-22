@@ -7574,7 +7574,7 @@ rxjs-exhaustmap-with-trailing@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/rxjs-exhaustmap-with-trailing/-/rxjs-exhaustmap-with-trailing-1.1.0.tgz#a1e7b6c742f322384bf4fb6417156158f5557ba3"
 
-rxjs@^6.4.0, rxjs@^6.5.3:
+rxjs@^6.0.0, rxjs@^6.4.0, rxjs@^6.5.3:
   version "6.6.7"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   dependencies:
@@ -7625,6 +7625,14 @@ sanity-plugin-dashboard-widget-gatsby@^1.0.9:
   dependencies:
     abort-controller "^2.0.3"
     react-props-stream "^1.0.0"
+
+sanity-plugin-dashboard-widget-netlify@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/sanity-plugin-dashboard-widget-netlify/-/sanity-plugin-dashboard-widget-netlify-1.1.0.tgz#cc8218e5345eff08d7336d0612824336feb1c816"
+  dependencies:
+    abort-controller "^2.0.3"
+    react-props-stream "^1.0.0"
+    rxjs "^6.0.0"
 
 sanity-plugin-media-library@^1.0.5:
   version "1.0.7"

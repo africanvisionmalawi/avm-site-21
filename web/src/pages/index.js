@@ -70,7 +70,7 @@ export const query = graphql`
         }
       }
     }
-    shopAll: allSanityEvent(
+    homeEventsAll: allSanityEvent(
       filter: { slug: { current: { ne: null } } }
       sort: { order: DESC, fields: date }
       limit: 3
