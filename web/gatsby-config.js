@@ -184,7 +184,7 @@ module.exports = {
       options: {
         version: "3.0.15",
         publicApiKey:
-          "NDY4OTVmYjMtMDg1My00YzUxLWEyMWMtNmIwYzI2NzUwYWQ3NjM3NDA3NzI3ODk0NjgyMDc2",
+          "MjI1MzY0ODctMmE3My00YjljLTk3ZjYtNGJiNzRjZTc5YWUyNjM3NDA3NzI3ODk0NjgyMDc2",
         defaultLang: "en",
         currency: "gbp",
         openCartOnAdd: true,
