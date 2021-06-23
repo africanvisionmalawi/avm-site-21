@@ -21,6 +21,7 @@ export const query = graphql`
     page: sanityNews(id: { eq: $id }) {
       id
       title
+      description
       slug {
         current
       }
@@ -115,7 +116,7 @@ const News = (props) => {
     // <div>{page.title} </div>
     <Layout
       title={page.title ? page.title : ""}
-      description="TODO: description"
+      description={page.description ? page.description : ""}
       article={false}
     >
       {path ? <Breadcrumbs path={path} /> : null}

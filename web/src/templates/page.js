@@ -25,6 +25,7 @@ export const query = graphql`
     page: sanityPage(id: { eq: $id }) {
       id
       title
+      description
       indexPage
       pageHeading
       slug {
@@ -283,7 +284,7 @@ const Page = (props) => {
     // <div>{page.title} </div>
     <Layout
       title={page.title ? page.title : ""}
-      description="TODO: description"
+      description={page.description ? page.description : ""}
       article={false}
       path={path}
     >

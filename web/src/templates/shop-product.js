@@ -227,7 +227,7 @@ const ShopProduct = (props) => {
     // <div>{page.title} </div>
     <Layout
       title={page.title ? page.title : ""}
-      description="TODO: description"
+      description={page.description ? page.description : ""}
       article={false}
     >
       {path ? <Breadcrumbs path={path} /> : null}

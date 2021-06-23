@@ -8,6 +8,7 @@ export const query = graphql`
     homeQuery: sanityHomePage {
       id
       title
+      description
       subTitle
       indexPage
       _rawIntroText(resolveReferences: { maxDepth: 10 })

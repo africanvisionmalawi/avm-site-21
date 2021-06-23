@@ -74,7 +74,7 @@ const HomePage = ({ data }) => {
   return (
     <Layout
       title={page.title ? page.title : ""}
-      description="TODO: description"
+      description={page.description ? page.description : ""}
       article={false}
     >
       <article>
