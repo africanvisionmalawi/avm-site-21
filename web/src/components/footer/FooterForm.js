@@ -34,7 +34,7 @@ export const FooterForm = () => {
       <FormContInner>
         <h3>Join our Mailing List</h3>
         <form
-          action="/mailing-list-sucess/"
+          action="/mailinglistsuccess/"
           name="mailing-list"
           method="post"
           data-netlify="true"
