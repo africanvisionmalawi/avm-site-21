@@ -199,7 +199,7 @@ export const GiftAidForm = (props) => {
             <input name="bot-field" onChange={handleChange} />
           </label>
         </FormExtra>
-        <input type="hidden" name="form-name" value="mailing-list" />
+        <input type="hidden" name="form-name" value="gift-aid-form" />
       </form>
     </FormCont>
   );

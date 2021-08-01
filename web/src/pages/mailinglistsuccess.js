@@ -25,7 +25,7 @@ const TopSection = styled.div`
   }
 `;
 
-export default function Giftaidform() {
+export default function MailingListform() {
   return (
     <Layout
       title="Mailing list Form Success"
