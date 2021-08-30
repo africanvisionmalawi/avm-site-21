@@ -40,8 +40,6 @@ export const FooterForm = () => {
           name="mailing-list"
           method="post"
           data-id="191722FC90141D02184CB1B62AB3DC26534B73A939144A114A65220640919F92FC6A5ED12F30EFA39EE631C0319C1BF2CBF80D465049B494DC85F6BDBDE44C47"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
         >
           <FormInner>
             <FormGroup>
