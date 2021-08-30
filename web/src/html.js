@@ -31,6 +31,10 @@ export default function HTML(props) {
             defer
           ></script>
         )}
+        <script
+          type="text/javascript"
+          src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"
+        ></script>
       </body>
     </html>
   );
