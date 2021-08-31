@@ -34,25 +34,30 @@ export const FooterForm = () => {
       <FormContInner>
         <h3>Join our Mailing List</h3>
         <form
-          action="/mailinglistsuccess/"
+          action="https://www.createsend.com/t/subscribeerror?description="
+          id="subForm"
+          className="js-cm-form"
           name="mailing-list"
           method="post"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
+          data-id="191722FC90141D02184CB1B62AB3DC26534B73A939144A114A65220640919F92FC6A5ED12F30EFA39EE631C0319C1BF2CBF80D465049B494DC85F6BDBDE44C47"
         >
           <FormInner>
             <FormGroup>
               <TextInput
                 type="text"
+                className="js-cm-email-input qa-input-email"
                 name="cm-name"
-                id="name"
+                aria-label="Name"
+                id="fieldName"
                 placeholder="Name"
                 required
                 onChange={handleChange}
               />
               <TextInput
                 type="email"
-                name="email"
+                maxlength="200"
+                name="cm-jdhiii-jdhiii"
+                aria-label="Email"
                 id="fieldEmail"
                 placeholder="Email"
                 required
