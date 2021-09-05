@@ -97,9 +97,10 @@ export const Gallery = (props) => {
             ? photos.map((photo, i) => (
                 <div
                   className={galleryStyles.gridCell}
-                  onClick={() => (
-                    setShowLightboxState(true), setSelectedImageState(i)
-                  )}
+                  onClick={() => {
+                    setShowLightboxState(true);
+                    setSelectedImageState(i);
+                  }}
                   key={v4()}
                   // onKeyPress={handleKeyPress}
                   role="button"

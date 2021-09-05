@@ -215,10 +215,6 @@ const Nav = styled.div`
   width: 100%;
 `;
 
-const BtnsCont = styled.div`
-  display: flex;
-`;
-
 const IconsCont = styled.div`
   align-items: center;
   background: rgba(255, 255, 255, 0.7);
@@ -289,10 +285,6 @@ const MobileNavIcon = styled.svg`
   fill: #fff;
   height: 28px;
   width: 28px;
-`;
-
-const NavMenu = styled.div`
-  min-width: 450px;
 `;
 
 export default SubNavBar;

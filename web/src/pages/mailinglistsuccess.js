@@ -2,12 +2,6 @@ import Layout from "components/Layout";
 import { styled } from "linaria/react";
 import React from "react";
 
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 1180px;
-  padding: 3em 0;
-`;
-
 const Heading = styled.h1`
   font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
     "sans-serif";

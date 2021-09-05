@@ -38,12 +38,6 @@ export const query = graphql`
   }
 `;
 
-const TopHeading = styled.h1`
-  font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
-    "sans-serif";
-  text-align: center;
-`;
-
 const TextSection = styled.section`
   background: #fff;
   min-height: 24rem;
