@@ -17,12 +17,15 @@ const checkVideoType = (url) => {
 
 const getId = (videoType, url) => {
   if (videoType === "isYoutube") {
-    const regExp = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    if (match && match[2].length == 11) {
-      const id = match[2];
-    }
-    return id;
+    return url.split("v=")[1].substring(0, 11);
+    // const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*?[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+    // var match = url.match(regExp);
+    // console.log("url ", url);
+    // console.log("match ", match);
+    // if (match && match[1].length === 11) {
+    //   const id = match[1];
+    //   return id;
+    // }
   }
   if (videoType === "isVimeo") {
     let id = false;
@@ -41,7 +44,7 @@ const getId = (videoType, url) => {
   }
 };
 
-const getImageUrl = (videoType, id) => {
+const getImageUrl = (videoType, id, url) => {
   if (videoType === "isYoutube") {
     return `//img.youtube.com/vi/${id}/0.jpg`;
   }
@@ -65,7 +68,9 @@ const getImageUrl = (videoType, id) => {
 export const Player = ({ url }) => {
   const videoType = checkVideoType(url);
   const id = getId(videoType, url);
-  const imageUrl = getImageUrl(videoType, id);
+  const imageUrl = getImageUrl(videoType, id, url);
+  console.log("id is ", id);
+  console.log("imageUrl is ", imageUrl);
   return (
     <div>
       <div class="youtube-container home-youtube-container embed-responsive embed-responsive-item videoPlayer">
