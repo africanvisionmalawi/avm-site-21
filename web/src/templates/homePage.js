@@ -6,7 +6,6 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql, Link } from "gatsby";
 import { styled } from "linaria/react";
 import React from "react";
-import ReactPlayer from "react-player";
 import { CardPost } from "../components/card/CardPost";
 import { CardPostAlt } from "../components/card/CardPostAlt";
 import { Hero } from "../components/Hero";
@@ -15,6 +14,7 @@ import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
 import Layout from "../components/Layout";
 import { PortableText } from "../components/portableText/portableText";
+import Player from "../components/videos/Player";
 import videoStyles from "../components/videos/videos.module.css";
 dayjs.extend(advancedFormat);
 // export const query = graphql`
@@ -108,13 +108,7 @@ const HomePage = ({ data }) => {
               <VideoSection>
                 {page.promoVideo ? (
                   <div className={videoStyles.playerWrapper}>
-                    <ReactPlayer
-                      url={page.promoVideo.url}
-                      width="100%"
-                      height="100%"
-                      className={videoStyles.reactPlayer}
-                      controls={true}
-                    />
+                    <Player url={page.promoVideo.url} />
                   </div>
                 ) : null}
               </VideoSection>
