@@ -8,8 +8,14 @@ const VidCont = styled.div`
   padding-bottom: 56.25%;
   position: relative;
   overflow: hidden;
-  & img {
-    display: block;
+  & img,
+  & iframe {
+    border: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
   }
 `;
