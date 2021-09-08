@@ -14,7 +14,7 @@ import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
 import Layout from "../components/Layout";
 import { PortableText } from "../components/portableText/portableText";
-import Player from "../components/videos/Player";
+import { Player } from "../components/videos/Player";
 import videoStyles from "../components/videos/videos.module.css";
 dayjs.extend(advancedFormat);
 // export const query = graphql`

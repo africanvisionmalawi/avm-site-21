@@ -1,6 +1,6 @@
 import { styled } from "linaria/react";
 import React, { useState } from "react";
-import { ImPlay } from "react-icons/im";
+import { ImYoutube } from "react-icons/im";
 
 const VidCont = styled.div`
   cursor: pointer;
@@ -62,18 +62,17 @@ const getVideoData = (videoType, url) => {
   }
   if (videoType === "isVimeo") {
     video.type = "isVimeo";
-    let request = new XMLHttpRequest();
-    request.open("GET", "https://vimeo.com/api/oembed.json?url=" + url, false);
-    request.onload = function() {
-      if (request.status >= 200 && request.status < 400) {
-        var response = JSON.parse(request.responseText);
-        if (response.video_id) {
-          video.id = response.video_id;
-          video.thumbnail_url = response.thumbnail_url;
+
+    fetch("https://vimeo.com/api/oembed.json?url=" + url, { method: "GET" })
+      .then((response) => response.json())
+      .then((vid) => {
+        // console.log(vid);
+        if (vid.video_id && vid.thumbnail_url) {
+          video.id = vid.video_id;
+          video.thumbnail_url = vid.thumbnail_url;
         }
-      }
-    };
-    request.send();
+      })
+      .catch((error) => console.error("error:", error));
   }
   return video;
 };
@@ -109,7 +108,7 @@ export const Player = ({ url }) => {
       ) : (
         <>
           <IconWrapper>
-            <ImPlay />
+            <ImYoutube />
           </IconWrapper>
           <img src={videoData.thumbnail_url} alt="YouTube video" />
         </>
