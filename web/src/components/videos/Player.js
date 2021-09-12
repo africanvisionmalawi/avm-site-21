@@ -45,81 +45,55 @@ const Loading = styled.div`
   background: #cacaca;
 `;
 
+const checkVideoType = (url) => {
+  const youtubeUrls = ["youtube", "youtu.be"];
+  const vimeoUrls = ["vimeo"];
+
+  const isYoutube = youtubeUrls.some((e) => url.includes(e));
+  const isVimeo = url.includes("vimeo");
+  return isYoutube ? VIDEO_TYPE_YOUTUBE : VIDEO_TYPE_VIMEO;
+};
+
 export const Player = ({ url }) => {
   const [displayVideo, setDisplayVideo] = useState(false);
   const [displayImage, setDisplayImage] = useState(false);
-  const video = {};
-  // const [video, setVideo] = useState({
-  //   id: "",
-  //   type: "",
-  //   thumbnail_url: "",
-  //   baseUrl: "",
-  // });
-  // console.log("url here is ", url);
-  checkVideoType(url);
-  // const videoData = getVideoData(videoType, url);
-
-  // console.log("video data is ", videoData);
-
-  video.baseUrl =
-    video.type === VIDEO_TYPE_YOUTUBE
-      ? "//www.youtube.com/embed/"
-      : "https://player.vimeo.com/video/";
+  const videoType = checkVideoType(url);
+  const [video, setVideo] = useState({
+    id: "",
+    thumbnail_url: "",
+    baseUrl: "",
+  });
 
   const handleThumbnailOnClick = () => {
     setDisplayVideo(true);
   };
 
-  const checkVideoType = (url) => {
-    const youtubeUrls = ["youtube", "youtu.be"];
-    const vimeoUrls = ["vimeo"];
-
-    const isYoutube = youtubeUrls.some((e) => url.includes(e));
-    const isVimeo = url.includes("vimeo");
-    video.type = isYoutube ? VIDEO_TYPE_YOUTUBE : VIDEO_TYPE_VIMEO;
-    // console.log("isYoutube ", isYoutube);
-    // console.log("isVimeo ", isVimeo);
-    // setVideo({
-    //   ...video,
-    //   type: isYoutube ? VIDEO_TYPE_YOUTUBE : VIDEO_TYPE_VIMEO,
-    // });
-    // if (isYoutube) return VIDEO_TYPE_YOUTUBE;
-    // if (isVimeo) return VIDEO_TYPE_VIMEO;
-    // return false;
-  };
-
-  const getVideoData = (video, url) => {
-    // const video = {};
-    if (video.type === VIDEO_TYPE_YOUTUBE) {
-      // video.type = "isYoutube";
-
-      video.id = url.split("v=")[1].substring(0, 11);
-      video.thumbnail_url = `//img.youtube.com/vi/${video.id}/0.jpg`;
-      // setVideo((prevState) => {
-      //   ...prevState,
-      //   [id]: id,
-      //   [thumbnailUrl]: thumbnail_url,
+  const getVideoData = (videoType, url) => {
+    if (videoType === VIDEO_TYPE_YOUTUBE) {
+      setVideo({
+        id: url.split("v=")[1].substring(0, 11),
+        baseUrl: "//www.youtube.com/embed/",
+        thumbnail_url: `//img.youtube.com/vi/${video.id}/0.jpg`,
+      });
     }
-    if (video.type === VIDEO_TYPE_VIMEO) {
-      // video.type = "isVimeo";
-
+    if (videoType === VIDEO_TYPE_VIMEO) {
       fetch("https://vimeo.com/api/oembed.json?url=" + url, { method: "GET" })
         .then((response) => response.json())
         .then((vid) => {
-          video.id = vid.video_id;
-          video.thumbnail_url = vid.thumbnail_url;
+          setVideo({
+            id: vid.video_id,
+            baseUrl: "https://player.vimeo.com/video/",
+            thumbnail_url: vid.thumbnail_url,
+          });
           console.log("video.thumbnail_url ", video.thumbnail_url);
         })
         .catch((error) => console.error("error:", error));
     }
-    return video;
   };
 
   useEffect(() => {
-    console.log("here");
-    getVideoData(video, url);
+    getVideoData(videoType, url);
     setDisplayImage(true);
-    console.log("video ", video);
   }, []);
 
   return (
@@ -141,9 +115,7 @@ export const Player = ({ url }) => {
           <img
             src={video.thumbnail_url}
             alt={
-              video.type === VIDEO_TYPE_YOUTUBE
-                ? "Youtube video"
-                : "Vimeo video"
+              videoType === VIDEO_TYPE_YOUTUBE ? "Youtube video" : "Vimeo video"
             }
           />
         </>
