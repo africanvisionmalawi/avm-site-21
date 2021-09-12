@@ -15,7 +15,7 @@ import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 import { PortableText } from "../components/portableText/portableText";
 import { Player } from "../components/videos/Player";
-import videoStyles from "../components/videos/videos.module.css";
+// import videoStyles from "../components/videos/videos.module.css";
 dayjs.extend(advancedFormat);
 // export const query = graphql`
 
@@ -106,11 +106,7 @@ const HomePage = ({ data }) => {
                 ) : null}
               </VideoSection>
               <VideoSection>
-                {page.promoVideo ? (
-                  <div className={videoStyles.playerWrapper}>
-                    <Player url={page.promoVideo.url} />
-                  </div>
-                ) : null}
+                {page.promoVideo ? <Player url={page.promoVideo.url} /> : null}
               </VideoSection>
             </TopVideoSectionInner>
           </TopVideoSection>
