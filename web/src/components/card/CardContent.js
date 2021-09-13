@@ -11,7 +11,7 @@ const Content = styled.div`
 `;
 
 const Heading = styled.h3`
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 `;
 
 export const CardContent = ({ title, url, linkText }) => {
