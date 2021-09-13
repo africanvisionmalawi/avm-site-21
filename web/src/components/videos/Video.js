@@ -1,20 +1,9 @@
 import React from "react";
-import ReactPlayer from "react-player";
-import videoStyles from "./videos.module.css";
+import { Player } from ".";
 
 export const Video = ({ url, text }) => (
   <>
-    <div className={videoStyles.playerWrapper}>
-      {url ? (
-        <ReactPlayer
-          url={url}
-          width="100%"
-          height="100%"
-          className={videoStyles.reactPlayer}
-          controls={true}
-        />
-      ) : null}
-    </div>
+    {url ? <Player url={url} /> : null}
     <p>{text ? text : ""}</p>
   </>
 );
