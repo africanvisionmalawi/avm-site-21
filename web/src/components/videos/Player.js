@@ -8,7 +8,6 @@ const VidCont = styled.div`
   border-radius: 8px;
   cursor: pointer;
   height: 0;
-  max-width: 640px;
   padding-bottom: 56.25%;
   position: relative;
   overflow: hidden;
@@ -67,7 +66,20 @@ export const Player = ({ url }) => {
 
   const getVideoData = (videoType, url) => {
     if (videoType === VIDEO_TYPE_YOUTUBE) {
-      const id = url.split("v=")[1].substring(0, 11);
+      // console.log("youtube ", url);
+      let id = "";
+      url = url
+        .replace(/(>|<)/gi, "")
+        .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+      if (url[2] !== undefined) {
+        id = url[2].split(/[^0-9a-z_\-]/i);
+        id = id[0];
+      } else {
+        id = url;
+      }
+
+      // const id = url.split("v=")[1].substring(0, 11);
+      console.log("id ", id);
       setVideo({
         id: id,
         baseUrl: "//www.youtube.com/embed/",
@@ -83,7 +95,7 @@ export const Player = ({ url }) => {
             baseUrl: "https://player.vimeo.com/video/",
             thumbnail_url: vid.thumbnail_url,
           });
-          console.log("video.thumbnail_url ", video.thumbnail_url);
+          // console.log("video.thumbnail_url ", video.thumbnail_url);
         })
         .catch((error) => console.error("error:", error));
     }
