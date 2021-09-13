@@ -79,7 +79,7 @@ export const Player = ({ url }) => {
       }
 
       // const id = url.split("v=")[1].substring(0, 11);
-      console.log("id ", id);
+      // console.log("id ", id);
       setVideo({
         id: id,
         baseUrl: "//www.youtube.com/embed/",
