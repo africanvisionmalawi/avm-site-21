@@ -134,6 +134,7 @@ export const Player = ({ url }) => {
             alt={
               videoType === VIDEO_TYPE_YOUTUBE ? "Youtube video" : "Vimeo video"
             }
+            loading="lazy"
           />
         </>
       ) : (
