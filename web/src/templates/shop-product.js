@@ -58,6 +58,7 @@ export const query = graphql`
         slug: { current: { ne: null } }
         shopTags: { elemMatch: { value: { eq: $tag } } }
         id: { ne: $id }
+        hide: { ne: true }
       }
       limit: 3
     ) {

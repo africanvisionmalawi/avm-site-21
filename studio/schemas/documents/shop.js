@@ -8,6 +8,11 @@ export default {
   type: "document",
   fields: [
     {
+      title: "Hide Product",
+      name: "hide",
+      type: "boolean",
+    },
+    {
       title: "Title",
       name: "title",
       type: "string",
@@ -103,6 +108,28 @@ export default {
       title: "Meta Description",
       name: "description",
       type: "string",
+    },
+    {
+      title: "Tags",
+      name: "tags",
+      type: "tags",
+    },
+  ],
+  orderings: [
+    {
+      title: "Title, Desc",
+      name: "titleDesc",
+      by: [{ field: "title", direction: "desc" }],
+    },
+    {
+      title: "Title, Asc",
+      name: "titleAsc",
+      by: [{ field: "title", direction: "asc" }],
+    },
+    {
+      title: "Price",
+      name: "priceAsc",
+      by: [{ field: "price", direction: "asc" }],
     },
   ],
 };

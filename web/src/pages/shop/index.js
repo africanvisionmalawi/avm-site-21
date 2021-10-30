@@ -9,7 +9,9 @@ import { tagsBase } from "../../constants/shop";
 
 export const query = graphql`
   query ShopTemplateQuery {
-    shopAll: allSanityShop(filter: { slug: { current: { ne: null } } }) {
+    shopAll: allSanityShop(
+      filter: { slug: { current: { ne: null } }, hide: { ne: true } }
+    ) {
       edges {
         node {
           id
@@ -17,10 +19,15 @@ export const query = graphql`
           slug {
             current
           }
+          hide
           inStock
           price
           salePrice
           shopTags {
+            label
+            value
+          }
+          tags {
             label
             value
           }

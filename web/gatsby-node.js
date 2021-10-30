@@ -258,7 +258,9 @@ async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allSanityShop(filter: { slug: { current: { ne: null } } }) {
+      allSanityShop(
+        filter: { slug: { current: { ne: null } }, hide: { ne: true } }
+      ) {
         edges {
           node {
             id
