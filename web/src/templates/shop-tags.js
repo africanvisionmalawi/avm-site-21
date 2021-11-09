@@ -88,6 +88,18 @@ const Container = styled.div`
   padding: 0 0 3rem;
 `;
 
+const NoResultsContainer = styled.div`
+  text-align: center;
+`;
+
+const NoResults = () => {
+  return (
+    <NoResultsContainer>
+      <h2>Sorry, no items found for that category.</h2>
+    </NoResultsContainer>
+  );
+};
+
 const ShopTagPage = (props) => {
   const { data, errors } = props;
 
@@ -107,7 +119,7 @@ const ShopTagPage = (props) => {
 
   const tags = data.tags.edges[0].node.shopTags;
 
-  return allShopProducts.length ? (
+  return (
     <>
       <Layout title={title} description={description} article={false}>
         <article>
@@ -116,25 +128,29 @@ const ShopTagPage = (props) => {
             <NavTags tags={tags} tagsBase={tagsBase} active={tag} />
           </SectionTop>
           <Container>
-            <ShopIndexList>
-              {allShopProducts.map((item) => (
-                <React.Fragment key={item.node.id}>
-                  <ShopListItem
-                    id={item.node.id}
-                    slug={item.node.slug.current}
-                    photo={item.node.photoGallery.photos[0]}
-                    photoType="default"
-                    title={item.node.title}
-                    price={item.node.price}
-                  />
-                </React.Fragment>
-              ))}
-            </ShopIndexList>
+            {allShopProducts.length ? (
+              <ShopIndexList>
+                {allShopProducts.map((item) => (
+                  <React.Fragment key={item.node.id}>
+                    <ShopListItem
+                      id={item.node.id}
+                      slug={item.node.slug.current}
+                      photo={item.node.photoGallery.photos[0]}
+                      photoType="default"
+                      title={item.node.title}
+                      price={item.node.price}
+                    />
+                  </React.Fragment>
+                ))}
+              </ShopIndexList>
+            ) : (
+              <NoResults />
+            )}
           </Container>
         </article>
       </Layout>
     </>
-  ) : null;
+  );
 };
 
 export default ShopTagPage;
