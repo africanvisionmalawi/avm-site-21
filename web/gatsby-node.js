@@ -58,45 +58,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   ]);
 };
 
-// async function createLandingPages(
-//   pathPrefix = "/",
-//   graphql,
-//   actions,
-//   reporter
-// ) {
-//   const { createPage } = actions;
-//   const result = await graphql(`
-//     {
-//       allSanityRoute(
-//         filter: { slug: { current: { ne: null } }, page: { id: { ne: null } } }
-//       ) {
-//         edges {
-//           node {
-//             id
-//             slug {
-//               current
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `);
-
-//   if (result.errors) throw result.errors;
-
-//   const routeEdges = (result.data.allSanityRoute || {}).edges || [];
-//   routeEdges.forEach((edge) => {
-//     const { id, slug = {} } = edge.node;
-//     const path = [pathPrefix, slug.current, "/"].join("");
-//     reporter.info(`Creating landing page: ${path}`);
-//     createPage({
-//       path,
-//       component: require.resolve("./src/templates/page.js"),
-//       context: { id },
-//     });
-//   });
-// }
-
 async function createPages(pathPrefix = "", graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -133,10 +94,7 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
     const pathPrefix =
       category.slug.current === "other" ? "/" : category.slug.current + "/";
     const path = `${pathPrefix}${indexPage ? "" : slug.current + "/"}`;
-    // const path = getPath(category.slug.current, slug);
-    // reporter.info(
-    //   `Creating page: ${path} with slug ${slug.current} and id: ${id}`
-    // );
+
     createPage({
       path,
       component: require.resolve("./src/templates/page.js"),
@@ -286,9 +244,9 @@ async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
     const pathPrefix = "/shop/";
     const path = `${pathPrefix}${slug.current + "/"}`;
     const tag = tags.length ? tags[0].value : null;
-    // reporter.info(
-    //   `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
-    // );
+    reporter.info(
+      `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
+    );
     createPage({
       path,
       component: require.resolve("./src/templates/shop-product.js"),

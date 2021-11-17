@@ -27,10 +27,6 @@ export const query = graphql`
             label
             value
           }
-          tags {
-            label
-            value
-          }
           photoGallery {
             photos {
               _key

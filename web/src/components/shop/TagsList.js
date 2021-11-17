@@ -39,7 +39,7 @@ export const TagsList = (props) => {
       <TagHeading>Tags:</TagHeading>
       <Stack>
         {props.tags.map((tag) => (
-          <Tag key={tag + `tag`}>{tag}</Tag>
+          <Tag key={tag.value + `tag`}>{tag.label}</Tag>
         ))}
       </Stack>
     </>
