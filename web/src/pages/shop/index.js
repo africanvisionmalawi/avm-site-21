@@ -23,10 +23,6 @@ export const query = graphql`
           inStock
           price
           salePrice
-          shopTags {
-            label
-            value
-          }
           tags {
             label
             value

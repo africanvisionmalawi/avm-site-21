@@ -58,45 +58,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   ]);
 };
 
-// async function createLandingPages(
-//   pathPrefix = "/",
-//   graphql,
-//   actions,
-//   reporter
-// ) {
-//   const { createPage } = actions;
-//   const result = await graphql(`
-//     {
-//       allSanityRoute(
-//         filter: { slug: { current: { ne: null } }, page: { id: { ne: null } } }
-//       ) {
-//         edges {
-//           node {
-//             id
-//             slug {
-//               current
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `);
-
-//   if (result.errors) throw result.errors;
-
-//   const routeEdges = (result.data.allSanityRoute || {}).edges || [];
-//   routeEdges.forEach((edge) => {
-//     const { id, slug = {} } = edge.node;
-//     const path = [pathPrefix, slug.current, "/"].join("");
-//     reporter.info(`Creating landing page: ${path}`);
-//     createPage({
-//       path,
-//       component: require.resolve("./src/templates/page.js"),
-//       context: { id },
-//     });
-//   });
-// }
-
 async function createPages(pathPrefix = "", graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -133,10 +94,7 @@ async function createPages(pathPrefix = "", graphql, actions, reporter) {
     const pathPrefix =
       category.slug.current === "other" ? "/" : category.slug.current + "/";
     const path = `${pathPrefix}${indexPage ? "" : slug.current + "/"}`;
-    // const path = getPath(category.slug.current, slug);
-    // reporter.info(
-    //   `Creating page: ${path} with slug ${slug.current} and id: ${id}`
-    // );
+
     createPage({
       path,
       component: require.resolve("./src/templates/page.js"),
@@ -268,7 +226,7 @@ async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
             slug {
               current
             }
-            shopTags {
+            tags {
               label
               value
             }
@@ -282,13 +240,13 @@ async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
 
   const pageEdges = (result.data.allSanityShop || {}).edges || [];
   pageEdges.forEach((edge) => {
-    const { id, slug = {}, shopTags = {} } = edge.node;
+    const { id, slug = {}, tags = {} } = edge.node;
     const pathPrefix = "/shop/";
     const path = `${pathPrefix}${slug.current + "/"}`;
-    const tag = shopTags.length ? shopTags[0].value : null;
-    // reporter.info(
-    //   `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
-    // );
+    const tag = tags.length ? tags[0].value : null;
+    reporter.info(
+      `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
+    );
     createPage({
       path,
       component: require.resolve("./src/templates/shop-product.js"),
@@ -324,14 +282,6 @@ async function createShopCategories(
   if (result.errors) throw result.errors;
 
   let tagPages = result.data.allSanitySiteSettings || {};
-  // console.log("tagPages here ", tagPages);
-  // tagPages = [...new Set(tagPages)];
-  // console.log("tagPages ", tagPages);
-  // let shopTags = [];
-  // tagPages.forEach((edge) => {
-  //   shopTags = shopTags.concat(edge.node.shopTags.value);
-  // });
-  // shopTags = [...new Set(shopTags)];
   tagPages.edges[0].node.shopTags.forEach((tag) => {
     const title = tag.title;
     const value = tag.value.current;
@@ -383,78 +333,6 @@ async function createEventPages(pathPrefix = "", graphql, actions, reporter) {
   });
 }
 
-// async function createHomePage(graphql, actions, reporter) {
-//   const { createPage } = actions;
-//   const result = await graphql(`
-//     {
-//       allSanityHomePage {
-//         edges {
-//           node {
-//             title
-//             id
-//           }
-//         }
-//       }
-//     }
-//   `);
-
-//   // enw vode here
-//   const pageEdges = (result.data.allSanityHomePage || {}).edges || [];
-//   pageEdges.forEach((edge) => {
-//     const { id } = edge.node;
-
-//     const path = "/";
-//     reporter.info(`Creating home page: ${path}`);
-//     createPage({
-//       path,
-//       component: require.resolve("./src/templates/homePage.js"),
-//       context: { id },
-//     });
-//   });
-// }
-
-// async function createBlogPostPages(
-//   pathPrefix = "/blog",
-//   graphql,
-//   actions,
-//   reporter
-// ) {
-//   const { createPage } = actions;
-//   const result = await graphql(`
-//     {
-//       allSanityPost(
-//         filter: { slug: { current: { ne: null } }, isPublished: { eq: true } }
-//       ) {
-//         edges {
-//           node {
-//             id
-//             publishedAt
-//             slug {
-//               current
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `);
-
-//   if (result.errors) throw result.errors;
-
-//   const postEdges = (result.data.allSanityPost || {}).edges || [];
-//   postEdges
-//     .filter((edge) => !isFuture(edge.node.publishedAt))
-//     .forEach((edge) => {
-//       const { id, slug = {} } = edge.node;
-//       const path = `${pathPrefix}/${slug.current}/`;
-//       reporter.info(`Creating blog post page: ${path}`);
-//       createPage({
-//         path,
-//         component: require.resolve("./src/templates/blog-post.js"),
-//         context: { id },
-//       });
-//     });
-// }
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // await createHomePage(graphql, actions, reporter);
   await createPages("/", graphql, actions, reporter);
@@ -466,17 +344,3 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createEventPages("/", graphql, actions, reporter);
   //   await createBlogPostPages("/blog", graphql, actions, reporter);
 };
-
-// exports.onCreateNode = ({ node, actions, getNode }) => {
-//   const { createNodeField } = actions;
-//   // fmImagesToRelative(node); // convert image paths for gatsby images
-
-//   if (node.internal.type === `MarkdownRemark`) {
-//     const value = createFilePath({ node, getNode });
-//     createNodeField({
-//       name: `slug`,
-//       node,
-//       value,
-//     });
-//   }
-// };
