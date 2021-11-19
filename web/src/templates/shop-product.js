@@ -197,8 +197,8 @@ const ShopProduct = (props) => {
     return "Error! data not found";
   }
 
-  const displayButtonCheck = (stock) => {
-    if (stock > 0) {
+  const displayButtonCheck = (stock, price) => {
+    if (stock > 0 && price > 0) {
       return true;
     }
   };
@@ -260,8 +260,14 @@ const ShopProduct = (props) => {
               <ColumnAside>
                 <div>
                   <SectionInner>
-                    <Price>&pound;{priceFormatted(productPrice)}</Price>
-                    {displayButtonCheck(page.inStock) ? (
+                    <Price>
+                      {productPrice > 0 ? (
+                        <>&pound;{priceFormatted(productPrice)}</>
+                      ) : (
+                        <>Donation</>
+                      )}
+                    </Price>
+                    {displayButtonCheck(page.inStock, productPrice) ? (
                       <BuyButton
                         productId={page.id ? page.id : null}
                         name={page.title ? page.title : null}
@@ -282,11 +288,11 @@ const ShopProduct = (props) => {
                         width={page.width ? page.width : null}
                         height={page.height ? page.height : null}
                       />
-                    ) : (
+                    ) : productPrice > 0 ? (
                       <p>
                         <strong>Out of stock</strong>
                       </p>
-                    )}
+                    ) : null}
 
                     {page.tags && page.tags.length ? (
                       <TagsList tags={page.tags} />
