@@ -39,8 +39,14 @@ export const ShopListItem = (props) => {
         <Container>
           <Heading>{props.title}</Heading>
           <span>
-            &pound;
-            {priceFormatted(productPrice)}
+            {productPrice > 0 ? (
+              <>
+                &pound;
+                {priceFormatted(productPrice)}
+              </>
+            ) : (
+              <>Donation</>
+            )}
           </span>
         </Container>
       </Link>
