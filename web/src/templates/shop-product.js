@@ -36,7 +36,7 @@ export const query = graphql`
       length
       price
       salePrice
-      shopTags {
+      tags {
         label
         value
       }
@@ -56,7 +56,7 @@ export const query = graphql`
     relatedProducts: allSanityShop(
       filter: {
         slug: { current: { ne: null } }
-        shopTags: { elemMatch: { value: { eq: $tag } } }
+        tags: { elemMatch: { value: { eq: $tag } } }
         id: { ne: $id }
         hide: { ne: true }
       }
@@ -72,7 +72,7 @@ export const query = graphql`
           inStock
           price
           salePrice
-          shopTags {
+          tags {
             label
             value
           }

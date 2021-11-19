@@ -13,7 +13,7 @@ export const query = graphql`
     shopByTagAll: allSanityShop(
       filter: {
         slug: { current: { ne: null } }
-        shopTags: { elemMatch: { value: { eq: $value } } }
+        tags: { elemMatch: { value: { eq: $value } } }
         hide: { ne: true }
       }
     ) {
@@ -27,7 +27,7 @@ export const query = graphql`
           inStock
           price
           salePrice
-          shopTags {
+          tags {
             label
             value
           }

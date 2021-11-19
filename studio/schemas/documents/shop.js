@@ -43,9 +43,10 @@ export default {
     },
     {
       title: "Tags",
-      name: "shopTags",
+      name: "tags",
       type: "tags",
     },
+
     // {
     //   title: "Related Products",
     //   name: "relatedProducts",
@@ -110,8 +111,8 @@ export default {
       type: "string",
     },
     {
-      title: "Tags",
-      name: "tags",
+      title: "Old Tags (do not use)",
+      name: "shopTags",
       type: "tags",
     },
   ],
@@ -125,11 +126,6 @@ export default {
       title: "Title, Asc",
       name: "titleAsc",
       by: [{ field: "title", direction: "asc" }],
-    },
-    {
-      title: "Price",
-      name: "priceAsc",
-      by: [{ field: "price", direction: "asc" }],
     },
   ],
 };
