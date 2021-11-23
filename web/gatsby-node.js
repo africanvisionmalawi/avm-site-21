@@ -244,9 +244,9 @@ async function createShopPages(pathPrefix = "", graphql, actions, reporter) {
     const pathPrefix = "/shop/";
     const path = `${pathPrefix}${slug.current + "/"}`;
     const tag = tags.length ? tags[0].value : null;
-    reporter.info(
-      `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
-    );
+    // reporter.info(
+    //   `Creating shop page: ${path} with slug ${slug.current} and id: ${id}`
+    // );
     createPage({
       path,
       component: require.resolve("./src/templates/shop-product.js"),
