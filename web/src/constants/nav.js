@@ -81,7 +81,7 @@ export const navLinks = [
       },
       {
         name: "Donate",
-        url: "/get-involved/donate/",
+        url: "/celebrate-and-give/",
         mobileOnly: false,
       },
       {
