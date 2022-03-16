@@ -183,7 +183,7 @@ export const GiftAidForm = (props) => {
         <Text>
           By completing the above I confirm that I would like African Vision
           Malawi , registered charity 1113786, to treat all donations I have
-          made in the last 6 years and all future donations, as Gift Aid until I
+          made in the last 4 years and all future donations, as Gift Aid until I
           notify you otherwise. The amount of tax reclaimed on your donation at
           the basic rate of tax must not exceed the amount of income and/or
           capital gains tax you pay in any tax year. Please inform us if your
