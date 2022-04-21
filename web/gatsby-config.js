@@ -183,7 +183,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-snipcart-advanced`,
       options: {
-        version: "3.0.15",
+        version: "3.3.1",
         publicApiKey:
           "MjI1MzY0ODctMmE3My00YjljLTk3ZjYtNGJiNzRjZTc5YWUyNjM3NDA3NzI3ODk0NjgyMDc2",
         defaultLang: "en",
@@ -197,9 +197,21 @@ module.exports = {
         //   },
         // },
         innerHTML: `
-            <billing section="bottom">
-                <!-- Customization goes here -->
-            </billing>`,
+            <shipping-rates-list>
+
+    <component class="snipcart-shipping-rates-list" :is="tag" v-if="!loading">
+
+      <shipping-rates-list-item 
+        v-for="rate in rates.slice().sort((a, b) => b.cost - a.cost)"        
+        :key="rate.slug" 
+        :rate="rate"
+        :class="{'snipcart-shipping-rates-list-item--highlight': selectedRate == rate.slug}">
+      </shipping-rates-list-item>
+
+    </component>
+
+  </shipping-rates-list>
+            `,
       },
     },
     {

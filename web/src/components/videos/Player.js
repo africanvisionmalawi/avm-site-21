@@ -43,10 +43,10 @@ const Loading = styled.div`
 
 const checkVideoType = (url) => {
   const youtubeUrls = ["youtube", "youtu.be"];
-  const vimeoUrls = ["vimeo"];
+  // const vimeoUrls = ["vimeo"];
 
   const isYoutube = youtubeUrls.some((e) => url.includes(e));
-  const isVimeo = url.includes("vimeo");
+  // const isVimeo = url.includes("vimeo");
   return isYoutube ? VIDEO_TYPE_YOUTUBE : VIDEO_TYPE_VIMEO;
 };
 
@@ -95,6 +95,7 @@ export const Player = ({ url }) => {
             baseUrl: "https://player.vimeo.com/video/",
             thumbnail_url: vid.thumbnail_url,
           });
+          // console.log("video ", video)
           // console.log("video.thumbnail_url ", video.thumbnail_url);
         })
         .catch((error) => console.error("error:", error));
