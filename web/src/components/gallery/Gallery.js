@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { v4 } from "uuid";
 // import { Image } from "../Image";
 // import PreviewCompatibleImage from "../PreviewCompatibleImage";
-import galleryStyles from "./gallery.module.css";
+
 
 const Heading = styled.h2`
   text-align: center;
@@ -89,14 +89,13 @@ export const Gallery = (props) => {
   };
 
   return (
-    <div className={galleryStyles.container}>
-      <div className={galleryStyles.galleryInner}>
+    <Container>
+      <GalleryInner>
         <Heading>Photo updates</Heading>
-        <div className={galleryStyles.gallery}>
+        <GalleryGrid>
           {photos
             ? photos.map((photo, i) => (
-                <div
-                  className={galleryStyles.gridCell}
+                <GridCell
                   onClick={() => {
                     setShowLightboxState(true);
                     setSelectedImageState(i);
@@ -108,13 +107,13 @@ export const Gallery = (props) => {
                 >
                   <SanityImage {...photo} width={280} alt={photo.alt} />
                   {/* <Image fluid={photo.asset.fluid} /> */}
-                </div>
+                </GridCell>
               ))
             : null}
           {showLightboxState && (
             <DialogOverlay style={dialogModalStyles}>
               <DialogContent style={dialogContentStyles}>
-                <div className={galleryStyles.dialogInner}>
+                <DialogInner>
                   <SanityImage
                     {...photos[selectedImageState]}
                     width={800}
@@ -141,7 +140,7 @@ export const Gallery = (props) => {
                       />
                     </svg>
                   </CloseIcon>
-                </div>
+                </DialogInner>
                 {selectedImageState === 0 ? (
                   <LeftArrow className="disabled" />
                 ) : (
@@ -155,11 +154,56 @@ export const Gallery = (props) => {
               </DialogContent>
             </DialogOverlay>
           )}
-        </div>
-      </div>
-    </div>
+        </GalleryGrid>
+      </GalleryInner>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  background: #f7f7f7;
+  border-top: 1px solid #d7dade;
+  border-bottom: 1px solid #d7dade;
+  margin: 2em 0;
+  padding: 2em 0;
+  width: 100%;
+`;
+
+const GalleryInner = styled.div`
+  margin: 0 auto;
+  max-width: 1180px;
+  position: relative;
+  width: 100%;
+`;
+
+const GalleryGrid = styled.div`
+  background: #f7f7f7;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+  padding: 15px;
+  @media (min-width: 1180px) {
+    & {
+      padding: 15px 0;
+    }
+  }
+  & .gatsby-image-wrapper {
+    height: 100%;
+  }
+`;
+
+const GridCell = styled.div`
+cursor: pointer;
+  display: inline-block;
+  max-height: 160px;
+  overflow: hidden;
+`;
+
+const DialogInner = styled.div`
+  position: relative;
+`;
 
 const LeftArrow = styled.span`
   border-bottom: 20px solid transparent;
