@@ -101,7 +101,12 @@ module.exports = {
     //   },
     // },
     "gatsby-plugin-sass",
-    "gatsby-plugin-linaria",
+    {
+      resolve: 'gatsby-plugin-linaria',
+      options: {
+        extractCritical: true, // false by default.
+      },
+    },      
     {
       resolve: `gatsby-plugin-typography`,
       options: {

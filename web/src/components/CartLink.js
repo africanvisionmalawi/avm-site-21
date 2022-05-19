@@ -1,8 +1,5 @@
 import { styled } from "linaria/react";
 import React from "react";
-// import PropTypes from "prop-types";
-// import { Link } from 'gatsby'
-import buttonStyles from "./button.module.css";
 
 const colors = {
   orange: {
@@ -17,14 +14,13 @@ const CartLink = ({ link, text, variant }) => {
   const fill = variant ? colors[variant].fill : "#fff";
 
   return (
-    <div
-      className={`Header__summary snipcart-summary snipcart-checkout ${buttonStyles.cartLink}`}
+    <Container
+      className={`Header__summary snipcart-summary snipcart-checkout`}
     >
       <CartTop>
         <Icon
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-          className={buttonStyles.cartLink}
+          viewBox="0 0 448 512"          
         >
           <path
             fill={fill}
@@ -34,9 +30,13 @@ const CartLink = ({ link, text, variant }) => {
 
         <TotalItems className={`snipcart-total-items ${variant}`} />
       </CartTop>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  padding: 4px;
+`;
 
 const CartTop = styled.div`
   cursor: pointer;
@@ -56,14 +56,9 @@ const TotalItems = styled.span`
   }
 `;
 
-// const TotalPrice = styled.div`
-//   color: #fff;
-//   margin-top: -8px;
-//   text-align: center;
-// `;
-
 const Icon = styled.svg`
   height: auto;
+  padding: 4px;
   width: 30px;
 `;
 

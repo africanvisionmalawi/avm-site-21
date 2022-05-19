@@ -13,7 +13,7 @@ import SubNavBar from "../components/nav/sub";
 import { siteMeta } from "../constants/site";
 // import NavLogo from "../components/NavLogo";
 import "./css/all.css";
-import layoutStyles from "./layout.module.css";
+
 
 
 // import useSiteMetadata from "./SiteMetadata";
@@ -21,7 +21,7 @@ import layoutStyles from "./layout.module.css";
 const TemplateWrapper = ({ title, description, article, children, path }) => {
   // const { siteTitle, siteDescription } = useSiteMetadata();
   return (
-    <div className={`mainContainer ${layoutStyles.container}`}>
+    <Container className={`mainContainer`}>
       <Helmet>
         <html lang="en" />
         <title>{title ? title + " | " + siteMeta.title : siteMeta.title}</title>
@@ -115,24 +115,33 @@ const TemplateWrapper = ({ title, description, article, children, path }) => {
       </Header>
       <SubNavBar />
       <Wrapper>
-        <div className={layoutStyles.container__top}>
+        <ContainerTop>
           <div className="main-body">{children}</div>
           <OurWorkTiles displayHeading={true} />
-        </div>
-        <div className={layoutStyles.container__lower}>
+        </ContainerTop>
+        <ContainerLower>
           <Footer />
-        </div>
+        </ContainerLower>
       </Wrapper>
-    </div>
+    </Container>
   );
 };
 
-// const TopNav = styled.div`
-//   background: red;
-//   position: sticky;
-//   top: 0;
-//   z-index: 2000;
-// `;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  min-height: 100vh;
+`;
+
+const ContainerTop = styled.div`
+  flex: 1 0 auto;
+`
+
+const ContainerLower = styled.div`
+  flex-shrink: 0;
+`
 
 const Header = styled.div`
   background-color: #c27e34;

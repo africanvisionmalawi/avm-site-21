@@ -7238,10 +7238,10 @@ gatsby-plugin-image@^0.7.1:
     objectFitPolyfill "^2.3.0"
     prop-types "^15.7.2"
 
-gatsby-plugin-linaria@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-linaria/-/gatsby-plugin-linaria-2.2.0.tgz#4368130057096d18bfe5ab248b36f6f5dc6afb43"
-  integrity sha512-7zPm8fXuG0lh0j0vnDDLc9Cn7SEtb/c0OrppTPF1LJZeP73SmDkjL75ld9BxP33cCkjCrCi+HLJULKHfxjWRfA==
+gatsby-plugin-linaria@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-linaria/-/gatsby-plugin-linaria-3.2.0.tgz#4aa2d21f16eafa81f9f84d2bb7541fb114515244"
+  integrity sha512-0hbqFglyd1NMJZfxC/XLtFsTkbo30CB0Z002IjPdJRGRZwWz7GrP7YDdA3LZ4WahaGcxTw2UPzk71X5Mc2+dTg==
 
 gatsby-plugin-netlify@^2.8.0:
   version "2.11.1"
