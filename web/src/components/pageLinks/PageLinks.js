@@ -3,10 +3,31 @@ import React from "react";
 import { getFeaturedLinks, getPath } from "../../utils/helpers";
 // import { CardDouble } from "../card/CardDouble";
 import { CardSingle } from "../card/CardSingle";
-import styles from "./pageLinks.module.css";
 
 const Heading = styled.h2`
   text-align: center;
+`;
+
+const CardCont = styled.div`
+  align-items: grid-start;
+  display: grid;
+  grid-gap: 3.2rem;
+  justify-content: center;
+  margin: 30px 0;
+  grid-template-columns: repeat(auto-fill, 250px);  
+`;
+
+const CardContWide = styled.div`
+  align-items: grid-start;
+  display: grid;
+  grid-gap: 3.2rem;
+  justify-content: center;
+  margin: 30px 0;
+  grid-template-columns: repeat(auto-fill, 1fr);
+  @media (min-width: 576px) {
+     grid-template-columns: repeat(auto-fill, 560px);
+
+  }
 `;
 
 const PageLinksWithPhotos = ({ pageLinks }) => {
@@ -64,14 +85,14 @@ export const PageLinks = ({
     <div>
       {displayHeading ? <Heading>{heading}</Heading> : null}
       {featuredLinks.length ? (
-        <div className={styles.cardContWide}>
+        <CardContWide>
           <PageLinksWithPhotos pageLinks={featuredLinks} />
-        </div>
+        </CardContWide>
       ) : null}
       {otherLinks.length ? (
-        <div className={styles.cardCont}>
+        <CardCont>
           <PageLinksWithPhotos pageLinks={otherLinks} />
-        </div>
+        </CardCont>
       ) : null}
     </div>
   );

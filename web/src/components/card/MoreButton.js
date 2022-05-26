@@ -1,14 +1,23 @@
+import { styled } from "linaria/react";
 import { Link } from "gatsby";
 import React from "react";
-import styles from "../pageLinks/pageLinks.module.css";
+
+const BtnLink = styled.Link`
+  border: 1px solid #f99d1c;
+  border-radius: 4px;
+  color: #f99d1c;
+  display: block;  
+  padding: 8px;
+  text-align: center;
+`;
 
 export const MoreButton = ({ url }) => {
   return (
     <>
       {url ? (
-        <Link to={url} className={styles.btn}>
+        <BtnLink to={url}>
           Find out more
-        </Link>
+        </BtnLink>
       ) : null}
     </>
   );
