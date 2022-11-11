@@ -12,11 +12,14 @@ const serializers = {
   },
   marks: {
     internalLink: ({ mark, children }) => {
-      const { slug = {}, category = {} } = mark.reference;
-      const href = `/${
-        category.slug.current ? category.slug.current + "/" : ""
-      }${slug.current || ""}/`;
-      return <Link to={href}>{children}</Link>;
+      if (mark?.reference) {
+        const { slug = {}, category = {} } = mark.reference;
+        const href = `/${
+          category?.slug.current ? category?.slug.current + "/" : ""
+        }${slug.current || ""}/`;
+        return <Link to={href}>{children}</Link>;
+      }
+      return null;
     },
   },
 };
