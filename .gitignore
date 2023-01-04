@@ -11,6 +11,7 @@ avm-site-21.code-workspace
 .linaria-cache
 .env*
 studio/dist*
+.next/
 
 studio/dist/index.html
 studio/dist/static/css/main.css
