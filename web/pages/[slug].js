@@ -1,5 +1,6 @@
 import groq from 'groq'
 import imageUrlBuilder from '@sanity/image-url'
+import {PortableText} from '@portabletext/react'
 import client from '/client'
 
 function urlFor (source) {
@@ -20,6 +21,13 @@ const Page = ({data}) => {
           />
         </div>
       )}
+      {data?.body ? 
+            <PortableText article
+        value={data.body}
+      />
+      : null}
+
+      
 
     </article>
   )
@@ -36,6 +44,8 @@ const query = groq`*[_type == "page" && slug.current == $slug][0]{
   "categorySlug": category->slug.current,
   hero, 
   bannerMsg,
+  content,
+  body
 }`
 
 
@@ -54,7 +64,7 @@ export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params
   const data = await client.fetch(query, { slug })  
-  console.log("hero ", data.hero.mobileImage);
+  console.log("hero ", data.content);
   console.log("slug ", slug, data);  
   return {
     props: {
