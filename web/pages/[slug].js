@@ -1,14 +1,13 @@
-import groq from 'groq'
-import imageUrlBuilder from '@sanity/image-url'
-import {PortableText} from '@portabletext/react'
-import client from '/client'
+import { PortableText } from "@portabletext/react";
+import imageUrlBuilder from "@sanity/image-url";
+import groq from "groq";
+import client from "/client";
 
-function urlFor (source) {
-  return imageUrlBuilder(client).image(source)
+function urlFor(source) {
+  return imageUrlBuilder(client).image(source);
 }
 
-const Page = ({data}) => {
-  
+const Page = ({ data }) => {
   return (
     <article>
       <h1>{data?.title}</h1>
@@ -21,17 +20,10 @@ const Page = ({data}) => {
           />
         </div>
       )}
-      {data?.body ? 
-            <PortableText article
-        value={data.body}
-      />
-      : null}
-
-      
-
+      {data?.body ? <PortableText article value={data.body} /> : null}
     </article>
-  )
-}
+  );
+};
 
 const query = groq`*[_type == "page" && slug.current == $slug][0]{ 
   slug, 
@@ -46,31 +38,32 @@ const query = groq`*[_type == "page" && slug.current == $slug][0]{
   bannerMsg,
   content,
   body
-}`
-
+}`;
 
 export async function getStaticPaths() {
   const paths = await client.fetch(
     `*[_type == "document" && defined(slug.current)][].slug.current`
-  )
+  );
 
   return {
-    paths: paths.map((slug) => ({params: {slug}})),
+    paths: paths.map((slug) => ({ params: { slug } })),
     fallback: true,
-  }
+  };
 }
-  
-export async function getStaticProps(context) {
+
+export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
-  const { slug = "" } = context.params
-  const data = await client.fetch(query, { slug })  
+  const { slug = "" } = params;
+  const data = await client.fetch(query, { slug });
   console.log("hero ", data.content);
-  console.log("slug ", slug, data);  
+  console.log("slug ", slug, data);
   return {
     props: {
-      data
-    }
-  }
+      data,
+      preview,
+    },
+    revalidate: 10,
+  };
 }
 
-export default Page
+export default Page;
