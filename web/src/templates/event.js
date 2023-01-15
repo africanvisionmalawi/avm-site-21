@@ -1,14 +1,13 @@
+import styled from "@emotion/styled";
 import { Breadcrumbs } from "components/breadcrumbs";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql, Link } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
+import { Hero } from "../../components/Hero";
+import { PortableText } from "../../components/portableText/portableText";
 import { EventDate } from "../components/events/EventDate";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
-import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
-import { PortableText } from "../components/portableText/portableText";
 dayjs.extend(advancedFormat);
 
 export const query = graphql`

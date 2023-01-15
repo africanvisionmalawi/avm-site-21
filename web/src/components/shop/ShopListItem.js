@@ -1,6 +1,5 @@
+import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
 import { priceFormatted } from "../../utils/helpers";
 import { Photo } from "./Photo";
 

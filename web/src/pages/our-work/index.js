@@ -1,11 +1,10 @@
+import styled from "@emotion/styled";
 import { Donate } from "components/common/Donate";
 import Errors from "components/errors";
 import Layout from "components/Layout";
 import { OurWork } from "components/ourwork";
 import { PortableText } from "components/portableText/portableText";
 import { graphql } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
 
 export const query = graphql`
   query OurWorkPageQuery {

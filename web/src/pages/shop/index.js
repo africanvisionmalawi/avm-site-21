@@ -1,11 +1,11 @@
+import styled from "@emotion/styled";
 import { graphql } from "gatsby";
-import { styled } from "linaria/react";
 import React from "react";
-import { NavTags } from "../../components/common/NavTags";
+import { NavTags } from "../../../components/common/NavTags";
+import { tagsBase } from "../../../constants/shop";
 import Errors from "../../components/errors";
 import Layout from "../../components/Layout";
 import { ShopListItem } from "../../components/shop/ShopListItem";
-import { tagsBase } from "../../constants/shop";
 
 export const query = graphql`
   query ShopTemplateQuery {

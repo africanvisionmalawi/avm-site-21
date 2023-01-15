@@ -1,24 +1,23 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
 import { BannerMsg } from "components/banner-msg";
 // import Pricing from "../components/pricing";
+import styled from "@emotion/styled";
 import { Breadcrumbs } from "components/breadcrumbs";
 import { GoogleMap } from "components/google-map";
 import { graphql } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
-import { Donate } from "../components/common/Donate";
+import { Donate } from "../../components/common/Donate";
 import { Gallery } from "../components/gallery";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import InfoRows from "../components/InfoRows";
-import { Hero } from "../components/Hero";
+import { Hero } from "../../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
+import { PageLinks } from "../../components/pageLinks";
+import { PortableText } from "../../components/portableText/portableText";
+import { Videos } from "../../components/videos";
 import Layout from "../components/Layout";
-import { PageLinks } from "../components/pageLinks";
-import { PortableText } from "../components/portableText/portableText";
 import { TeamList } from "../components/team/TeamList";
-import { Videos } from "../components/videos";
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {

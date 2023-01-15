@@ -1,10 +1,10 @@
+import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql } from "gatsby";
-import { styled } from "linaria/react";
 import React from "react";
-import { CardPostAlt } from "../../components/card/CardPostAlt";
-import { SectionTop } from "../../components/common/SectionTop";
+import { CardPostAlt } from "../../../components/card/CardPostAlt";
+import { SectionTop } from "../../../components/common/SectionTop";
 import Errors from "../../components/errors";
 import Layout from "../../components/Layout";
 dayjs.extend(advancedFormat);

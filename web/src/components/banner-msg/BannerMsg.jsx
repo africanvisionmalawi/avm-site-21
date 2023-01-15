@@ -1,6 +1,5 @@
-import { styled } from "linaria/react";
-import React from "react";
-import { PortableText } from "../portableText/portableText";
+import styled from "@emotion/styled";
+import { PortableText } from "../../../components/portableText/portableText";
 
 export const BannerMsg = ({ msg, source }) => {
   return (

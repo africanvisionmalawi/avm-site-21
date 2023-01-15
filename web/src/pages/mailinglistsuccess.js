@@ -1,6 +1,5 @@
+import styled from "@emotion/styled";
 import Layout from "components/Layout";
-import { styled } from "linaria/react";
-import React from "react";
 
 const Heading = styled.h1`
   font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",

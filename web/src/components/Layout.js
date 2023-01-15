@@ -1,20 +1,18 @@
+import styled from "@emotion/styled";
 import "@fontsource/raleway";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import { OurWorkTiles } from "components/ourwork";
 import { withPrefix } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
 import { Helmet } from "react-helmet";
 // import FeaturedProjectsTiles from "../components/FeaturedProjectsTiles";
-import Footer from "../components/footer/Footer";
-import Navbar from "../components/nav/main";
-import SubNavBar from "../components/nav/sub";
-import { siteMeta } from "../constants/site";
+import Footer from "../../components/footer/Footer";
+import Navbar from "../../components/nav/main";
+import SubNavBar from "../../components/nav/sub";
+import { siteMeta } from "../../constants/site";
 // import NavLogo from "../components/NavLogo";
 import "./css/all.css";
 import layoutStyles from "./layout.module.css";
-
 
 // import useSiteMetadata from "./SiteMetadata";
 

@@ -1,18 +1,17 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import styled from "@emotion/styled";
 import { Breadcrumbs } from "components/breadcrumbs";
 import { graphql, Link } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
-import { Donate } from "../components/common/Donate";
+import { Donate } from "../../components/common/Donate";
 import { Gallery } from "../components/gallery";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import InfoRows from "../components/InfoRows";
-import { Hero } from "../components/Hero";
+import { Hero } from "../../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
+import { PortableText } from "../../components/portableText/portableText";
 import Layout from "../components/Layout";
-import { PortableText } from "../components/portableText/portableText";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
 

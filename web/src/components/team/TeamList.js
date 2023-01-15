@@ -1,8 +1,7 @@
 // import PreviewCompatibleImage from "../PreviewCompatibleImage";
 // import Img from "gatsby-image";
+import styled from "@emotion/styled";
 import SanityImage from "gatsby-plugin-sanity-image";
-import { styled } from "linaria/react";
-import React from "react";
 
 export const TeamList = (props) => {
   // console.log("props", props);

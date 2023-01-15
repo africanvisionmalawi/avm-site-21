@@ -1,5 +1,4 @@
-import { styled } from "linaria/react";
-import React from "react";
+import styled from "@emotion/styled";
 
 const MapContainer = styled.div`
   margin: 1rem auto;

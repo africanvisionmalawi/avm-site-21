@@ -1,10 +1,9 @@
+import styled from "@emotion/styled";
 import { graphql } from "gatsby";
-import { styled } from "linaria/react";
 import PropTypes from "prop-types";
-import React from "react";
 // import { HeroImage } from "../components/common/HeroImage";
 // import Content, { HTMLContent } from "../components/Content";
-import { Donate } from "../components/common/Donate";
+import { Donate } from "../../components/common/Donate";
 import Layout from "../components/Layout";
 // import { TagsList } from "../components/shop/tagsList";
 

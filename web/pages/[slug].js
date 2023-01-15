@@ -1,11 +1,7 @@
 import { PortableText } from "@portabletext/react";
-import imageUrlBuilder from "@sanity/image-url";
+import { Image } from "components/common/Image";
 import groq from "groq";
 import client from "/client";
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
 
 const Page = ({ data }) => {
   return (
@@ -13,11 +9,7 @@ const Page = ({ data }) => {
       <h1>{data?.title}</h1>
       {data?.hero && (
         <div>
-          <img
-            src={urlFor(data.hero.image)
-              .width(100)
-              .url()}
-          />
+          <Image image={data.image} />
         </div>
       )}
       {data?.body ? <PortableText article value={data.body} /> : null}

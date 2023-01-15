@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import { styled } from "linaria/react";
 import React from "react";
 
 export const Breadcrumbs = ({ path, indexPage }) => {
