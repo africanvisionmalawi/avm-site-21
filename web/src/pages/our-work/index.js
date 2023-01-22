@@ -3,7 +3,7 @@ import { Donate } from "components/common/Donate";
 import Errors from "components/errors";
 import Layout from "components/Layout";
 import { OurWork } from "components/ourwork";
-import { PortableText } from "components/portable-text/portableText";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { graphql } from "gatsby";
 
 export const query = graphql`
@@ -47,7 +47,7 @@ const IndexPage = (props) => {
       <article>
         <TopSection>
           <Heading>Our work</Heading>
-          {ourWork ? <PortableText blocks={ourWork[0].node._rawBody} /> : null}
+          {ourWork ? <PortableText value={ourWork[0].node._rawBody} /> : null}
         </TopSection>
         {ourWork ? (
           <Container>

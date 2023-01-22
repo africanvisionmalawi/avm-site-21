@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
+import { getFeaturedLinks, getPath } from "lib/helpers";
 import React from "react";
-import { getFeaturedLinks, getPath } from "../../src/utils/helpers";
 // import { CardDouble } from "../card/CardDouble";
-import { CardSingle } from "../card/CardSingle";
-import styles from "./pageLinks.module.css";
+import { CardSingle } from "components/card/CardSingle";
+import styles from "components/page-links/pageLinks.module.css";
 
 const Heading = styled.h2`
   text-align: center;
@@ -22,8 +22,8 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
                       url={
                         pageLink.url
                           ? getPath(
-                              pageLink.url.category.slug.current,
-                              pageLink.url.slug.current
+                              pageLink.url.category?.slug.current,
+                              pageLink.url.slug?.current
                             )
                           : null
                       }

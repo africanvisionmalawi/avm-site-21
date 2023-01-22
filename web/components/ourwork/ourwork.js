@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { MoreButton } from "components/card/MoreButton";
 import { PhotoCont } from "components/card/PhotoCont";
-import { PortableText } from "components/portable-text/portableText";
+import { PortableText } from "components/portable-text/BasePortableText";
 
 export const OurWork = ({ displayHeading, ourWork }) => {
   return (
@@ -20,7 +20,7 @@ export const OurWork = ({ displayHeading, ourWork }) => {
                   <div>
                     <Title>{project.title}</Title>
                     {project._rawBody ? (
-                      <PortableText blocks={project._rawBody} />
+                      <PortableText value={project._rawBody} />
                     ) : null}
                     <MoreButton url={`/${project.slug.current}/`} />
                   </div>

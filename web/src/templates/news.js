@@ -10,7 +10,7 @@ import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import InfoRows from "../components/InfoRows";
 import { Hero } from "../../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
-import { PortableText } from "../../components/portable-text/portableText";
+import { PortableText } from "../../components/portable-text/BasePortableText";
 import Layout from "../components/Layout";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
@@ -135,7 +135,7 @@ const News = (props) => {
         <Main>
           {page._rawBody ? (
             <TextSection>
-              <PortableText blocks={page._rawBody} />
+              <PortableText value={page._rawBody} />
             </TextSection>
           ) : null}
           {/* <div>{content}here</div> */}

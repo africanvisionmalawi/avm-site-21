@@ -1,7 +1,10 @@
 import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "client.js";
+
+const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
+  return builder.image(source);
 }
 
 export const Image = ({
@@ -13,7 +16,7 @@ export const Image = ({
 }) => {
   const imageUrl =
     image &&
-    urlForImage(image)
+    urlFor(image)
       ?.height(height)
       .width(width)
       .fit("crop")

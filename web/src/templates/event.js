@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql, Link } from "gatsby";
 import { Hero } from "../../components/Hero";
-import { PortableText } from "../../components/portable-text/portableText";
+import { PortableText } from "../../components/portable-text/BasePortableText";
 import { EventDate } from "../components/events/EventDate";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 import Layout from "../components/Layout";
@@ -140,7 +140,7 @@ const EventPage = (props) => {
               </EventDetails>
               {event._rawBody ? (
                 <TextSection>
-                  <PortableText blocks={event._rawBody} />
+                  <PortableText value={event._rawBody} />
                 </TextSection>
               ) : null}
 

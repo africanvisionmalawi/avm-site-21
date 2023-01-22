@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { PortableText } from "components/portable-text/portableText";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { MoreButton } from "./MoreButton";
 
 const Content = styled.div`
@@ -19,7 +19,7 @@ export const CardContent = ({ title, url, linkText }) => {
     <Content>
       {title ? <Heading>{title}</Heading> : null}
       {/* {props.displayLocation && <span>{props.location}</span>} */}
-      {linkText ? <PortableText blocks={linkText} /> : null}
+      {linkText ? <PortableText value={linkText} /> : null}
       {/* TODO: add hideLink here */}
       {url ? <MoreButton url={url} /> : null}
     </Content>

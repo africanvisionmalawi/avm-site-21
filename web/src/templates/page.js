@@ -13,8 +13,8 @@ import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import InfoRows from "../components/InfoRows";
 import { Hero } from "../../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
-import { PageLinks } from "../../components/pageLinks";
-import { PortableText } from "../../components/portable-text/portableText";
+import { PageLinks } from "../../components/page-links";
+import { PortableText } from "../../components/portable-text/BasePortableText";
 import { Videos } from "../../components/videos";
 import Layout from "../components/Layout";
 import { TeamList } from "../components/team/TeamList";
@@ -310,7 +310,7 @@ const Page = (props) => {
           ) : null}
           {page._rawBody ? (
             <TextSection>
-              <PortableText blocks={page._rawBody} />
+              <PortableText value={page._rawBody} />
             </TextSection>
           ) : null}
           {/* <div>{content}here</div> */}

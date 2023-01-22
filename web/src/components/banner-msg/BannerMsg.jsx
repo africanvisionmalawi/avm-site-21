@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { PortableText } from "../../../components/portable-text/portableText";
+import { PortableText } from "../../../components/portable-text/BasePortableText";
 
 export const BannerMsg = ({ msg, source }) => {
   return (
     <HeroMsgDiv>
-      {msg ? <PortableText blocks={msg} /> : null}
+      {msg ? <PortableText value={msg} /> : null}
       {source ? <Citation>{source}</Citation> : null}
     </HeroMsgDiv>
   );

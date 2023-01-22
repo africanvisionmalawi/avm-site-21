@@ -1,5 +1,5 @@
 import { DialogContent, DialogOverlay } from "@reach/dialog";
-import Image from "components/common/Image";
+import { Image } from "components/common/Image";
 // import "@reach/dialog/styles.css";
 // import Img from "gatsby-image";
 import styled from "@emotion/styled";
@@ -45,6 +45,7 @@ export const Gallery = (props) => {
 
   const [selectedImageState, setSelectedImageState] = useState(0);
 
+  console.log("photos ", photos);
   // const showLightboxHandler = (event) => {
   //   // console.log("show lightbox");
   //   setShowLightboxState(true);
@@ -106,8 +107,7 @@ export const Gallery = (props) => {
                   role="button"
                   tabIndex={0}
                 >
-                  <SanityImage {...photo} width={280} alt={photo.alt} />
-                  {/* <Image fluid={photo.asset.fluid} /> */}
+                  <Image image={photo.asset} width={280} alt={photo.alt} />
                 </div>
               ))
             : null}
@@ -115,19 +115,12 @@ export const Gallery = (props) => {
             <DialogOverlay style={dialogModalStyles}>
               <DialogContent style={dialogContentStyles}>
                 <div className={galleryStyles.dialogInner}>
-                  <Image
+                  {/* <Image
                     {...photos[selectedImageState]}
                     width={800}
                     alt={photos[selectedImageState].alt}
-                  />
-                  {/* <Image
-                    fluid={gallery[selectedImageState].photo.asset.fluid}
                   /> */}
-                  {/* <Img
-                    fluid={
-                      gallery[selectedImageState].photo.childImageSharp.fluid
-                    }
-                  /> */}
+
                   <Caption>{photos[selectedImageState].caption}</Caption>
                   <CloseIcon>
                     <svg

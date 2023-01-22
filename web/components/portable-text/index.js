@@ -1,1 +1,1 @@
-export { portableText } from "./portableText";
+export { portableText } from "./BasePortableText";

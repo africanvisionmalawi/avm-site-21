@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { PortableText } from "@portabletext/react";
 import { Image } from "components/common/Image";
 import { Gallery } from "components/gallery";
-import { PageLinks } from "components/PageLinks";
+import { PageLinks } from "components/page-links";
 import { Videos } from "components/videos";
 import groq from "groq";
 import client from "/client";

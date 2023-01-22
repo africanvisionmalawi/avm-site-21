@@ -50,6 +50,16 @@ const components = {
         {props.children}
       </a>
     ),
+    internalLink: ({ mark, children }) => {
+      if (mark?.reference) {
+        const { slug = {}, category = {} } = mark.reference;
+        const href = `/${
+          category?.slug.current ? category?.slug.current + "/" : ""
+        }${slug.current || ""}/`;
+        return <a href={href}>{children}</a>;
+      }
+      return null;
+    },
   },
 };
 // Set up Portable Text serialization

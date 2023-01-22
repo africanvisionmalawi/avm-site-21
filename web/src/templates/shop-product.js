@@ -14,7 +14,7 @@ import { SectionTop } from "../../components/common/SectionTop";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import { BottomWave, TopWave } from "../components/wave";
-import { PortableText } from "../../components/portable-text/portableText";
+import { PortableText } from "../../components/portable-text/BasePortableText";
 import Layout from "../components/Layout";
 import { Photo } from "../components/shop/Photo";
 import { ShopListItem } from "../components/shop/ShopListItem";
@@ -300,7 +300,7 @@ const ShopProduct = (props) => {
                   </SectionInner>
                   <SectionInner>
                     {page._rawBody ? (
-                      <PortableText blocks={page._rawBody} />
+                      <PortableText value={page._rawBody} />
                     ) : null}
                   </SectionInner>
                 </div>

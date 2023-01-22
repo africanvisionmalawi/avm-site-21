@@ -1,4 +1,3 @@
-import React from "react";
 // import InstagramEmbed from "react-instagram-embed";
 // import ReactPlayer from "react-player";
 // import LatexRenderer from "./Latex";
@@ -11,7 +10,7 @@ import MainImage from "./MainImage";
 //   return <></>;
 // };
 
-const serializers = {
+const components = {
   types: {
     // authorReference: AuthorReference,
     mainImage: ({ node }) => <MainImage mainImage={node} />,
@@ -33,4 +32,4 @@ const serializers = {
   },
 };
 
-export default serializers;
+export default components;

@@ -1,4 +1,4 @@
-import styles from "components/pageLinks/pageLinks.module.css";
+import styles from "components/page-links/pageLinks.module.css";
 
 export const MoreButton = ({ url }) => {
   return (

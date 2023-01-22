@@ -12,7 +12,7 @@ import { Hero } from "../../components/Hero";
 // import InfoRows from "../components/InfoRows";
 // import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
-import { PortableText } from "../../components/portable-text/portableText";
+import { PortableText } from "../../components/portable-text/BasePortableText";
 import { Player } from "../../components/videos/Player";
 import Layout from "../components/Layout";
 // import videoStyles from "../components/videos/videos.module.css";
