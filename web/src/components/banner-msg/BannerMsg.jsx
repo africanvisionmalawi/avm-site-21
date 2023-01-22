@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { PortableText } from "../../../components/portableText/portableText";
+import { PortableText } from "../../../components/portable-text/portableText";
 
 export const BannerMsg = ({ msg, source }) => {
   return (

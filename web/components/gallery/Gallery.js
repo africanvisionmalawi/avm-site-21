@@ -1,5 +1,5 @@
 import { DialogContent, DialogOverlay } from "@reach/dialog";
-import SanityImage from "gatsby-plugin-sanity-image";
+import Image from "components/common/Image";
 // import "@reach/dialog/styles.css";
 // import Img from "gatsby-image";
 import styled from "@emotion/styled";
@@ -115,7 +115,7 @@ export const Gallery = (props) => {
             <DialogOverlay style={dialogModalStyles}>
               <DialogContent style={dialogContentStyles}>
                 <div className={galleryStyles.dialogInner}>
-                  <SanityImage
+                  <Image
                     {...photos[selectedImageState]}
                     width={800}
                     alt={photos[selectedImageState].alt}

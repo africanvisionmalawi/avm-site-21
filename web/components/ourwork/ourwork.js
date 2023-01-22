@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { MoreButton } from "components/card/MoreButton";
 import { PhotoCont } from "components/card/PhotoCont";
-import { PortableText } from "components/portableText/portableText";
+import { PortableText } from "components/portable-text/portableText";
 
 export const OurWork = ({ displayHeading, ourWork }) => {
   return (

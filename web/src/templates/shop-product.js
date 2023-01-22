@@ -14,7 +14,7 @@ import { SectionTop } from "../../components/common/SectionTop";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import { BottomWave, TopWave } from "../components/wave";
-import { PortableText } from "../../components/portableText/portableText";
+import { PortableText } from "../../components/portable-text/portableText";
 import Layout from "../components/Layout";
 import { Photo } from "../components/shop/Photo";
 import { ShopListItem } from "../components/shop/ShopListItem";

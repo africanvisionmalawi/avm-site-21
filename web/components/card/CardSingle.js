@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+// import { Link } from "gatsby";
 // import Img from "gatsby-image";
 // import { EventDate } from "../events/EventDate";
 import { CardContent } from "./CardContent";
@@ -46,9 +46,9 @@ export const CardSingle = ({
       {url || extUrl ? (
         <>
           {url ? (
-            <Link to={url} className="card-image">
+            <a href={url} className="card-image">
               <PhotoCont photo={photo} photoType={photoType} />
-            </Link>
+            </a>
           ) : (
             <a href={extUrl} className="card-image">
               <PhotoCont photo={photo} photoType={photoType} />

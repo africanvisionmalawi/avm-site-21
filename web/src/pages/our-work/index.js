@@ -3,7 +3,7 @@ import { Donate } from "components/common/Donate";
 import Errors from "components/errors";
 import Layout from "components/Layout";
 import { OurWork } from "components/ourwork";
-import { PortableText } from "components/portableText/portableText";
+import { PortableText } from "components/portable-text/portableText";
 import { graphql } from "gatsby";
 
 export const query = graphql`

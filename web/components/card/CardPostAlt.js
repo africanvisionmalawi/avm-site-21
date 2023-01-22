@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 // import Img from "gatsby-image";
 // import styled from "@emotion/styled";
 import { EventDate } from "../../src/components/events/EventDate";
-import { PortableText } from "../portableText/portableText";
+import { PortableText } from "../portable-text/portableText";
 import { MoreButton } from "./MoreButton";
 import { PhotoCont } from "./PhotoCont";
 

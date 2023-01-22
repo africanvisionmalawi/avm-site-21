@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { PortableText } from "../portableText/portableText";
+import { PortableText } from "components/portable-text/portableText";
 import { MoreButton } from "./MoreButton";
 
 const Content = styled.div`
