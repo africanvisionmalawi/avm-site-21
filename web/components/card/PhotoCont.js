@@ -1,3 +1,4 @@
+import { Image } from "components/common/Image";
 // const ImageCont = styled.div`
 //   margin: 0;
 //   position: relative;
@@ -49,7 +50,22 @@ export const PhotoCont = (props) => {
                 </EventDateCont>
               )} */}
       {photo ? (
-        <></>
+        <Image
+          image={photo.asset}
+          width={photoSizes[photoType].w}
+          height={photoSizes[photoType].h}
+          alt={photo.alt}
+          style={{
+            width: photoSizes[photoType].cssW
+              ? photoSizes[photoType].cssW
+              : "100%",
+            height: "auto",
+            objectFit: "cover",
+          }}
+          sizes={
+            photoSizes[photoType].sizes ? photoSizes[photoType].sizes : "unset"
+          }
+        />
       ) : // <SanityImage
       //   {...photo}
       //   width={photoSizes[photoType].w}

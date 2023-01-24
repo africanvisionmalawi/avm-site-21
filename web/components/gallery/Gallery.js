@@ -115,11 +115,11 @@ export const Gallery = (props) => {
             <DialogOverlay style={dialogModalStyles}>
               <DialogContent style={dialogContentStyles}>
                 <div className={galleryStyles.dialogInner}>
-                  {/* <Image
-                    {...photos[selectedImageState]}
+                  <Image
+                    image={photos[selectedImageState].asset}
                     width={800}
                     alt={photos[selectedImageState].alt}
-                  /> */}
+                  />
 
                   <Caption>{photos[selectedImageState].caption}</Caption>
                   <CloseIcon>

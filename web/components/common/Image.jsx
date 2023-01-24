@@ -11,7 +11,7 @@ export const Image = ({
   image,
   width = 3500,
   height = 2000,
-  size = "100vw",
+  sizes = "100vw",
   alt = "",
 }) => {
   const imageUrl =
@@ -21,14 +21,15 @@ export const Image = ({
       .width(width)
       .fit("crop")
       .url();
+  console.log("imageUrl ", imageUrl);
   return (
     <>
       {imageUrl ? (
-        <Image
+        <img
           src={imageUrl}
-          width={width}
-          height={height}
-          sizes={size}
+          // width={width}
+          // height={height}
+          sizes={sizes}
           alt={alt}
         />
       ) : null}
