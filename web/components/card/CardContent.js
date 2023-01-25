@@ -14,12 +14,12 @@ const Heading = styled.h3`
 `;
 
 export const CardContent = ({ title, url, linkText }) => {
-  // console.log("linkText ", linkText);
+  console.log("linkText ", linkText);
   return (
     <Content>
       {title ? <Heading>{title}</Heading> : null}
       {/* {props.displayLocation && <span>{props.location}</span>} */}
-      {linkText ? <PortableText value={linkText} /> : null}
+      {linkText ? <PortableText blocks={linkText} /> : null}
       {/* TODO: add hideLink here */}
       {url ? <MoreButton url={url} /> : null}
     </Content>

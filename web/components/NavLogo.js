@@ -1,6 +1,5 @@
 // import PropTypes from 'prop-types'
 import styled from "@emotion/styled";
-import logo from "public/img/logo-full.png";
 // import heroStyles from './heroimage.module.css'
 
 const LogoCont = styled.div`
@@ -34,7 +33,7 @@ const navLogo = (Û) => (
   <LogoCont>
     <a href="/">
       <NavLogo>
-        <LogoImg src={logo} alt="" />
+        <LogoImg src="/img/logo-full.png" alt="" />
       </NavLogo>
     </a>
   </LogoCont>

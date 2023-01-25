@@ -135,7 +135,7 @@ const Page = ({ data }) => {
   );
 };
 
-const query = groq`*[_type == "page" && slug.current == $slug][0]{ 
+const query = groq`*[_type == "page" && !$hasCategory && slug.current == $slug[0]][0]{ 
   slug, 
   id,
   title,
@@ -164,9 +164,13 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
-  const data = await client.fetch(query, { slug });
-  console.log("hero ", data.content);
-  console.log("slug ", slug, data);
+  console.log("slug length ", slug.length);
+  const hasCategory = !!slug.length > 1;
+  console.log("hasCategory ", hasCategory);
+  const data = await client.fetch(query, { slug, hasCategory });
+  console.log("slug ", slug);
+  // console.log("hero ", data.content);
+  // console.log("slug ", slug, data);
   return {
     props: {
       data,

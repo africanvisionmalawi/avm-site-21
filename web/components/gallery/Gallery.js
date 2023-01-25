@@ -107,7 +107,12 @@ export const Gallery = (props) => {
                   role="button"
                   tabIndex={0}
                 >
-                  <Image image={photo.asset} width={280} alt={photo.alt} />
+                  <Image
+                    image={photo.asset}
+                    height={160}
+                    width={280}
+                    alt={photo.alt}
+                  />
                 </div>
               ))
             : null}
@@ -118,6 +123,7 @@ export const Gallery = (props) => {
                   <Image
                     image={photos[selectedImageState].asset}
                     width={800}
+                    height={540}
                     alt={photos[selectedImageState].alt}
                   />
 

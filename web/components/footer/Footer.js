@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { getCurrentYear } from "lib/helpers";
-import logo from "public/img/logo-full.png";
 import footerStyles from "./footer.module.css";
 import { FooterForm } from "./FooterForm";
 
@@ -154,7 +153,7 @@ const Footer = () => (
         </FooterContact>
         <FooterSocial>
           <FooterBottomRow>
-            <LogoImg src={logo} alt="" />
+            <LogoImg src="/img/logo-full.png" alt="" />
             <FooterInnerRow>
               <Heading>
                 <a href="/news">Join us on&hellip;</a>
