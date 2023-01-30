@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 // import SanityImage from "gatsby-plugin-sanity-image";
-import { Image } from "components/common/Image";
+import { Image } from "components/common/image/Image";
 import { Divider } from "../common/Divider";
 
 export const Hero = ({
@@ -48,7 +48,7 @@ export const Hero = ({
           <Image
             image={image}
             alt=""
-            width={3000}
+            width="100vw"
             height={300}
             style={{ objectFit: "contain" }}
             priority="eager"

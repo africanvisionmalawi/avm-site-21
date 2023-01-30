@@ -1,4 +1,4 @@
-import { Image } from "components/common/Image";
+import { Image } from "components/common/image/Image";
 // const ImageCont = styled.div`
 //   margin: 0;
 //   position: relative;
@@ -51,7 +51,7 @@ export const PhotoCont = (props) => {
               )} */}
       {photo ? (
         <Image
-          image={photo.asset}
+          image={photo}
           width={photoSizes[photoType].w}
           height={photoSizes[photoType].h}
           alt={photo.alt}

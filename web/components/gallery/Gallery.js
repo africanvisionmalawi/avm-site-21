@@ -1,5 +1,5 @@
 import { DialogContent, DialogOverlay } from "@reach/dialog";
-import { Image } from "components/common/Image";
+import { Image } from "components/common/image/Image";
 // import "@reach/dialog/styles.css";
 // import Img from "gatsby-image";
 import styled from "@emotion/styled";
@@ -108,9 +108,9 @@ export const Gallery = (props) => {
                   tabIndex={0}
                 >
                   <Image
-                    image={photo.asset}
+                    image={photo}
                     height={160}
-                    width={280}
+                    maxWidth={280}
                     alt={photo.alt}
                   />
                 </div>
@@ -121,8 +121,8 @@ export const Gallery = (props) => {
               <DialogContent style={dialogContentStyles}>
                 <div className={galleryStyles.dialogInner}>
                   <Image
-                    image={photos[selectedImageState].asset}
-                    width={800}
+                    image={photos[selectedImageState]}
+                    maxWidth={800}
                     height={540}
                     alt={photos[selectedImageState].alt}
                   />

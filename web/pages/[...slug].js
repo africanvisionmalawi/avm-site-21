@@ -66,7 +66,7 @@ const Page = ({ data }) => {
         case "hero":
           el = (
             <Hero
-              image={c.image.asset}
+              image={c.image}
               displayHeroMsg={false}
               heroHeading={c.title}
               heroHeadingType="h2"
@@ -129,8 +129,8 @@ const Page = ({ data }) => {
       {data?.hero && (
         <div>
           <Hero
-            image={data.hero.image.asset}
-            mobileImage={data.hero.mobileImage.asset}
+            image={data.hero.image}
+            mobileImage={data.hero.mobileImage}
             displayHeroMsg={false}
             // heroHeading={c.title}
             // heroHeadingType="h2"
