@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import SanityImage from "gatsby-plugin-sanity-image";
-import { Image } from "../../src/components/Image";
+// import SanityImage from "gatsby-plugin-sanity-image";
+import { Image } from "components/common/Image";
 import { Divider } from "../common/Divider";
 
 export const Hero = ({
-  heroImage,
   heroHeading,
   heroSubHeading,
   heroHeadingType,
@@ -12,9 +11,7 @@ export const Hero = ({
   desktopImage,
   mobileImage,
   children,
-  fluid,
-  fluidMobile,
-  sanityImage,
+  image,
 }) => {
   let heroHeadingHtml;
   if (heroHeading) {
@@ -25,15 +22,15 @@ export const Hero = ({
     }
   }
 
-  const sources = fluidMobile
-    ? [
-        fluidMobile,
-        {
-          ...fluid,
-          media: `(min-width: 580px)`,
-        },
-      ]
-    : fluid;
+  // const sources = fluidMobile
+  //   ? [
+  //       fluidMobile,
+  //       {
+  //         ...fluid,
+  //         media: `(min-width: 580px)`,
+  //       },
+  //     ]
+  //   : fluid;
 
   return (
     <HeroContainer className={children ? "lowerPage" : null}>
@@ -47,16 +44,19 @@ export const Hero = ({
 
         {children && <ChildrenCont>{children}</ChildrenCont>}
 
-        {fluid ? (
+        {image ? (
           <Image
-            fluid={fluidMobile ? sources : fluid}
+            image={image}
             alt=""
-            imgStyle={{ objectFit: "contain" }}
-            loading="eager"
+            width={3000}
+            height={300}
+            style={{ objectFit: "contain" }}
+            priority="eager"
+            sizes="(max-width: 1140px) 100vw, 1140px"
           />
         ) : null}
 
-        {sanityImage ? (
+        {/* {image ? (
           <SanityImage
             {...sanityImage}
             width={1024}
@@ -69,7 +69,7 @@ export const Hero = ({
             }}
             sizes="(max-width: 1140px) 100vw, 1140px"
           />
-        ) : null}
+        ) : null} */}
 
         {children ? null : <Overlay />}
       </HeroCont>
@@ -115,6 +115,7 @@ const ChildrenCont = styled.div`
 
 const HeroContainer = styled.div`
   position: relative;
+  maxheight: 300px;
   &.lowerPage {
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;

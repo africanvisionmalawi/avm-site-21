@@ -9,10 +9,11 @@ function urlFor(source) {
 
 export const Image = ({
   image,
-  width = 3500,
-  height = 2000,
+  width = 3000,
+  height = 300,
   sizes = "100vw",
   alt = "",
+  priority,
 }) => {
   const imageUrl =
     image &&
@@ -20,8 +21,10 @@ export const Image = ({
       ?.height(height)
       .width(width)
       .fit("crop")
+      .auto("format")
+      .quality(40)
       .url();
-  console.log("imageUrl ", imageUrl);
+  // console.log("imageUrl ", imageUrl);
   return (
     <>
       {imageUrl ? (
@@ -31,6 +34,7 @@ export const Image = ({
           // height={height}
           sizes={sizes}
           alt={alt}
+          loading={priority ? "eager" : "lazy"}
         />
       ) : null}
     </>

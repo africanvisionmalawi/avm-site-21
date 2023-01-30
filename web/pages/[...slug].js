@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { PortableText } from "@portabletext/react";
-import { Image } from "components/common/Image";
 import { Gallery } from "components/gallery";
+import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
 import { Videos } from "components/videos";
 import groq from "groq";
@@ -56,27 +56,29 @@ const Main = styled.main`
 `;
 
 const Page = ({ data }) => {
+  console.log("data here is ***** ", data);
   const content = (data?.content || [])
     .filter((c) => !c.disabled)
     .map((c, i) => {
       let el = null;
-      // console.log("type ", c._type);
+      console.log("type ", c._type);
       switch (c._type) {
         case "hero":
           el = (
             <Hero
-              fluid={c.image.asset.fluid}
+              image={c.image.asset}
               displayHeroMsg={false}
               heroHeading={c.title}
               heroHeadingType="h2"
             />
           );
+          console.log("c.image.asset **********", c.image.asset);
           break;
         case "videoGallery":
           el = <Videos key={c._key} {...c} />;
           break;
         case "pageLinks":
-          // console.log("pageLinks c ", c);
+          console.log("pageLinks c ", c);
           el = (
             <ContentSection>
               <PageLinks key={c._key} {...c} />
@@ -126,7 +128,14 @@ const Page = ({ data }) => {
       <h1>{data?.title}</h1>
       {data?.hero && (
         <div>
-          <Image image={data.image} />
+          <Hero
+            image={data.hero.image.asset}
+            mobileImage={data.hero.mobileImage.asset}
+            displayHeroMsg={false}
+            // heroHeading={c.title}
+            // heroHeadingType="h2"
+          />
+          {/* <Image image={data.hero.image.asset} /> */}
         </div>
       )}
       {data?.body ? <PortableText article value={data.body} /> : null}
