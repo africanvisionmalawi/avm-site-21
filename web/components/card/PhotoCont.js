@@ -54,6 +54,8 @@ export const PhotoCont = (props) => {
           image={photo}
           width={photoSizes[photoType].w}
           height={photoSizes[photoType].h}
+          maxWidth={photoSizes[photoType].w}
+          maxHeight={photoSizes[photoType].h}
           alt={photo.alt}
           style={{
             width: photoSizes[photoType].cssW

@@ -111,7 +111,9 @@ export const Gallery = (props) => {
                     image={photo}
                     height={160}
                     maxWidth={280}
+                    maxHeight={160}
                     alt={photo.alt}
+                    fit="crop"
                   />
                 </div>
               ))

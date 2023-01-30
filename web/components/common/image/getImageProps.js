@@ -34,6 +34,10 @@ export const getImageProps = ({
 
   // Custom <img> element's `sizes` attribute
   sizes,
+
+  maxHeight,
+  fit = "max",
+  layout,
 }) => {
   if (!image?.asset?._ref) {
     return {};
@@ -44,7 +48,7 @@ export const getImageProps = ({
   // For all image variations, we'll use an auto format and prevent scaling it over its max dimensions
   const builder = imageBuilder
     .image(image)
-    .fit("max")
+    .fit(fit)
     .auto("format");
 
   const imageDimensions = getImageDimensions(image);
@@ -87,21 +91,33 @@ export const getImageProps = ({
       return true;
     });
 
+  console.log("sizes ", sizes);
+
   return {
     // Use the original image as the `src` for the <img>
-    src: builder.width(maxWidth).url(),
+    src: builder
+      .width(maxWidth)
+      .height(maxHeight)
+      .url(),
 
     // Build a `{URL} {SIZE}w, ...` string for the srcset
-    srcset: retinaSizes
-      .map((size) => `${builder.width(size).url()} ${size}w`)
-      .join(", "),
+    srcset:
+      layout === "fixed"
+        ? null
+        : retinaSizes
+            .map((size) => `${builder.width(size).url()} ${size}w`)
+            .join(", "),
     sizes:
       maxWidth === "100vw"
         ? "100vw"
         : sizes || `(max-width: ${maxWidth}px) 100vw, ${maxWidth}px`,
 
     // Let's also tell the browser what's the size of the image so it can calculate aspect ratios
-    width: retinaSizes[0],
-    height: retinaSizes[0] / imageDimensions.aspectRatio,
+    width: layout === "fixed" ? maxWidth : retinaSizes[0],
+    // height: retinaSizes[0] / imageDimensions.aspectRatio,
+    height:
+      layout === "fixed"
+        ? maxHeight
+        : retinaSizes[0] / imageDimensions.aspectRatio,
   };
 };
