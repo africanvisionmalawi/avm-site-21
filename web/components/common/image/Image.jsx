@@ -22,6 +22,7 @@ export const Image = ({
   priority,
   imageSize,
   layout = "fixed",
+  style,
 }) => {
   // const imageUrl =
   //   image &&
@@ -43,7 +44,9 @@ export const Image = ({
     <>
       {image ? (
         <img
-          style={{ height: "auto" }} // could be a global style
+          style={{
+            ...style,
+          }} // could be a global style
           loading={priority && priority === "eager" ? "eager" : "lazy"}
           alt={image.alt || " "}
           {

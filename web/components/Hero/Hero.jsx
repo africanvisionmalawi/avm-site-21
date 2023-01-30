@@ -50,8 +50,14 @@ export const Hero = ({
             alt=""
             width="100vw"
             maxWidth="100vw"
-            height={300}
-            style={{ objectFit: "contain" }}
+            height={450}
+            maxHeight={450}
+            fit="crop"
+            style={{
+              objectFit: "cover",
+              height: "auto",
+              maxWidth: "100vw",
+            }}
             priority="eager"
             sizes="(max-width: 1140px) 100vw, 1140px"
           />
