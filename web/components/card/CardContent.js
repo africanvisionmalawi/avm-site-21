@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
+import { MoreButton } from "components/card/MoreButton";
 import { PortableText } from "components/portable-text/BasePortableText";
-import { MoreButton } from "./MoreButton";
 
 const Content = styled.div`
   padding: 1rem;
