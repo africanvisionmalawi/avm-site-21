@@ -1,13 +1,18 @@
 li {
   margin: 0;
 }
+html,
+body {
+  font-family: var(--font-roboto);
+}
 body {
   background: #fff;
+  margin: 0;
+  padding: 0;
   color: #595959;
   font-size: 18.38px;
-  /* font-family: Roboto, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
-    "sans-serif"; */
-  /* font-weight: 300; */
+  font-weight: 300;
+  line-height: 1.63;
 }
 /* font-family: "Raleway", "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
     sans-serif; */
@@ -47,11 +52,16 @@ h4,
 h5,
 h6 {
   color: #246a73;
-  /* font-family: Raleway, "Helvetica Neue", "Segoe UI", "Helvetica", "Arial",
-    "sans-serif"; */
-  /* font-weight: 300; */
+  font-family: var(--font-raleway);
+  font-weight: 300;
 }
 
 p + h2 {
   margin-top: 1.4em;
+}
+
+p,
+ul,
+span {
+  font-family: var(--font-roboto);
 }
