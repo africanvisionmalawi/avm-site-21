@@ -51,7 +51,8 @@ export const CardPostAlt = ({
   displayMoreButton,
 }) => {
   const baseFolder = type === "event" ? "events" : "news";
-  const url = `/${baseFolder}/${slug}/`;
+
+  const url = `/${baseFolder}/${slug.current}/`;
 
   const text =
     type === "sanity" || type === "event" ? (
