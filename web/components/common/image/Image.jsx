@@ -33,8 +33,8 @@ export const Image = ({
   //     .auto("format")
   //     .quality(40)
   //     .url();
-  console.log("fit ", fit);
-  console.log("maxWidth ", maxWidth ? maxWidth : "no max width");
+  // console.log("fit ", fit);
+  // console.log("maxWidth ", maxWidth ? maxWidth : "no max width");
   // const { src, srcset, sizes, width, height } = getImageProps({
   //   image,
   //   maxWidth,

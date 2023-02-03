@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import { PortableText } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
+import { CardPost } from "components/card/CardPost";
 import { Hero } from "components/Hero";
+import { PortableText } from "components/portable-text/BasePortableText";
+import { Player } from "components/videos/Player";
 import groq from "groq";
+import React from "react";
 import client from "/client";
-
-console.log("client ", client);
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
@@ -148,7 +149,7 @@ const PostsFooter = styled.div`
 `;
 
 const HomePage = ({ data }) => {
-  console.log("data here ", data);
+  // console.log("data here ", data);
   return (
     <article>
       <Hero
@@ -170,7 +171,7 @@ const HomePage = ({ data }) => {
                 <TextSection>
                   <PortableText
                     key={data.introText._key}
-                    blocks={data._rawIntroText}
+                    blocks={data.introText}
                   />
                 </TextSection>
               ) : null}
@@ -183,11 +184,26 @@ const HomePage = ({ data }) => {
         {data.latestNews ? (
           <LatestNews>
             <h2>Latest news</h2>
-            <PortableText
-              key={data.latestNews._key}
-              blocks={data._rawLatestNews}
-            />
+            <PortableText key={data.latestNews._key} blocks={data.latestNews} />
           </LatestNews>
+        ) : null}
+        {data.newsLinks ? (
+          <>
+            <section>
+              <PostList>
+                <CardCont>
+                  {data.newsLinks.newsLinks.map((post) => (
+                    <React.Fragment key={post._id}>
+                      <CardPost post={post} />
+                    </React.Fragment>
+                  ))}
+                </CardCont>
+              </PostList>
+            </section>
+            <PostsFooter>
+              <a href="/news/">View all news</a>
+            </PostsFooter>
+          </>
         ) : null}
       </Main>
     </article>
@@ -200,15 +216,22 @@ const query = groq`*[_type == "homePage"][0]{
   description,
   hero,
   introText,
+  promoVideo,
   latestNews,
-  newsLinks
+  newsLinks {    
+    _type,
+    newsLinks[] {
+      ...
+      url->
+    }
+  }
 }`;
 
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
 
   const data = await client.fetch(query, {});
-  console.log("data ", data);
+  // console.log("newslinks *********", data.newsLinks);
   // console.log("hero ", data.content);
 
   return {

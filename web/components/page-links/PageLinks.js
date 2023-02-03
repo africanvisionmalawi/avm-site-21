@@ -10,6 +10,7 @@ const Heading = styled.h2`
 `;
 
 const PageLinksWithPhotos = ({ pageLinks }) => {
+  console.log("otherLinks ", pageLinks);
   return (
     <>
       {pageLinks.length
