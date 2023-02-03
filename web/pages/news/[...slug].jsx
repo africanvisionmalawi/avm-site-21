@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { PortableText } from "@portabletext/react";
+import { Image } from "components/common/image/Image";
 import { Gallery } from "components/gallery";
 import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
@@ -126,11 +127,10 @@ const Page = ({ data }) => {
   return (
     <article>
       <h1>{data?.title}</h1>
-      {data?.hero && (
+      {data?.photo && (
         <div>
           <Hero
-            image={data.hero.image}
-            mobileImage={data.hero.mobileImage}
+            image={data.photo}
             displayHeroMsg={false}
             // heroHeading={c.title}
             // heroHeadingType="h2"
@@ -140,6 +140,14 @@ const Page = ({ data }) => {
       )}
       {data?.body ? <PortableText article value={data.body} /> : null}
       <Container>{content}</Container>
+      {data?.photo ? (
+        <Image
+          image={data.photo}
+          maxWidth={800}
+          height={540}
+          alt={data.photo.alt}
+        />
+      ) : null}
     </article>
   );
 };

@@ -9,7 +9,6 @@
     "@next/font": "^13.1.6",
     "@portabletext/react": "^2.0.0",
     "@reach/dialog": "^0.18.0",
-    "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^4.0.0",
     "@sanity/image-url": "^1.0.1",
     "dayjs": "^1.11.7",
