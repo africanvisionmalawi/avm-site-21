@@ -56,7 +56,7 @@ const Main = styled.main`
 `;
 
 const Page = ({ data }) => {
-  console.log("data here is ***** ", data);
+  console.log("content here is ***** ", data?.content);
   const content = (data?.content || [])
     .filter((c) => !c.disabled)
     .map((c, i) => {
@@ -156,6 +156,16 @@ const query = groq`*[_type == "page" && !$hasCategory && slug.current == $slug[0
   hero, 
   bannerMsg,
   content,
+  // content[] {        
+  //   ...
+  //   pageLinks {
+  //     ...
+  //     pageLinks[] {
+  //       ...
+  //       url->
+  //     }
+  //   },     
+  // },
   body
 }`;
 

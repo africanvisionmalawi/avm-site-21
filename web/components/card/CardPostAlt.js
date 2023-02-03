@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import { Link } from "gatsby";
 // import Img from "gatsby-image";
 // import styled from "@emotion/styled";
-import { EventDate } from "../../src/components/events/EventDate";
-import { PortableText } from "../portable-text/BasePortableText";
+import { EventDate } from "components/common/EventDate";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { MoreButton } from "./MoreButton";
 import { PhotoCont } from "./PhotoCont";
 
@@ -39,7 +38,7 @@ const SubHeading = styled.div`
 `;
 
 export const CardPostAlt = ({
-  type,
+  type = "sanity",
   title,
   excerpt,
   slug,
@@ -56,7 +55,7 @@ export const CardPostAlt = ({
 
   const text =
     type === "sanity" || type === "event" ? (
-      <PortableText value={excerpt} />
+      <PortableText blocks={excerpt} />
     ) : (
       <div>{excerpt}</div>
     );
@@ -66,18 +65,18 @@ export const CardPostAlt = ({
       <div>
         {slug ? (
           <>
-            <Link to={url} className="card-image">
+            <a href={url} className="card-image">
               {photo && typeof photo === "object" ? (
                 <PhotoCont photo={photo} photoType="news" />
               ) : null}
-            </Link>
+            </a>
           </>
         ) : photo && typeof photo === "object" ? (
           <PhotoCont photo={photo} photoType="news" />
         ) : null}
         <Content>
           {title ? (
-            <Heading>{slug ? <Link to={url}>{title}</Link> : title}</Heading>
+            <Heading>{slug ? <a href={url}>{title}</a> : title}</Heading>
           ) : null}
           {date ? (
             <EventDate
