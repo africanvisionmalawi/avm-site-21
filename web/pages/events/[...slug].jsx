@@ -152,28 +152,20 @@ const Page = ({ data }) => {
   );
 };
 
-const query = groq`*[_type == "news" && slug.current == $slug[0]][0]{ 
-  slug, 
-  id,
-  title,
-  description,
+const query = groq`*[_type == "event" && slug.current == $slug[0]][0]{ 
+ _id,
+title,
+  publishDate,
+  slug,
   photo,
   excerpt,
   body,
-  content,
-  tags,
-  pageHeading, 
-  publishDate,  
-  // content[] {        
-  //   ...
-  //   pageLinks {
-  //     ...
-  //     pageLinks[] {
-  //       ...
-  //       url->
-  //     }
-  //   },     
-  // },  
+  date,
+  endDate,
+  allDay,
+  hideTime,
+  featured_image,
+  tag,   
 }`;
 
 export async function getStaticPaths() {
@@ -190,13 +182,11 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
-  //   console.log("slug length ", slug.length, slug);
+  console.log("slug length ", slug.length);
   const hasCategory = !!slug.length > 1;
-  const slugLength = slug.length;
-  const currentSlug = hasCategory ? slug[slug.length - 1] : slug;
-  console.log("currentSlug ", currentSlug);
+  console.log("hasCategory ", hasCategory);
   const data = await client.fetch(query, { slug, hasCategory });
-  //   console.log("slug ", slug);
+  console.log("slug ", slug);
   // console.log("hero ", data.content);
   // console.log("slug ", slug, data);
   return {

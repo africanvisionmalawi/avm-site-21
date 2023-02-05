@@ -91,7 +91,7 @@ export const getImageProps = ({
       return true;
     });
 
-  console.log("sizes ", sizes);
+  // console.log("sizes ", sizes);
 
   return {
     // Use the original image as the `src` for the <img>

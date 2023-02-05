@@ -31,8 +31,8 @@ export const CardSingle = ({
   // console.log("linkText ", linkText);
   // const hideOtherPhotos = false;
   const photoType = featured ? "featured" : "default";
-  console.log("url ****", url);
-  console.log("exturl ****", extUrl);
+  // console.log("url ****", url);
+  // console.log("exturl ****", extUrl);
   // if (props.smallImage) {
   //   // console.log("smallImage", props.smallImage);
   //   cardImage = <Img fixed={props.smallImage.childImageSharp.fixed} alt="" />;

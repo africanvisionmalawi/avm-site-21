@@ -146,7 +146,7 @@ const PostsFooter = styled.div`
   }
 `;
 
-const NewsHomePage = ({ data }) => {
+const EventsHomePage = ({ data }) => {
   console.log("data here ", data);
   return (
     <article>
@@ -174,7 +174,11 @@ const NewsHomePage = ({ data }) => {
                   excerpt={post.excerpt}
                   slug={post.slug}
                   publishDate={post.publishDate}
-                  photo={post.photo}
+                  date={post.date}
+                  endDate={post.endDate}
+                  hideTime={post.endDate}
+                  allDay={post.allDay}
+                  photo={post.featured_image}
                 />
               </React.Fragment>
             );
@@ -185,13 +189,19 @@ const NewsHomePage = ({ data }) => {
   );
 };
 
-const query = groq`*[_type == "news"] | order(publishDate desc){     
+const query = groq`*[_type == "event"] | order(publishDate desc){     
   _id,
     title,
   publishDate,
   slug,
   photo,
   excerpt,
+  body,
+  date,
+  endDate,
+  allDay,
+  hideTime,
+  featured_image,
   tag,  
 }`;
 
@@ -210,4 +220,4 @@ export async function getStaticProps({ params, preview = false }) {
   };
 }
 
-export default NewsHomePage;
+export default EventsHomePage;
