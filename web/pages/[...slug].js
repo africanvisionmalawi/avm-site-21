@@ -56,12 +56,13 @@ const Main = styled.main`
 `;
 
 const Page = ({ data }) => {
-  // console.log("content here is ***** ", data?.content);
+  console.log("content here is ***************** ", data?.content);
+  // console.log("data here is ***************** ", data);
   const content = (data?.content || [])
     .filter((c) => !c.disabled)
     .map((c, i) => {
       let el = null;
-      console.log("type ", c._type);
+      // console.log("type ", c._type);
       switch (c._type) {
         case "hero":
           el = (
@@ -72,7 +73,7 @@ const Page = ({ data }) => {
               heroHeadingType="h2"
             />
           );
-          console.log("c.image.asset **********", c.image.asset);
+          // console.log("c.image.asset **********", c.image.asset);
           break;
         case "videoGallery":
           el = <Videos key={c._key} {...c} />;
@@ -154,18 +155,14 @@ const query = groq`*[_type == "page" && slug.current == $currentSlug][0]{
   "categoryTitle": category->title, 
   "categorySlug": category->slug.current,
   hero, 
-  bannerMsg,
-  content,
-  // content[] {        
-  //   ...
-  //   pageLinks {
-  //     ...
-  //     pageLinks[] {
-  //       ...
-  //       url->
-  //     }
-  //   },     
-  // },
+  bannerMsg,  
+  content[] {  
+    ...,          
+    pageLinks[] {
+      ...,     
+      url->
+    },         
+  },  
   body
 }`;
 

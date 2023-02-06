@@ -33,6 +33,7 @@ const ImageComponent = ({ value }) => {
 
 const components = {
   types: {
+    mainImage: ImageComponent,
     image: ImageComponent,
     code: (props) => (
       <pre data-language={props.node.language}>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { getFeaturedLinks, getPath } from "lib/helpers";
+import { getFeaturedLinks } from "lib/helpers";
 import React from "react";
 // import { CardDouble } from "../card/CardDouble";
 import { CardSingle } from "components/card/CardSingle";
@@ -15,19 +15,20 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
     <>
       {pageLinks.length
         ? pageLinks.map((pageLink) => {
+            console.log("pageLink.url ", pageLink.url);
             return (
               <React.Fragment key={pageLink.id}>
                 {!pageLink.hideLink ? (
                   <>
                     <CardSingle
-                      url={
-                        pageLink.url
-                          ? getPath(
-                              pageLink.url.category?.slug.current,
-                              pageLink.url.slug?.current
-                            )
-                          : null
-                      }
+                      // url={
+                      //   pageLink.url
+                      //     ? getPath(
+                      //         pageLink.url.category?.slug.current,
+                      //         pageLink.url.slug?.current
+                      //       )
+                      //     : null
+                      // }
                       extUrl={pageLink.extUrl ? pageLink.extUrl : null}
                       title={pageLink.linkTitle ? pageLink.linkTitle : null}
                       linkText={pageLink.linkText ? pageLink.linkText : null}
@@ -56,7 +57,7 @@ export const PageLinks = ({
 }) => {
   // console.log("pageLink photo ", pageLinks[0].photo.asset);
   // console.log("pageLinks ", pageLinks);
-  const featuredLinks = getFeaturedLinks(pageLinks, true);
+  const featuredLinks = pageLinks ? getFeaturedLinks(pageLinks, true) : null;
   const otherLinks = getFeaturedLinks(pageLinks, false);
   // console.log("featuredLinks ", featuredLinks);
   // console.log("otherLinks", otherLinks);

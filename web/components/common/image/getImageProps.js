@@ -101,7 +101,7 @@ export const getImageProps = ({
       .url(),
 
     // Build a `{URL} {SIZE}w, ...` string for the srcset
-    srcset:
+    srcSet:
       layout === "fixed"
         ? null
         : retinaSizes

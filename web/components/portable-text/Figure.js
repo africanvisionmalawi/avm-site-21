@@ -1,4 +1,4 @@
-// import {Image} from 'components/common/Image'
+import { Image } from "components/common/image/Image";
 
 export default ({ node }) => {
   if (!node || !node.asset || !node.asset._id) {
@@ -7,7 +7,7 @@ export default ({ node }) => {
 
   return (
     <figure>
-      {/* <Image image={image} alt={node.alt} /> */}
+      <Image image={image} alt={node.alt} />
       <figcaption>{node.caption}</figcaption>
     </figure>
   );
