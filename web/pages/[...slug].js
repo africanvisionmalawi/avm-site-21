@@ -160,7 +160,10 @@ const query = groq`*[_type == "page" && slug.current == $currentSlug][0]{
     ...,          
     pageLinks[] {
       ...,     
-      url->
+      url-> {
+        category->,
+        slug,
+      },
     },         
   },  
   body

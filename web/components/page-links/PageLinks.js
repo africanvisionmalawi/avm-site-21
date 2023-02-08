@@ -15,7 +15,7 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
     <>
       {pageLinks.length
         ? pageLinks.map((pageLink) => {
-            console.log("pageLink.url ", pageLink.url);
+            console.log("pageLink.url ", pageLink.url.slug.current);
             return (
               <React.Fragment key={pageLink.id}>
                 {!pageLink.hideLink ? (
