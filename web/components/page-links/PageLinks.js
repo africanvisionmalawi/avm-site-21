@@ -10,25 +10,26 @@ const Heading = styled.h2`
 `;
 
 const PageLinksWithPhotos = ({ pageLinks }) => {
-  console.log("otherLinks ", pageLinks);
   return (
     <>
       {pageLinks.length
         ? pageLinks.map((pageLink) => {
-            console.log("pageLink.url ", pageLink.url.slug.current);
+            const categoryUrl = pageLink.url.category.slug.current
+              ? `${pageLink.url.category.slug.current}/`
+              : "";
+            const pageUrl = pageLink.url.slug.current
+              ? `${pageLink.url.slug.current}/`
+              : "";
+            const url =
+              categoryUrl === pageUrl
+                ? `/${pageUrl}`
+                : `/${categoryUrl}${pageUrl}`;
             return (
               <React.Fragment key={pageLink.id}>
                 {!pageLink.hideLink ? (
                   <>
                     <CardSingle
-                      // url={
-                      //   pageLink.url
-                      //     ? getPath(
-                      //         pageLink.url.category?.slug.current,
-                      //         pageLink.url.slug?.current
-                      //       )
-                      //     : null
-                      // }
+                      url={url}
                       extUrl={pageLink.extUrl ? pageLink.extUrl : null}
                       title={pageLink.linkTitle ? pageLink.linkTitle : null}
                       linkText={pageLink.linkText ? pageLink.linkText : null}
