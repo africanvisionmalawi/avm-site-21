@@ -150,7 +150,35 @@ const PostsFooter = styled.div`
 `;
 
 const HomePage = ({ data }) => {
-  // console.log("data here ", data);
+  console.log("data here ", data);
+
+  const allEvents = data.homeEventsAll || [];
+
+  let futureEvents = [];
+  if (allEvents.length) {
+    allEvents.forEach(({ node: event }) => {
+      if (event.endDate) {
+        if (
+          dayjs(event.endDate, "MMMM DD, YYYY").isAfter(
+            dayjs().format("MMMM DD, YYYY")
+          )
+        ) {
+          futureEvents.push(event);
+        }
+      } else {
+        if (
+          dayjs(event.date, "MMMM DD, YYYY").isAfter(
+            dayjs().format("MMMM DD, YYYY")
+          )
+        ) {
+          futureEvents.push(event);
+        }
+      }
+    });
+  }
+
+  const latestEvents = [...futureEvents].reverse();
+
   return (
     <article>
       <Hero
@@ -188,6 +216,7 @@ const HomePage = ({ data }) => {
             <PortableText key={data.latestNews._key} blocks={data.latestNews} />
           </LatestNews>
         ) : null}
+
         {data.newsLinks ? (
           <>
             <section>
@@ -206,17 +235,47 @@ const HomePage = ({ data }) => {
             </PostsFooter>
           </>
         ) : null}
+
+        {latestEvents ? (
+          <>
+            <section>
+              <PostList>
+                <CardCont>
+                  {latestEvents.map((post) => (
+                    <React.Fragment key={post.id}>
+                      <CardPostAlt
+                        type="event"
+                        title={post.title}
+                        excerpt={post.excerpt}
+                        slug={post.slug.current}
+                        date={post.date}
+                        endDate={post.endDate}
+                        hideTime={post.hideTime}
+                        allDay={post.allDay}
+                        photo={post.featured_image}
+                      />
+                    </React.Fragment>
+                  ))}
+                </CardCont>
+              </PostList>
+            </section>
+            <PostsFooter>
+              <a to="/events/">View all events</a>
+            </PostsFooter>
+          </>
+        ) : null}
       </Main>
     </article>
   );
 };
 
-const query = groq`*[_type == "homePage"][0]{     
+const query = groq`{
+  'homePage':*[_type == "homePage"][0]  
+{     
   title,
   subTitle,
   description,
-  hero,
-  homeEvents,
+  hero,  
   introText,
   promoVideo,
   latestNews,
@@ -226,8 +285,17 @@ const query = groq`*[_type == "homePage"][0]{
       ...
       url->
     }
-  }
-}`;
+  },  
+},
+'event':*[_type == "event"]
+{
+  title,
+  excerpt,
+  slug,
+  featured_image,
+}
+}
+`;
 
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
