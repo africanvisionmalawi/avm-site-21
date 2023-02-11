@@ -32,7 +32,7 @@ export const CardSingle = ({
   // const hideOtherPhotos = false;
   const photoType = featured ? "featured" : "default";
   // console.log("url ****", url);
-  // console.log("exturl ****", extUrl);
+
   // if (props.smallImage) {
   //   // console.log("smallImage", props.smallImage);
   //   cardImage = <Img fixed={props.smallImage.childImageSharp.fixed} alt="" />;
@@ -47,11 +47,11 @@ export const CardSingle = ({
       {url || extUrl ? (
         <>
           {url ? (
-            <a href={url} className="card-image">
+            <a href={extUrl} className="card-image">
               <PhotoCont photo={photo} photoType={photoType} />
             </a>
           ) : (
-            <a href={extUrl} className="card-image">
+            <a href={url} className="card-image">
               <PhotoCont photo={photo} photoType={photoType} />
             </a>
           )}
@@ -66,7 +66,7 @@ export const CardSingle = ({
         // location={props.location}
         linkText={linkText ? linkText : null}
         // showPageLink={props.showPageLink}
-        url={url ? url : null}
+        url={extUrl ? extUrl : url ? url : null}
       />
     </div>
   );

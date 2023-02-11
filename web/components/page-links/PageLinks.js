@@ -14,10 +14,10 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
     <>
       {pageLinks.length
         ? pageLinks.map((pageLink) => {
-            const categoryUrl = pageLink.url.category.slug.current
+            const categoryUrl = pageLink.url?.category?.slug?.current
               ? `${pageLink.url.category.slug.current}/`
               : "";
-            const pageUrl = pageLink.url.slug.current
+            const pageUrl = pageLink?.url?.slug?.current
               ? `${pageLink.url.slug.current}/`
               : "";
             const url =
