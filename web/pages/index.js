@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import imageUrlBuilder from "@sanity/image-url";
 import { CardPost } from "components/card/CardPost";
+import { CardPostAlt } from "components/card/CardPostAlt";
 import { Hero } from "components/Hero";
 import { PortableText } from "components/portable-text/BasePortableText";
+import dayjs from "dayjs";
 // import { PortableText } from "lib/sanity";
 import { Player } from "components/videos/Player";
 import groq from "groq";
@@ -150,13 +152,14 @@ const PostsFooter = styled.div`
 `;
 
 const HomePage = ({ data }) => {
-  console.log("data here ", data);
-
-  const allEvents = data.homeEventsAll || [];
-
+  // console.log("data here ", data);
+  const { homePage, events } = data;
+  console.log("events ", events);
+  const allEvents = events || [];
+  console.log("allEvents ", allEvents);
   let futureEvents = [];
   if (allEvents.length) {
-    allEvents.forEach(({ node: event }) => {
+    allEvents.forEach((event) => {
       if (event.endDate) {
         if (
           dayjs(event.endDate, "MMMM DD, YYYY").isAfter(
@@ -178,51 +181,56 @@ const HomePage = ({ data }) => {
   }
 
   const latestEvents = [...futureEvents].reverse();
-
+  console.log("latestEvents ", latestEvents);
   return (
     <article>
       <Hero
-        image={data.hero.image}
-        mobileImage={data.hero.mobileImage}
+        image={homePage.hero.image}
+        mobileImage={homePage.hero.mobileImage}
         displayHeroMsg={false}
         // heroHeading={c.title}
         // heroHeadingType="h2"
       />
       <TopSection>
-        <Heading>{data.title}</Heading>
-        {data.subTitle ? data.subTitle : null}
+        <Heading>{homePage.title}</Heading>
+        {homePage.subTitle ? homePage.subTitle : null}
       </TopSection>
       <Main>
         <TopVideoSection>
           <TopVideoSectionInner>
             <VideoSection>
-              {data.introText ? (
+              {homePage.introText ? (
                 <TextSection>
                   <PortableText
-                    key={data.introText._key}
-                    blocks={data.introText}
+                    key={homePage.introText._key}
+                    blocks={homePage.introText}
                   />
                 </TextSection>
               ) : null}
             </VideoSection>
             <VideoSection>
-              {data.promoVideo ? <Player url={data.promoVideo.url} /> : null}
+              {homePage.promoVideo ? (
+                <Player url={homePage.promoVideo.url} />
+              ) : null}
             </VideoSection>
           </TopVideoSectionInner>
         </TopVideoSection>
-        {data.latestNews ? (
+        {homePage.latestNews ? (
           <LatestNews>
             <h2>Latest news</h2>
-            <PortableText key={data.latestNews._key} blocks={data.latestNews} />
+            <PortableText
+              key={homePage.latestNews._key}
+              blocks={homePage.latestNews}
+            />
           </LatestNews>
         ) : null}
 
-        {data.newsLinks ? (
+        {homePage.newsLinks ? (
           <>
             <section>
               <PostList>
                 <CardCont>
-                  {data.newsLinks.newsLinks.map((post) => (
+                  {homePage.newsLinks.newsLinks.map((post) => (
                     <React.Fragment key={post._id}>
                       <CardPost post={post} />
                     </React.Fragment>
@@ -287,12 +295,14 @@ const query = groq`{
     }
   },  
 },
-'event':*[_type == "event"]
+'events':*[_type == "event"]
 {
   title,
   excerpt,
   slug,
   featured_image,
+  date,
+  endDate,
 }
 }
 `;
@@ -301,7 +311,7 @@ export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
 
   const data = await client.fetch(query, {});
-  console.log("events **********", data);
+  // console.log("events **********", data);
 
   return {
     props: {
