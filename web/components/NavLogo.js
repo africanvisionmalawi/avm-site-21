@@ -26,7 +26,7 @@ const LogoImg = styled.img`
 `;
 
 const NavLogo = styled.figure`
-  margin-bottom: 0;
+  margin: 0;
 `;
 
 const navLogo = (Û) => (

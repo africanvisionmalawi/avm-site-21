@@ -169,7 +169,7 @@ const EventsHomePage = ({ data }) => {
             return (
               <React.Fragment key={post.id}>
                 <CardPostAlt
-                  type={post.type}
+                  type="event"
                   title={post.title}
                   excerpt={post.excerpt}
                   slug={post.slug}

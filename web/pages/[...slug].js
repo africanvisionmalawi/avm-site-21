@@ -3,6 +3,7 @@ import { PortableText } from "@portabletext/react";
 import { Gallery } from "components/gallery";
 import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
+import { TeamList } from "components/team";
 import { Videos } from "components/videos";
 import groq from "groq";
 import client from "/client";

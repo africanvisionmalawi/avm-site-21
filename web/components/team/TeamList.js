@@ -1,7 +1,7 @@
 // import PreviewCompatibleImage from "../PreviewCompatibleImage";
 // import Img from "gatsby-image";
 import styled from "@emotion/styled";
-import SanityImage from "gatsby-plugin-sanity-image";
+import { Image } from "components/common/image/Image";
 
 export const TeamList = (props) => {
   // console.log("props", props);
@@ -13,8 +13,8 @@ export const TeamList = (props) => {
           <li key={t.name}>
             {t.photo && typeof t.photo === "object" && (
               <TeamPhoto>
-                <SanityImage
-                  {...t.photo}
+                <Image
+                  image={t.photo}
                   width={150}
                   height={150}
                   alt={t.photo.alt}

@@ -154,9 +154,9 @@ const PostsFooter = styled.div`
 const HomePage = ({ data }) => {
   // console.log("data here ", data);
   const { homePage, events } = data;
-  console.log("events ", events);
+  // console.log("events ", events);
   const allEvents = events || [];
-  console.log("allEvents ", allEvents);
+  // console.log("allEvents ", allEvents);
   let futureEvents = [];
   if (allEvents.length) {
     allEvents.forEach((event) => {
@@ -181,7 +181,7 @@ const HomePage = ({ data }) => {
   }
 
   const latestEvents = [...futureEvents].reverse();
-  console.log("latestEvents ", latestEvents);
+  // console.log("latestEvents ", latestEvents);
   return (
     <article>
       <Hero
@@ -255,7 +255,7 @@ const HomePage = ({ data }) => {
                         type="event"
                         title={post.title}
                         excerpt={post.excerpt}
-                        slug={post.slug.current}
+                        slug={post.slug}
                         date={post.date}
                         endDate={post.endDate}
                         hideTime={post.hideTime}
@@ -268,7 +268,7 @@ const HomePage = ({ data }) => {
               </PostList>
             </section>
             <PostsFooter>
-              <a to="/events/">View all events</a>
+              <a href="/events/">View all events</a>
             </PostsFooter>
           </>
         ) : null}
@@ -303,6 +303,8 @@ const query = groq`{
   featured_image,
   date,
   endDate,
+  hideTime,
+  allDay,
 }
 }
 `;
