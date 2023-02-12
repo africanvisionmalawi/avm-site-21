@@ -1,4 +1,4 @@
-import Image from "components/common/image/Image";
+import { Image } from "components/common/image/Image";
 
 export const Photo = (props) => {
   console.log("props inside photo ", props);

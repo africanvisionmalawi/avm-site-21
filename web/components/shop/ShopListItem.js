@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
+import { Photo } from "components/shop/Photo";
 import { priceFormatted } from "lib/helpers";
-import { Photo } from "./Photo";
 
 const PhotoCont = styled.div`
   max-height: 280px;
