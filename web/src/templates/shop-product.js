@@ -15,10 +15,10 @@ import { SectionTop } from "../../components/common/SectionTop";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import { BottomWave, TopWave } from "../components/wave";
 import { PortableText } from "../../components/portable-text/BasePortableText";
+import { Photo } from "../../components/shop/Photo";
+import { ShopListItem } from "../../components/shop/ShopListItem";
+import { TagsList } from "../../components/shop/TagsList";
 import Layout from "../components/Layout";
-import { Photo } from "../components/shop/Photo";
-import { ShopListItem } from "../components/shop/ShopListItem";
-import { TagsList } from "../components/shop/TagsList";
 import useSiteMetadata from "../hooks/use-site-metadata";
 import { priceFormatted } from "../utils/helpers";
 

@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Link } from "gatsby";
 
 const TagsNavCont = styled.div`
   display: flex;
@@ -46,6 +45,7 @@ const Inner = styled.div`
 // `;
 
 export const NavTags = (props) => {
+  // console.log("props **** ", props);
   return (
     <TagsNavCont>
       <Inner>
@@ -55,9 +55,7 @@ export const NavTags = (props) => {
             <Tag
               className={props.active === tag.value.current ? "active" : null}
             >
-              <Link to={`${props.tagsBase}${tag.value.current}`}>
-                {tag.title}
-              </Link>
+              <a href={`${props.tagsBase}${tag.value.current}`}>{tag.title}</a>
             </Tag>
           );
         })}

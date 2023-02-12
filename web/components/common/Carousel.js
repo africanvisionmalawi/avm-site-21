@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useRef } from "react";
 import Slider from "react-slick";
-import { Photo } from "../../src/components/shop/Photo";
+import { Photo } from "../shop/Photo";
 
 const SliderStyles = styled(Slider)`
   box-sizing: border-box;

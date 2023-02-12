@@ -3,10 +3,10 @@ import { graphql } from "gatsby";
 import React from "react";
 import { NavTags } from "../../components/common/NavTags";
 import { SectionTop } from "../../components/common/SectionTop";
+import { ShopListItem } from "../../components/shop/ShopListItem";
 import { tagsBase } from "../../constants/shop";
 import Errors from "../components/errors";
 import Layout from "../components/Layout";
-import { ShopListItem } from "../components/shop/ShopListItem";
 
 export const query = graphql`
   query ShopTagsTemplateQuery($value: String!) {

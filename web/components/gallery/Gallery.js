@@ -45,7 +45,7 @@ export const Gallery = (props) => {
 
   const [selectedImageState, setSelectedImageState] = useState(0);
 
-  console.log("photos ", photos);
+  // console.log("photos ", photos);
   // const showLightboxHandler = (event) => {
   //   // console.log("show lightbox");
   //   setShowLightboxState(true);

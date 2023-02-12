@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { Link } from "gatsby";
-import { priceFormatted } from "../../utils/helpers";
+import { priceFormatted } from "lib/helpers";
 import { Photo } from "./Photo";
 
 const PhotoCont = styled.div`
@@ -22,6 +21,7 @@ const Container = styled.div`
 `;
 
 export const ShopListItem = (props) => {
+  // console.log("props ***** ", props);
   const productPrice = props.salePrice
     ? props.salePrice
     : props.price
@@ -29,7 +29,7 @@ export const ShopListItem = (props) => {
     : null;
   return (
     <li key={props.id}>
-      <Link to={`/shop/${props.slug}/`}>
+      <a href={`/shop/${props.slug}/`}>
         {props.photo && (
           <PhotoCont>
             <Photo photo={props.photo} photoType={props.photoType} />
@@ -48,7 +48,7 @@ export const ShopListItem = (props) => {
             )}
           </span>
         </Container>
-      </Link>
+      </a>
     </li>
   );
 };

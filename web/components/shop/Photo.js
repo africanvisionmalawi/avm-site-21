@@ -1,9 +1,8 @@
-import SanityImage from "gatsby-plugin-sanity-image";
-import React from "react";
+import Image from "components/common/image/Image";
 
 export const Photo = (props) => {
+  console.log("props inside photo ", props);
   const { photo, photoType } = props;
-
   const photoSizes = {
     default: {
       w: 280,
@@ -18,8 +17,8 @@ export const Photo = (props) => {
   return (
     <>
       {photo ? (
-        <SanityImage
-          {...photo}
+        <Image
+          image={photo}
           width={photoSizes[photoType].w}
           height={photoSizes[photoType].h}
           alt={photo.alt}
