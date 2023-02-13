@@ -90,9 +90,9 @@ const ShopIndexList = styled.div`
 `;
 
 export const Shop = ({ data }) => {
-  const { page, site, relatedProducts } = data;
-  console.log("data ", data);
-  // console.log("page ", page);
+  const { page, site, allProducts } = data;
+  // console.log("data ", data);
+  console.log("page ", page);
   // console.log("site ", site);
   // console.log("relatedProducts ", relatedProducts);
 
@@ -108,6 +108,8 @@ export const Shop = ({ data }) => {
     ? page.price
     : null;
 
+  const relatedProducts = allProducts.find((prod) => prod.tags === page.tags);
+  console.log("relatedProducts ", relatedProducts);
   return (
     <article>
       <ShopSection>
@@ -227,10 +229,7 @@ const query = groq`{
   inStock,
   price,
   salePrice,
-  tags {
-    label,
-    value,
-  },
+  tags, 
   photoGallery, 
 },
 
@@ -239,7 +238,7 @@ const query = groq`{
   shopTags,  
 },
 
-"relatedProducts":*[_type == "shop" && hide != true && slug.current != $currentSlug]
+"allProducts":*[_type == "shop" && hide != true && slug.current != $currentSlug]
 {     
   _id,
     title,
@@ -249,10 +248,7 @@ const query = groq`{
   inStock,
   price,
   salePrice,
-  tags {
-    label,
-    value,
-  },
+  tags,
   photoGallery, 
 },
 
