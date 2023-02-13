@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from "gatsby";
 import { Hero } from "../Hero";
 import { CtaButton } from "./CtaButton";
 

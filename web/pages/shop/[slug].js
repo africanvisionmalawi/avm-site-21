@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { Carousel } from "components/common/Carousel";
+import { SectionInner } from "components/common/SectionInner";
 import { SectionTop } from "components/common/SectionTop";
+import { ShopListItem } from "components/shop/ShopListItem";
 import groq from "groq";
 import React from "react";
 import client from "/client";
@@ -93,6 +95,19 @@ export const Shop = ({ data }) => {
   // console.log("page ", page);
   // console.log("site ", site);
   // console.log("relatedProducts ", relatedProducts);
+
+  const displayButtonCheck = (stock, price) => {
+    if (stock > 0 && price > 0) {
+      return true;
+    }
+  };
+
+  const productPrice = page.salePrice
+    ? page.salePrice
+    : page.price
+    ? page.price
+    : null;
+
   return (
     <article>
       <ShopSection>
@@ -173,16 +188,16 @@ export const Shop = ({ data }) => {
               <SubHeading>Related products</SubHeading>
               <ShopIndexList>
                 {relatedProducts.map((item, i) => (
-                  <React.Fragment key={item.node.id}>
+                  <React.Fragment key={item.id}>
                     {i < 3 ? (
                       <ShopListItem
-                        id={item.node.id}
-                        slug={item.node.slug.current}
-                        photo={item.node.photoGallery.photos[0]}
+                        id={item.id}
+                        slug={item.slug.current}
+                        photo={item.photoGallery.photos[0]}
                         photoType="default"
-                        title={item.node.title}
-                        price={item.node.price}
-                        salePrice={item.node.salePrice}
+                        title={item.title}
+                        price={item.price}
+                        salePrice={item.salePrice}
                       />
                     ) : null}
                   </React.Fragment>
@@ -192,11 +207,11 @@ export const Shop = ({ data }) => {
           ) : null}
         </article>
       </ShopSection>
-      <Donate
+      {/* <Donate
         link="https://www.charitycheckout.co.uk/1113786/"
         text="Donate"
         displayImage
-      />
+      /> */}
     </article>
   );
 };
