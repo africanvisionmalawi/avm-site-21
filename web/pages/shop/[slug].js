@@ -3,6 +3,7 @@ import { BuyButton } from "components/common/BuyButton";
 import { Carousel } from "components/common/Carousel";
 import { SectionInner } from "components/common/SectionInner";
 import { SectionTop } from "components/common/SectionTop";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { Photo } from "components/shop/Photo";
 import { ShopListItem } from "components/shop/ShopListItem";
 import { TagsList } from "components/shop/TagsList";
@@ -189,9 +190,7 @@ export const Shop = ({ data }) => {
                   ) : null}
                 </SectionInner>
                 <SectionInner>
-                  {page._rawBody ? (
-                    <PortableText value={page._rawBody} />
-                  ) : null}
+                  {page.body ? <PortableText blocks={page.body} /> : null}
                 </SectionInner>
               </div>
             </ColumnAside>
