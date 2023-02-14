@@ -1,12 +1,17 @@
 import styled from "@emotion/styled";
+import { BuyButton } from "components/common/BuyButton";
 import { Carousel } from "components/common/Carousel";
 import { SectionInner } from "components/common/SectionInner";
 import { SectionTop } from "components/common/SectionTop";
+import { Photo } from "components/shop/Photo";
 import { ShopListItem } from "components/shop/ShopListItem";
 import { TagsList } from "components/shop/TagsList";
 import groq from "groq";
+import { priceFormatted } from "lib/helpers";
 import React from "react";
 import client from "/client";
+
+const siteUrl = "https://www.africanvision.org.uk";
 
 const CarouselCont = styled.div`
   margin-left: auto;
@@ -108,6 +113,7 @@ export const Shop = ({ data }) => {
     : page.price
     ? page.price
     : null;
+  console.log("productPrice ", page);
   // console.log("allProducts ", allProducts);
   // console.log("page.tags ", page.tags);
   const relatedProducts = allProducts.filter(
@@ -228,6 +234,8 @@ const query = groq`{
 {     
   _id,
     title,
+    description,
+    body,
   publishDate,
   slug,
   hide,
