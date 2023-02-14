@@ -3,6 +3,7 @@ import { Carousel } from "components/common/Carousel";
 import { SectionInner } from "components/common/SectionInner";
 import { SectionTop } from "components/common/SectionTop";
 import { ShopListItem } from "components/shop/ShopListItem";
+import { TagsList } from "components/shop/TagsList";
 import groq from "groq";
 import React from "react";
 import client from "/client";
@@ -92,7 +93,7 @@ const ShopIndexList = styled.div`
 export const Shop = ({ data }) => {
   const { page, site, allProducts } = data;
   // console.log("data ", data);
-  console.log("page ", page);
+  // console.log("page ", page);
   // console.log("site ", site);
   // console.log("relatedProducts ", relatedProducts);
 
@@ -107,9 +108,13 @@ export const Shop = ({ data }) => {
     : page.price
     ? page.price
     : null;
+  // console.log("allProducts ", allProducts);
+  // console.log("page.tags ", page.tags);
+  const relatedProducts = allProducts.filter(
+    (prod) => prod.tags[0].value === page.tags[0].value
+  );
 
-  const relatedProducts = allProducts.find((prod) => prod.tags === page.tags);
-  console.log("relatedProducts ", relatedProducts);
+  // console.log("relatedProducts ", relatedProducts);
   return (
     <article>
       <ShopSection>

@@ -1,7 +1,7 @@
 import { Image } from "components/common/image/Image";
 
 export const Photo = (props) => {
-  console.log("props inside photo ", props);
+  // console.log("props inside photo ", props);
   const { photo, photoType } = props;
   const photoSizes = {
     default: {
