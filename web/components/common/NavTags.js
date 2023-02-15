@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 const TagsNavCont = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
+  max-width: 640px;
   width: 100%;
 `;
 
@@ -12,11 +13,11 @@ const Tag = styled.span`
   margin: 4px;
   & a {
     border: 1px solid #f99d1c;
-    border-radius: 4px;
+    border-radius: 20px;
     color: #f99d1c;
     cursor: pointer;
     display: block;
-    padding: 3px 8px;
+    padding: 3px 12px;
     text-align: center;
   }
   &.active a {
@@ -30,6 +31,7 @@ const Tag = styled.span`
 
 const Inner = styled.div`
   display: flex;
+  justify-content: center;
   overflow-x: auto;
   white-space: nowrap;
   @media (min-width: 579px) {
