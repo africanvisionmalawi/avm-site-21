@@ -180,7 +180,7 @@ const ShopHomePage = ({ data }) => {
       <Container>
         <ShopIndexList>
           {data.products.map((item, i) => {
-            console.log("item hoto ", item?.photoGallery?.photos?.length);
+            // console.log("item hoto ", item?.photoGallery?.photos?.length);
             return (
               <React.Fragment key={item.id}>
                 <ShopListItem
