@@ -20,6 +20,7 @@ const Content = styled.div`
 `;
 
 const Heading = styled.h3`
+  margin-top: 0;
   margin-bottom: 0;
   a:link,
   a:visited {
