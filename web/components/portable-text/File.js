@@ -24,19 +24,21 @@ const Text = styled.p`
   margin-bottom: 0;
 `;
 
-export default ({ node }) => {
-  if (!node || !node.asset || !node.asset._id) {
+export default (props) => {
+  console.log("props **** ", props);
+  const { asset } = props.value;
+  console.log("asset ", asset);
+  if (!asset) {
     return null;
   }
-
   return (
-    <Container href={node.asset.url}>
+    <Container href={asset.url}>
       <IconContext.Provider value={{ size: "3rem" }}>
         <ImFilePdf />
       </IconContext.Provider>
       <div>
-        {node.description ? <Heading>{node.description}</Heading> : null}
-        <Text>{node.asset.originalFilename}</Text>
+        {/* {props.description ? <Heading>{props.description}</Heading> : null} */}
+        <Text>{asset.originalFilename}</Text>
       </div>
     </Container>
   );

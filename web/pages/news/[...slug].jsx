@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { PortableText } from "@portabletext/react";
 import { Image } from "components/common/image/Image";
 import { Gallery } from "components/gallery";
 import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { Videos } from "components/videos";
 import groq from "groq";
 import client from "/client";
@@ -138,7 +138,7 @@ const Page = ({ data }) => {
           {/* <Image image={data.hero.image.asset} /> */}
         </div>
       )}
-      {data?.body ? <PortableText article value={data.body} /> : null}
+      {data?.body ? <PortableText article blocks={data.body} /> : null}
       <Container>{content}</Container>
       {data?.photo ? (
         <Image
@@ -159,7 +159,10 @@ const query = groq`*[_type == "news" && slug.current == $slug[0]][0]{
   description,
   photo,
   excerpt,
-  body,
+  body[] {
+    ...,
+    asset->     
+  },    
   content,
   tags,
   pageHeading, 
