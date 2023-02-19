@@ -5,6 +5,8 @@ import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
 import { PortableText } from "components/portable-text/BasePortableText";
 import { Videos } from "components/videos";
+import fs from "fs";
+import matter from "gray-matter";
 import groq from "groq";
 import client from "/client";
 
@@ -199,6 +201,16 @@ export async function getStaticProps({ params, preview = false }) {
   const currentSlug = hasCategory ? slug[slug.length - 1] : slug;
   console.log("currentSlug ", currentSlug);
   const data = await client.fetch(query, { slug, hasCategory });
+
+  if (!data) {
+    console.log("here **** ", slug);
+    const fileName = fs.readFileSync(`posts/${slug.join("/")}.md`, "utf-8");
+    const { data: frontmatter, content } = matter(fileName);
+    console.log("fileName ", fileName);
+    console.log("frontmatter ", frontmatter);
+    console.log("content ", content);
+    // check for markdown news
+  }
   //   console.log("slug ", slug);
   // console.log("hero ", data.content);
   // console.log("slug ", slug, data);
