@@ -8,6 +8,7 @@ import { Videos } from "components/videos";
 import fs from "fs";
 import matter from "gray-matter";
 import groq from "groq";
+import md from "markdown-it";
 import client from "/client";
 
 const Container = styled.section`
@@ -60,98 +61,118 @@ const Main = styled.main`
 
 const Page = ({ data }) => {
   console.log("data here is ***** ", data);
-  const content = (data?.content || [])
-    .filter((c) => !c.disabled)
-    .map((c, i) => {
-      let el = null;
-      console.log("type ", c._type);
-      switch (c._type) {
-        case "hero":
-          el = (
+  if (data?.sanityPost) {
+    const content = (data?.content || [])
+      .filter((c) => !c.disabled)
+      .map((c, i) => {
+        let el = null;
+        console.log("type ", c._type);
+        switch (c._type) {
+          case "hero":
+            el = (
+              <Hero
+                image={c.image}
+                displayHeroMsg={false}
+                heroHeading={c.title}
+                heroHeadingType="h2"
+              />
+            );
+            console.log("c.image.asset **********", c.image.asset);
+            break;
+          case "videoGallery":
+            el = <Videos key={c._key} {...c} />;
+            break;
+          case "pageLinks":
+            console.log("pageLinks c ", c);
+            el = (
+              <ContentSection>
+                <PageLinks key={c._key} {...c} />
+              </ContentSection>
+            );
+            break;
+          case "photoGallery":
+            el = <Gallery key={c._key} {...c} />;
+            break;
+          case "blockPortableText":
+            el = (
+              <TextSection>
+                <PortableText key={c._key} {...c} />
+              </TextSection>
+            );
+            break;
+          case "team":
+            el = (
+              <TextSection>
+                <TeamList key={c._key} {...c} />
+              </TextSection>
+            );
+            break;
+          case "googlemap":
+            console.log("has map");
+            el = <GoogleMap key={c._key} {...c} />;
+            break;
+          case "uiComponentRef":
+            switch (c.name) {
+              case "topWave":
+                //   el = <TopWave />;
+                break;
+              case "bottomWave":
+                //   el = <BottomWave />;
+                break;
+              default:
+                break;
+            }
+            break;
+          default:
+            el = null;
+        }
+        return el;
+      });
+    return (
+      <article>
+        <h1>{data?.title}</h1>
+        {data?.photo && (
+          <div>
             <Hero
-              image={c.image}
+              image={data.photo}
               displayHeroMsg={false}
-              heroHeading={c.title}
-              heroHeadingType="h2"
+              // heroHeading={c.title}
+              // heroHeadingType="h2"
             />
-          );
-          console.log("c.image.asset **********", c.image.asset);
-          break;
-        case "videoGallery":
-          el = <Videos key={c._key} {...c} />;
-          break;
-        case "pageLinks":
-          console.log("pageLinks c ", c);
-          el = (
-            <ContentSection>
-              <PageLinks key={c._key} {...c} />
-            </ContentSection>
-          );
-          break;
-        case "photoGallery":
-          el = <Gallery key={c._key} {...c} />;
-          break;
-        case "blockPortableText":
-          el = (
-            <TextSection>
-              <PortableText key={c._key} {...c} />
-            </TextSection>
-          );
-          break;
-        case "team":
-          el = (
-            <TextSection>
-              <TeamList key={c._key} {...c} />
-            </TextSection>
-          );
-          break;
-        case "googlemap":
-          console.log("has map");
-          el = <GoogleMap key={c._key} {...c} />;
-          break;
-        case "uiComponentRef":
-          switch (c.name) {
-            case "topWave":
-              //   el = <TopWave />;
-              break;
-            case "bottomWave":
-              //   el = <BottomWave />;
-              break;
-            default:
-              break;
-          }
-          break;
-        default:
-          el = null;
-      }
-      return el;
-    });
-  return (
-    <article>
-      <h1>{data?.title}</h1>
-      {data?.photo && (
-        <div>
-          <Hero
+            {/* <Image image={data.hero.image.asset} /> */}
+          </div>
+        )}
+        {data?.body ? <PortableText article blocks={data.body} /> : null}
+        <Container>{content}</Container>
+        {data?.photo ? (
+          <Image
             image={data.photo}
-            displayHeroMsg={false}
-            // heroHeading={c.title}
-            // heroHeadingType="h2"
+            maxWidth={800}
+            height={540}
+            alt={data.photo.alt}
           />
-          {/* <Image image={data.hero.image.asset} /> */}
-        </div>
-      )}
-      {data?.body ? <PortableText article blocks={data.body} /> : null}
-      <Container>{content}</Container>
-      {data?.photo ? (
-        <Image
-          image={data.photo}
-          maxWidth={800}
-          height={540}
-          alt={data.photo.alt}
+        ) : null}
+      </article>
+    );
+  }
+
+  if (data?.markDownPost) {
+    const { frontmatter, content } = data.markDownPost;
+    console.log("frontmattter ", frontmatter);
+    console.log("conent ", content);
+    return (
+      <article>
+        <h1>{frontmatter.title}</h1>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: md().render(
+              content.replace("http://www.africanvision.org.uk", ``)
+            ),
+          }}
         />
-      ) : null}
-    </article>
-  );
+      </article>
+    );
+  }
 };
 
 const query = groq`*[_type == "news" && slug.current == $slug[0]][0]{ 
@@ -193,27 +214,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, preview = false }) {
+  const data = {};
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
-  //   console.log("slug length ", slug.length, slug);
   const hasCategory = !!slug.length > 1;
   const slugLength = slug.length;
   const currentSlug = hasCategory ? slug[slug.length - 1] : slug;
   console.log("currentSlug ", currentSlug);
-  const data = await client.fetch(query, { slug, hasCategory });
+  data.sanityPost = await client.fetch(query, { slug, hasCategory });
 
-  if (!data) {
-    console.log("here **** ", slug);
+  if (!data.sanityPost) {
+    // check for markdown news
     const fileName = fs.readFileSync(`posts/${slug.join("/")}.md`, "utf-8");
     const { data: frontmatter, content } = matter(fileName);
-    console.log("fileName ", fileName);
-    console.log("frontmatter ", frontmatter);
-    console.log("content ", content);
-    // check for markdown news
+    data.markDownPost = {
+      frontmatter: frontmatter,
+      content: content,
+    };
   }
-  //   console.log("slug ", slug);
-  // console.log("hero ", data.content);
-  // console.log("slug ", slug, data);
+
   return {
     props: {
       data,

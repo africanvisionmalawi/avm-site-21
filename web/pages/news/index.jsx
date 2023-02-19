@@ -5,6 +5,7 @@ import { Hero } from "components/Hero";
 import groq from "groq";
 import React from "react";
 import client from "/client";
+const glob = require("glob");
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
@@ -171,7 +172,6 @@ const NewsHomePage = ({ data }) => {
       <Main>
         <PostList>
           {data.map((post) => {
-            console.log("post here is ", post);
             return (
               <React.Fragment key={post.id}>
                 <CardPostAlt
@@ -203,7 +203,15 @@ const query = groq`*[_type == "news"] | order(publishDate desc){
 
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
-
+  // let markdownPosts = [];
+  const files = glob("posts/**/**/*.md", { absolute: true });
+  console.log("files ", files);
+  glob("posts/**/**/*.md", (err, files) => {
+    {
+      files;
+    }
+  });
+  // console.log("markdownosts ", markdownPosts);
   const data = await client.fetch(query, {});
   //   console.log("data **********", data);
 
