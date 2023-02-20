@@ -8,8 +8,14 @@ import { Videos } from "components/videos";
 import fs from "fs";
 import matter from "gray-matter";
 import groq from "groq";
-import md from "markdown-it";
+// import md from "markdown-it";
 import client from "/client";
+
+const md = require("markdown-it")({
+  html: true,
+  linkify: true,
+  typographer: true,
+});
 
 const Container = styled.section`
   margin: 0 auto;
@@ -165,7 +171,7 @@ const Page = ({ data }) => {
         <h1>{frontmatter.title}</h1>
         <div
           dangerouslySetInnerHTML={{
-            __html: md().render(
+            __html: md.render(
               content.replace("http://www.africanvision.org.uk", ``)
             ),
           }}
