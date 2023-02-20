@@ -65,3 +65,20 @@ ul,
 span {
   font-family: var(--font-roboto);
 }
+
+article {
+  margin: 0 auto;
+  /* width: 100%; */
+}
+
+@media (min-width: 768px) {
+  article {
+    padding: 2rem 4em;
+    max-width: 974px;
+  }
+}
+@media (min-width: 1024px) {
+  article {
+    max-width: 1180px;
+  }
+}

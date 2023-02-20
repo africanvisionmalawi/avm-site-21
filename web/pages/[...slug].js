@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { PortableText } from "@portabletext/react";
+import { Breadcrumbs } from "components/breadcrumbs";
 import { Gallery } from "components/gallery";
 import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
@@ -125,24 +126,37 @@ const Page = ({ data }) => {
       }
       return el;
     });
+  const path = [
+    {
+      title: data?.categoryTitle ? data.categoryTitle : null,
+      slug: data?.categorySlug ? data.categorySlug : null,
+    },
+    {
+      title: data?.title,
+      slug: data?.slug,
+    },
+  ];
   return (
-    <article>
-      <h1>{data?.title}</h1>
-      {data?.hero && (
-        <div>
-          <Hero
-            image={data.hero.image}
-            mobileImage={data.hero.mobileImage}
-            displayHeroMsg={false}
-            // heroHeading={c.title}
-            // heroHeadingType="h2"
-          />
-          {/* <Image image={data.hero.image.asset} /> */}
-        </div>
-      )}
-      {data?.body ? <PortableText article value={data.body} /> : null}
-      <Container>{content}</Container>
-    </article>
+    <>
+      {path ? <Breadcrumbs path={path} indexPage={data?.indexPage} /> : null}
+      <article>
+        <h1>{data?.title}</h1>
+        {data?.hero && (
+          <div>
+            <Hero
+              image={data.hero.image}
+              mobileImage={data.hero.mobileImage}
+              displayHeroMsg={false}
+              // heroHeading={c.title}
+              // heroHeadingType="h2"
+            />
+            {/* <Image image={data.hero.image.asset} /> */}
+          </div>
+        )}
+        {data?.body ? <PortableText article value={data.body} /> : null}
+        <Container>{content}</Container>
+      </article>
+    </>
   );
 };
 
@@ -187,6 +201,7 @@ export async function getStaticProps({ params, preview = false }) {
   const hasCategory = slug.length > 1;
   const currentSlug = hasCategory ? slug[slug.length - 1] : slug[0];
   const data = await client.fetch(query, { currentSlug });
+  console.log("data ", data);
   return {
     props: {
       data,
