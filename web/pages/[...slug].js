@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { PortableText } from "@portabletext/react";
 import { Breadcrumbs } from "components/breadcrumbs";
 import { Gallery } from "components/gallery";
 import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { TeamList } from "components/team";
 import { Videos } from "components/videos";
 import { siteMeta } from "constants/site";
@@ -66,7 +66,7 @@ const Page = ({ data }) => {
     .filter((c) => !c.disabled)
     .map((c, i) => {
       let el = null;
-      // console.log("type ", c._type);
+      console.log("type ", c._type);
       switch (c._type) {
         case "hero":
           el = (
@@ -165,7 +165,7 @@ const Page = ({ data }) => {
             {/* <Image image={data.hero.image.asset} /> */}
           </div>
         )}
-        {data?.body ? <PortableText article value={data.body} /> : null}
+        {data?.body ? <PortableText article blocks={data.body} /> : null}
         <Container>{content}</Container>
       </article>
     </>
@@ -193,7 +193,10 @@ const query = groq`*[_type == "page" && slug.current == $currentSlug][0]{
       },
     },         
   },  
-  body
+  body[] {
+    ...,    
+      asset->    
+  },
 }`;
 
 export async function getStaticPaths() {
