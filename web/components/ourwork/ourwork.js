@@ -19,8 +19,8 @@ export const OurWork = ({ displayHeading, ourWork }) => {
                 <TextCont>
                   <div>
                     <Title>{project.title}</Title>
-                    {project._rawBody ? (
-                      <PortableText value={project._rawBody} />
+                    {project.body ? (
+                      <PortableText blocks={project.body} />
                     ) : null}
                     <MoreButton url={`/${project.slug.current}/`} />
                   </div>
@@ -50,7 +50,6 @@ const TextCont = styled.div`
   margin-top: 16px;
   padding-left: 16px;
   padding-right: 16px;
-  width: 100%;
 `;
 
 // const projects = [

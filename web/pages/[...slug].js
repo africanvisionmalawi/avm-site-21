@@ -6,7 +6,9 @@ import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
 import { TeamList } from "components/team";
 import { Videos } from "components/videos";
+import { siteMeta } from "constants/site";
 import groq from "groq";
+import { NextSeo } from "next-seo";
 import client from "/client";
 
 const Container = styled.section`
@@ -138,6 +140,16 @@ const Page = ({ data }) => {
   ];
   return (
     <>
+      <NextSeo
+        title={
+          data?.title
+            ? `${data?.title} |  African Vision Malawi`
+            : siteMeta.title
+        }
+        description={
+          data?.description ? data?.description : siteMeta.description
+        }
+      />
       {path ? <Breadcrumbs path={path} indexPage={data?.indexPage} /> : null}
       <article>
         <h1>{data?.title}</h1>
@@ -198,8 +210,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
+  console.log("slug ", slug);
   const hasCategory = slug.length > 1;
   const currentSlug = hasCategory ? slug[slug.length - 1] : slug[0];
+  console.log("currentSlug ", currentSlug);
   const data = await client.fetch(query, { currentSlug });
   console.log("data ", data);
   return {
