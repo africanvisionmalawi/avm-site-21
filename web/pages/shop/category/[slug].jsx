@@ -2,7 +2,9 @@ import styled from "@emotion/styled";
 import { NavTags } from "components/common/NavTags";
 import { ShopListItem } from "components/shop/ShopListItem";
 import { tagsBase } from "constants/shop";
+import { siteMeta } from "constants/site";
 import groq from "groq";
+import { NextSeo } from "next-seo";
 import React from "react";
 import client from "/client";
 
@@ -117,36 +119,48 @@ export const ShopCategory = ({ data, slug }) => {
   );
 
   return (
-    <article>
-      <NavTags tags={tags} tagsBase={tagsBase} active={null} />
-      <Container>
-        {filteredProducts.length ? (
-          <ShopIndexList>
-            {filteredProducts.map((item, i) => {
-              return (
-                <React.Fragment key={item.id}>
-                  <ShopListItem
-                    id={item.id}
-                    slug={item.slug.current}
-                    photo={
-                      item?.photoGallery?.photos?.length
-                        ? item?.photoGallery?.photos[0]
-                        : null
-                    }
-                    photoType="default"
-                    title={item.title}
-                    price={item.price}
-                    salePrice={item.salePrice}
-                  />
-                </React.Fragment>
-              );
-            })}
-          </ShopIndexList>
-        ) : (
-          <NoResults />
-        )}
-      </Container>
-    </article>
+    <>
+      <article>
+        <NextSeo
+          title={
+            data?.title
+              ? `${data?.title} |  African Vision Malawi`
+              : siteMeta.title
+          }
+          description={
+            data?.description ? data?.description : siteMeta.description
+          }
+        />
+        <NavTags tags={tags} tagsBase={tagsBase} active={null} />
+        <Container>
+          {filteredProducts.length ? (
+            <ShopIndexList>
+              {filteredProducts.map((item, i) => {
+                return (
+                  <React.Fragment key={item.id}>
+                    <ShopListItem
+                      id={item.id}
+                      slug={item.slug.current}
+                      photo={
+                        item?.photoGallery?.photos?.length
+                          ? item?.photoGallery?.photos[0]
+                          : null
+                      }
+                      photoType="default"
+                      title={item.title}
+                      price={item.price}
+                      salePrice={item.salePrice}
+                    />
+                  </React.Fragment>
+                );
+              })}
+            </ShopIndexList>
+          ) : (
+            <NoResults />
+          )}
+        </Container>
+      </article>
+    </>
   );
 };
 
@@ -154,7 +168,7 @@ const query = groq`{
 "products":*[_type == "shop" && hide != true]
 {     
   _id,
-    title,
+  title,
   publishDate,
   slug,
   hide,

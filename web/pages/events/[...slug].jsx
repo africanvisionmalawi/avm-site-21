@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
-import { PortableText } from "@portabletext/react";
 import { Image } from "components/common/image/Image";
 import { Gallery } from "components/gallery";
 import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { Videos } from "components/videos";
+import { siteMeta } from "constants/site";
 import groq from "groq";
+import { NextSeo } from "next-seo";
 import client from "/client";
 
 const Container = styled.section`
@@ -125,30 +127,41 @@ const Page = ({ data }) => {
       return el;
     });
   return (
-    <article>
-      <h1>{data?.title}</h1>
-      {data?.photo && (
-        <div>
-          <Hero
+    <>
+      <NextSeo
+        title={
+          data?.title
+            ? `${data?.title} |  African Vision Malawi`
+            : siteMeta.title
+        }
+        description={data?.description || siteMeta.description}
+      />
+
+      <article>
+        <h1>{data?.title}</h1>
+        {data?.photo && (
+          <div>
+            <Hero
+              image={data.photo}
+              displayHeroMsg={false}
+              // heroHeading={c.title}
+              // heroHeadingType="h2"
+            />
+            {/* <Image image={data.hero.image.asset} /> */}
+          </div>
+        )}
+        {data?.body ? <PortableText article blocks={data.body} /> : null}
+        <Container>{content}</Container>
+        {data?.photo ? (
+          <Image
             image={data.photo}
-            displayHeroMsg={false}
-            // heroHeading={c.title}
-            // heroHeadingType="h2"
+            maxWidth={800}
+            height={540}
+            alt={data.photo.alt}
           />
-          {/* <Image image={data.hero.image.asset} /> */}
-        </div>
-      )}
-      {data?.body ? <PortableText article value={data.body} /> : null}
-      <Container>{content}</Container>
-      {data?.photo ? (
-        <Image
-          image={data.photo}
-          maxWidth={800}
-          height={540}
-          alt={data.photo.alt}
-        />
-      ) : null}
-    </article>
+        ) : null}
+      </article>
+    </>
   );
 };
 
@@ -159,12 +172,18 @@ title,
   slug,
   photo,
   excerpt,
-  body,
+  body[] {
+    ...,
+    asset->
+  },
   date,
   endDate,
   allDay,
   hideTime,
-  featured_image,
+  featured_image {
+    ...,
+    asset->
+  },
   tag,   
 }`;
 
@@ -182,13 +201,13 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
-  console.log("slug length ", slug.length);
+  // console.log("slug length ", slug.length);
   const hasCategory = !!slug.length > 1;
-  console.log("hasCategory ", hasCategory);
+  // console.log("hasCategory ", hasCategory);
   const data = await client.fetch(query, { slug, hasCategory });
-  console.log("slug ", slug);
+  // console.log("slug ", slug);
   // console.log("hero ", data.content);
-  // console.log("slug ", slug, data);
+  console.log("data ", data);
   return {
     props: {
       data,

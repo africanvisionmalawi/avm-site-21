@@ -146,9 +146,7 @@ const Page = ({ data }) => {
             ? `${data?.title} |  African Vision Malawi`
             : siteMeta.title
         }
-        description={
-          data?.description ? data?.description : siteMeta.description
-        }
+        description={data?.description || siteMeta.description}
       />
       {path ? <Breadcrumbs path={path} indexPage={data?.indexPage} /> : null}
       <article>

@@ -5,9 +5,11 @@ import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";
 import { PortableText } from "components/portable-text/BasePortableText";
 import { Videos } from "components/videos";
+import { siteMeta } from "constants/site";
 import fs from "fs";
 import matter from "gray-matter";
 import groq from "groq";
+import { NextSeo } from "next-seo";
 // import md from "markdown-it";
 import client from "/client";
 
@@ -135,30 +137,38 @@ const Page = ({ data }) => {
         return el;
       });
     return (
-      <article>
-        <h1>{data?.title}</h1>
-        {data?.photo && (
-          <div>
-            <Hero
+      <>
+        <NextSeo
+          title={`${title} |  African Vision Malawi` || siteMeta.title}
+          description={
+            data?.description ? data?.description : siteMeta.description
+          }
+        />
+        <article>
+          <h1>{data?.title}</h1>
+          {data?.photo && (
+            <div>
+              <Hero
+                image={data.photo}
+                displayHeroMsg={false}
+                // heroHeading={c.title}
+                // heroHeadingType="h2"
+              />
+              {/* <Image image={data.hero.image.asset} /> */}
+            </div>
+          )}
+          {data?.body ? <PortableText article blocks={data.body} /> : null}
+          <Container>{content}</Container>
+          {data?.photo ? (
+            <Image
               image={data.photo}
-              displayHeroMsg={false}
-              // heroHeading={c.title}
-              // heroHeadingType="h2"
+              maxWidth={800}
+              height={540}
+              alt={data.photo.alt}
             />
-            {/* <Image image={data.hero.image.asset} /> */}
-          </div>
-        )}
-        {data?.body ? <PortableText article blocks={data.body} /> : null}
-        <Container>{content}</Container>
-        {data?.photo ? (
-          <Image
-            image={data.photo}
-            maxWidth={800}
-            height={540}
-            alt={data.photo.alt}
-          />
-        ) : null}
-      </article>
+          ) : null}
+        </article>
+      </>
     );
   }
 

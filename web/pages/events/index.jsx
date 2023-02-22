@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import imageUrlBuilder from "@sanity/image-url";
 import { CardPostAlt } from "components/card/CardPostAlt";
 import { Hero } from "components/Hero";
+import { siteMeta } from "constants/site";
 import dayjs from "dayjs";
 import groq from "groq";
+import { NextSeo } from "next-seo";
 import React from "react";
 import client from "/client";
 
@@ -77,70 +79,79 @@ const EventsHomePage = ({ data }) => {
       }
     }
   });
+  const title = "Events";
   return (
-    <article>
-      {data.hero ? (
-        <Hero
-          image={data.hero.image}
-          mobileImage={data.hero.mobileImage}
-          displayHeroMsg={false}
-          // heroHeading={c.title}
-          // heroHeadingType="h2"
-        />
-      ) : null}
-      <TopSection>
-        <Heading>{data.title}</Heading>
-      </TopSection>
-      <Main>
-        <PostList>
-          {futureEvents.length
-            ? futureEvents.map((post) => {
-                // console.log("post here is ", post);
+    <>
+      <NextSeo
+        title={`${title} |  African Vision Malawi` || siteMeta.title}
+        description={
+          data?.description ? data?.description : siteMeta.description
+        }
+      />
+      <article>
+        {data.hero ? (
+          <Hero
+            image={data.hero.image}
+            mobileImage={data.hero.mobileImage}
+            displayHeroMsg={false}
+            // heroHeading={c.title}
+            // heroHeadingType="h2"
+          />
+        ) : null}
+        <TopSection>
+          <Heading>{data.title}</Heading>
+        </TopSection>
+        <Main>
+          <PostList>
+            {futureEvents.length
+              ? futureEvents.map((post) => {
+                  // console.log("post here is ", post);
+                  return (
+                    <React.Fragment key={post.id}>
+                      <CardPostAlt
+                        type="event"
+                        title={post.title}
+                        excerpt={post.excerpt}
+                        slug={post.slug}
+                        publishDate={post.publishDate}
+                        date={post.date}
+                        endDate={post.endDate}
+                        hideTime={post.endDate}
+                        allDay={post.allDay}
+                        photo={post.featured_image}
+                      />
+                    </React.Fragment>
+                  );
+                })
+              : null}
+          </PostList>
+          <Heading>Past events</Heading>
+          <PostList>
+            {pastEvents.length &&
+              pastEvents.map((post) => {
                 return (
-                  <React.Fragment key={post.id}>
-                    <CardPostAlt
-                      type="event"
-                      title={post.title}
-                      excerpt={post.excerpt}
-                      slug={post.slug}
-                      publishDate={post.publishDate}
-                      date={post.date}
-                      endDate={post.endDate}
-                      hideTime={post.endDate}
-                      allDay={post.allDay}
-                      photo={post.featured_image}
-                    />
-                  </React.Fragment>
+                  <>
+                    <React.Fragment key={post.id}>
+                      <CardPostAlt
+                        type="event"
+                        title={post.title}
+                        excerpt={post.excerpt}
+                        slug={post.slug}
+                        publishDate={post.publishDate}
+                        date={post.date}
+                        endDate={post.endDate}
+                        hideTime={post.endDate}
+                        allDay={post.allDay}
+                        photo={post.featured_image}
+                      />
+                    </React.Fragment>
+                  </>
                 );
-              })
-            : null}
-        </PostList>
-        <Heading>Past events</Heading>
-        <PostList>
-          {pastEvents.length &&
-            pastEvents.map((post) => {
-              return (
-                <>
-                  <React.Fragment key={post.id}>
-                    <CardPostAlt
-                      type="event"
-                      title={post.title}
-                      excerpt={post.excerpt}
-                      slug={post.slug}
-                      publishDate={post.publishDate}
-                      date={post.date}
-                      endDate={post.endDate}
-                      hideTime={post.endDate}
-                      allDay={post.allDay}
-                      photo={post.featured_image}
-                    />
-                  </React.Fragment>
-                </>
-              );
-            })}
-        </PostList>
-      </Main>
-    </article>
+              })}
+          </PostList>
+        </Main>
+      </article>
+    </>
   );
 };
 
@@ -151,7 +162,10 @@ const query = groq`*[_type == "event"] | order(date desc){
   slug,
   photo,
   excerpt,
-  body,
+  body[] {
+    ...,
+    asset->
+  },
   date,
   endDate,
   allDay,
@@ -164,7 +178,6 @@ export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
 
   const data = await client.fetch(query, {});
-  //   console.log("data **********", data);
 
   return {
     props: {

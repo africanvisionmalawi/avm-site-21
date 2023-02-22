@@ -3,7 +3,9 @@ import imageUrlBuilder from "@sanity/image-url";
 import { NavTags } from "components/common/NavTags";
 import { ShopListItem } from "components/shop/ShopListItem";
 import { tagsBase } from "constants/shop";
+import { siteMeta } from "constants/site";
 import groq from "groq";
+import { NextSeo } from "next-seo";
 import React from "react";
 import client from "/client";
 
@@ -174,34 +176,42 @@ const ShopHomePage = ({ data }) => {
   const tags = site.shopTags;
   //   console.log("tags here *******", site.shopTags);
   return (
-    <article>
-      <Heading>{title}</Heading>
-      <NavTags tags={tags} tagsBase={tagsBase} active={null} />
-      <Container>
-        <ShopIndexList>
-          {data.products.map((item, i) => {
-            // console.log("item hoto ", item?.photoGallery?.photos?.length);
-            return (
-              <React.Fragment key={item.id}>
-                <ShopListItem
-                  id={item.id}
-                  slug={item.slug.current}
-                  photo={
-                    item?.photoGallery?.photos?.length
-                      ? item?.photoGallery?.photos[0]
-                      : null
-                  }
-                  photoType="default"
-                  title={item.title}
-                  price={item.price}
-                  salePrice={item.salePrice}
-                />
-              </React.Fragment>
-            );
-          })}
-        </ShopIndexList>
-      </Container>
-    </article>
+    <>
+      <NextSeo
+        title={`${data?.title} |  African Vision Malawi` || siteMeta.title}
+        description={
+          data?.description ? data?.description : siteMeta.description
+        }
+      />
+      <article>
+        <Heading>{title}</Heading>
+        <NavTags tags={tags} tagsBase={tagsBase} active={null} />
+        <Container>
+          <ShopIndexList>
+            {data.products.map((item, i) => {
+              // console.log("item hoto ", item?.photoGallery?.photos?.length);
+              return (
+                <React.Fragment key={item.id}>
+                  <ShopListItem
+                    id={item.id}
+                    slug={item.slug.current}
+                    photo={
+                      item?.photoGallery?.photos?.length
+                        ? item?.photoGallery?.photos[0]
+                        : null
+                    }
+                    photoType="default"
+                    title={item.title}
+                    price={item.price}
+                    salePrice={item.salePrice}
+                  />
+                </React.Fragment>
+              );
+            })}
+          </ShopIndexList>
+        </Container>
+      </article>
+    </>
   );
 };
 
