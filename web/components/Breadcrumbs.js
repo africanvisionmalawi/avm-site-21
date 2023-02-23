@@ -35,7 +35,6 @@ const Container = styled.div`
   max-width: 1080px;
   padding: 0.5rem 100px;
   position: relative;
-  width: 100%;
   @media (min-width: 480px) {
     display: block;
   }

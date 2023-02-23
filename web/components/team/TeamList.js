@@ -18,10 +18,12 @@ export const TeamList = (props) => {
                   width={150}
                   height={150}
                   alt={t.photo.alt}
-                  sizes="130px"
+                  sizes="150px"
+                  maxWidth={150}
+                  fit="crop"
                   style={{
-                    width: "130px",
-                    height: "130px",
+                    width: "150px",
+                    height: "150px",
                   }}
                 />
                 {/* <Img fixed={t.photo.childImageSharp.fixed} alt={t.name} /> */}
@@ -73,8 +75,8 @@ const SubHeading = styled.h4`
 const TeamPhoto = styled.div`
   border: 10px solid #fff;
   border-radius: 50%;
-  max-height: 150px;
-  max-width: 150px;
+  max-height: 145px;
+  max-width: 145px;
   overflow: hidden;
   & img {
     border: 1px solid #e5e5e5;
