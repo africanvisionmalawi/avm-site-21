@@ -191,10 +191,7 @@ const query = groq`*[_type == "page" && slug.current == $currentSlug][0]{
       },
     },         
   },  
-  body[] {
-    ...,    
-      asset->    
-  },
+  body,
 }`;
 
 export async function getStaticPaths() {
