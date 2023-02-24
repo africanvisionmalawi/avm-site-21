@@ -208,12 +208,12 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
-  console.log("slug ", slug);
+  // console.log("slug ", slug);
   const hasCategory = slug.length > 1;
   const currentSlug = hasCategory ? slug[slug.length - 1] : slug[0];
-  console.log("currentSlug ", currentSlug);
+  // console.log("currentSlug ", currentSlug);
   const data = await client.fetch(query, { currentSlug });
-  console.log("data ", data);
+  // console.log("data ", data);
   return {
     props: {
       data,

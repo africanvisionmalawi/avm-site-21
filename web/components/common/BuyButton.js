@@ -28,6 +28,7 @@ export const BuyButton = ({
   width,
   height,
 }) => {
+  // console.log("productId ", productId);
   return (
     <Button
       className="snipcart-add-item"

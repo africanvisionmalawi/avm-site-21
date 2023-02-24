@@ -171,17 +171,15 @@ const PostsFooter = styled.div`
 
 const ShopHomePage = ({ data }) => {
   const { products, site } = data;
-  const title = "Shop - African Vision Malawi";
+  const title = "Shop";
   const description = "Welcome to our online shop.";
   const tags = site.shopTags;
   //   console.log("tags here *******", site.shopTags);
   return (
     <>
       <NextSeo
-        title={`${data?.title} |  African Vision Malawi` || siteMeta.title}
-        description={
-          data?.description ? data?.description : siteMeta.description
-        }
+        title={`${title} |  African Vision Malawi` || siteMeta.title}
+        description={description}
       />
       <article>
         <Heading>{title}</Heading>

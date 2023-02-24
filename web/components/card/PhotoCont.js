@@ -13,7 +13,7 @@ import { Image } from "components/common/image/Image";
 
 export const PhotoCont = (props) => {
   const { photo, photoType } = props;
-
+  console.log("photo ", photoType, photo);
   const photoSizes = {
     default: {
       w: 280,
@@ -36,6 +36,10 @@ export const PhotoCont = (props) => {
       w: 381,
       h: 240,
       sizes: "(max-width: 480px) 100vw, 480px",
+    },
+    shop: {
+      w: 600,
+      h: 600,
     },
   };
   return (

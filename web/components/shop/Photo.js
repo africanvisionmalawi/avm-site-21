@@ -19,13 +19,14 @@ export const Photo = (props) => {
       {photo ? (
         <Image
           image={photo}
-          width={photoSizes[photoType].w}
-          height={photoSizes[photoType].h}
+          maxWidth={photoSizes[photoType].w}
+          maxHeight={photoSizes[photoType].h}
           alt={photo.alt}
+          fit="clip"
           style={{
             width: "100%",
             height: "auto",
-            objectFit: "cover",
+            // objectFit: "clip",
           }}
         />
       ) : null}

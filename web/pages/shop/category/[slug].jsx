@@ -114,23 +114,27 @@ export const ShopCategory = ({ data, slug }) => {
   if (!data) return;
   const { products, site } = data;
   const tags = site.shopTags;
+  const currentTag = tags.find((tag) => tag.value.current === slug);
+  // console.log("currentTag ", currentTag);
+
   const filteredProducts = products.filter(
     (prod) => prod.tags[0].value === slug
   );
 
   return (
     <>
+      <NextSeo
+        title={
+          currentTag.title
+            ? `Shop - ${currentTag.title} |  African Vision Malawi`
+            : siteMeta.title
+        }
+        description={
+          data?.description ? data?.description : siteMeta.description
+        }
+      />
       <article>
-        <NextSeo
-          title={
-            data?.title
-              ? `${data?.title} |  African Vision Malawi`
-              : siteMeta.title
-          }
-          description={
-            data?.description ? data?.description : siteMeta.description
-          }
-        />
+        <Heading>Shop - {currentTag.title}</Heading>
         <NavTags tags={tags} tagsBase={tagsBase} active={null} />
         <Container>
           {filteredProducts.length ? (
@@ -203,7 +207,7 @@ export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = params;
   const data = await client.fetch(query, { slug });
-  console.log("data **********", data);
+  // console.log("data **********", data);
 
   if (!data) {
     return false;
