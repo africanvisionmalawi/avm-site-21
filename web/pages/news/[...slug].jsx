@@ -69,8 +69,10 @@ const Main = styled.main`
 
 const Page = ({ data }) => {
   // console.log("data here is ***** ", data);
+  // const { sanityPost } = data;
   if (data?.sanityPost) {
-    const content = (data?.content || [])
+    const page = data.sanityPost;
+    const content = (page.content || [])
       .filter((c) => !c.disabled)
       .map((c, i) => {
         let el = null;
@@ -139,32 +141,32 @@ const Page = ({ data }) => {
     return (
       <>
         <NextSeo
-          title={`${title} |  African Vision Malawi` || siteMeta.title}
+          title={`${page.title} |  African Vision Malawi` || siteMeta.title}
           description={
-            data?.description ? data?.description : siteMeta.description
+            page.description ? page.description : siteMeta.description
           }
         />
         <article>
-          <h1>{data?.title}</h1>
-          {data?.photo && (
+          <h1>{page.title}</h1>
+          {page.photo && (
             <div>
               <Hero
-                image={data.photo}
+                image={page.photo}
                 displayHeroMsg={false}
                 // heroHeading={c.title}
                 // heroHeadingType="h2"
               />
-              {/* <Image image={data.hero.image.asset} /> */}
+              {/* <Image image={page.hero.image.asset} /> */}
             </div>
           )}
-          {data?.body ? <PortableText article blocks={data.body} /> : null}
+          {page.body ? <PortableText article blocks={page.body} /> : null}
           <Container>{content}</Container>
-          {data?.photo ? (
+          {page.photo ? (
             <Image
-              image={data.photo}
+              image={page.photo}
               maxWidth={800}
               height={540}
-              alt={data.photo.alt}
+              alt={page.photo.alt}
             />
           ) : null}
         </article>
@@ -191,7 +193,7 @@ const Page = ({ data }) => {
   }
 };
 
-const query = groq`*[_type == "news" && slug.current == $slug[0]][0]{ 
+const query = groq`*[_type == "news" && slug.current == $currentSlug][0]{ 
   slug, 
   id,
   title,
@@ -235,12 +237,15 @@ export async function getStaticProps({ params, preview = false }) {
   const { slug = "" } = params;
   const hasCategory = !!slug.length > 1;
   const slugLength = slug.length;
-  const currentSlug = hasCategory ? slug[slug.length - 1] : slug;
+  const currentSlug = hasCategory ? slug[slug.length - 1] : slug.toString();
   console.log("currentSlug ", currentSlug);
-  data.sanityPost = await client.fetch(query, { slug, hasCategory });
+  console.log("slug ", slug[slug.length - 1]);
+  data.sanityPost = await client.fetch(query, { currentSlug, hasCategory });
+  console.log("data ", data);
 
   if (!data.sanityPost) {
     // check for markdown news
+    console.log("getting markdown post");
     const fileName = fs.readFileSync(`posts/${slug.join("/")}.md`, "utf-8");
     const { data: frontmatter, content } = matter(fileName);
     data.markDownPost = {
