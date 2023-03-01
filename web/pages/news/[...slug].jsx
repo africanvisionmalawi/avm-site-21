@@ -220,7 +220,7 @@ const query = groq`*[_type == "news" && slug.current == $slug[0]][0]{
 
 export async function getStaticPaths() {
   const paths = await client.fetch(
-    `*[_type == "document" && defined(slug.current)][].slug.current`
+    `*[_type == "news" && slug.current == $slug[0]][].slug.current`
   );
 
   return {
