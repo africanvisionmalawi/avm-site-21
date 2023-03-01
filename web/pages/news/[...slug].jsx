@@ -68,7 +68,7 @@ const Main = styled.main`
 `;
 
 const Page = ({ data }) => {
-  console.log("data here is ***** ", data);
+  // console.log("data here is ***** ", data);
   if (data?.sanityPost) {
     const content = (data?.content || [])
       .filter((c) => !c.disabled)
@@ -220,7 +220,7 @@ const query = groq`*[_type == "news" && slug.current == $slug[0]][0]{
 
 export async function getStaticPaths() {
   const paths = await client.fetch(
-    `*[_type == "news" && slug.current == $slug[0]][].slug.current`
+    `*[_type == "news" && defined[slug.current]][].slug.current`
   );
 
   return {

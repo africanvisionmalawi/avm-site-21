@@ -101,7 +101,7 @@ const query = groq`*[_type == "ourWorkShared"][0]{
 
 export async function getStaticProps({ params, preview = false }) {
   const data = await client.fetch(query);
-  console.log("data ", data);
+  // console.log("data ", data);
   return {
     props: {
       data,

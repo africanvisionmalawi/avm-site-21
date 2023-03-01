@@ -153,7 +153,7 @@ const PostsFooter = styled.div`
 `;
 
 const NewsHomePage = ({ data }) => {
-  console.log("data here ", data.length);
+  // console.log("data here ", data.length);
 
   return (
     <article>
@@ -205,7 +205,7 @@ export async function getStaticProps({ params, preview = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   // let markdownPosts = [];
   const files = glob("posts/**/**/*.md", { absolute: true });
-  console.log("files ", files);
+  // console.log("files ", files);
   glob("posts/**/**/*.md", (err, files) => {
     {
       files;

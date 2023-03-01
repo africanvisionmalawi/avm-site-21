@@ -59,7 +59,7 @@ const Main = styled.main`
 `;
 
 const Page = ({ data }) => {
-  console.log("data here is ***** ", data);
+  // console.log("data here is ***** ", data);
   const content = (data?.content || [])
     .filter((c) => !c.disabled)
     .map((c, i) => {
@@ -189,7 +189,7 @@ title,
 
 export async function getStaticPaths() {
   const paths = await client.fetch(
-    `*[_type == "event" && slug.current == $slug[0]][].slug.current`
+    `*[_type == "event" && defined[slug.current]][].slug.current`
   );
 
   return {

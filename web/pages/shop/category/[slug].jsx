@@ -194,7 +194,7 @@ const query = groq`{
 
 export async function getStaticPaths() {
   const paths = await client.fetch(
-    `*[_type == "shop" && defined(slug.current)][].slug.current`
+    `*[_type == "shop" && defined[slug.current]][].slug.current`
   );
 
   return {

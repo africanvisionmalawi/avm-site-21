@@ -25,9 +25,9 @@ const Text = styled.p`
 `;
 
 export default (props) => {
-  console.log("props **** ", props);
+  // console.log("props **** ", props);
   const { asset } = props.value;
-  console.log("asset ", asset);
+  // console.log("asset ", asset);
   if (!asset) {
     return null;
   }

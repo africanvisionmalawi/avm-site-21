@@ -99,7 +99,8 @@ const ShopIndexList = styled.div`
 `;
 
 export const Shop = ({ data }) => {
-  const { page, site, allProducts } = data;
+  if (!data) return;
+  const { page, allProducts } = data;
   // console.log("data ", data);
   // console.log("page.Gallery ", page.photoGallery);
   // console.log("site ", site);
@@ -265,10 +266,6 @@ const query = groq`{
   height,
 },
 
-'site':*[_type == "siteSettings"][0]
-{
-  shopTags,  
-},
 
 "allProducts":*[_type == "shop" && hide != true && slug.current != $currentSlug]
 {     
@@ -288,7 +285,7 @@ const query = groq`{
 
 export async function getStaticPaths() {
   const paths = await client.fetch(
-    `*[_type == "shop" && defined(slug.current)][].slug.current`
+    `*[_type == "shop" && defined[slug.current]][].slug.current`
   );
 
   return {
