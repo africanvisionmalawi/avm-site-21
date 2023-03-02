@@ -1,7 +1,6 @@
+import styled from "@emotion/styled";
 import { Donate } from "components/common/Donate";
 import Layout from "components/Layout";
-import { styled } from "linaria/react";
-import React from "react";
 import { GiftAidForm } from "../components/gift-aid-form/GiftAidForm";
 
 const Container = styled.div`

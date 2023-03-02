@@ -1,11 +1,11 @@
+import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import { styled } from "linaria/react";
 import React from "react";
-import { CardPostAlt } from "../components/card/CardPostAlt";
+import { CardPostAlt } from "../../components/card/CardPostAlt";
 // import { CardPost } from "../components/card/CardPost";
 // import BlogRoll from "../components/BlogRoll";
 // import ArticleList from "../components/ArticleList";
-import { Donate } from "../components/common/Donate";
+import { Donate } from "../../components/common/Donate";
 // import { NavTags } from "../components/common/nav-tags";
 import Layout from "../components/Layout";
 // import paginationStyles from "../components/pagination.module.css";

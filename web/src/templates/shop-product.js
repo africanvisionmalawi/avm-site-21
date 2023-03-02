@@ -1,24 +1,24 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
-import { Breadcrumbs } from "components/breadcrumbs";
+import styled from "@emotion/styled";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { graphql } from "gatsby";
-import { styled } from "linaria/react";
 import React from "react";
 // import Pricing from "../components/pricing";
 // import SEO from "../components/seo";
-import { BuyButton } from "../components/common/BuyButton";
-import { Carousel } from "../components/common/Carousel";
-import { Donate } from "../components/common/Donate";
-import { SectionInner } from "../components/common/SectionInner";
-import { SectionTop } from "../components/common/SectionTop";
+import { BuyButton } from "../../components/common/BuyButton";
+import { Carousel } from "../../components/common/Carousel";
+import { Donate } from "../../components/common/Donate";
+import { SectionInner } from "../../components/common/SectionInner";
+import { SectionTop } from "../../components/common/SectionTop";
 // import CTA from "../components/cta";
 // import CTAColumns from "../components/cta-columns";
 import { GraphQLErrorList } from "../components/graphql/graphql-error-list";
 // import { BottomWave, TopWave } from "../components/wave";
+import { PortableText } from "../../components/portable-text/BasePortableText";
+import { Photo } from "../../components/shop/Photo";
+import { ShopListItem } from "../../components/shop/ShopListItem";
+import { TagsList } from "../../components/shop/TagsList";
 import Layout from "../components/Layout";
-import { PortableText } from "../components/portableText/portableText";
-import { Photo } from "../components/shop/Photo";
-import { ShopListItem } from "../components/shop/ShopListItem";
-import { TagsList } from "../components/shop/TagsList";
 import useSiteMetadata from "../hooks/use-site-metadata";
 import { priceFormatted } from "../utils/helpers";
 
@@ -300,7 +300,7 @@ const ShopProduct = (props) => {
                   </SectionInner>
                   <SectionInner>
                     {page._rawBody ? (
-                      <PortableText blocks={page._rawBody} />
+                      <PortableText value={page._rawBody} />
                     ) : null}
                   </SectionInner>
                 </div>

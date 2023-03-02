@@ -1,20 +1,20 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
+import styled from "@emotion/styled";
 import { Donate } from "components/common/Donate";
 import { OurWork } from "components/ourwork";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql, Link } from "gatsby";
-import { styled } from "linaria/react";
 import React from "react";
-import { CardPost } from "../components/card/CardPost";
-import { CardPostAlt } from "../components/card/CardPostAlt";
-import { Hero } from "../components/Hero";
+import { CardPost } from "../../components/card/CardPost";
+import { CardPostAlt } from "../../components/card/CardPostAlt";
+import { Hero } from "../../components/Hero";
 // import InfoRows from "../components/InfoRows";
 // import { Hero } from "../components/Hero";
 // import { BottomWave, TopWave } from "../components/wave";
+import { PortableText } from "../../components/portable-text/BasePortableText";
+import { Player } from "../../components/videos/Player";
 import Layout from "../components/Layout";
-import { PortableText } from "../components/portableText/portableText";
-import { Player } from "../components/videos/Player";
 // import videoStyles from "../components/videos/videos.module.css";
 dayjs.extend(advancedFormat);
 // export const query = graphql`

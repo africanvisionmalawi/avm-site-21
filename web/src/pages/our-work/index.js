@@ -1,11 +1,10 @@
+import styled from "@emotion/styled";
 import { Donate } from "components/common/Donate";
 import Errors from "components/errors";
 import Layout from "components/Layout";
 import { OurWork } from "components/ourwork";
-import { PortableText } from "components/portableText/portableText";
+import { PortableText } from "components/portable-text/BasePortableText";
 import { graphql } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
 
 export const query = graphql`
   query OurWorkPageQuery {
@@ -48,7 +47,7 @@ const IndexPage = (props) => {
       <article>
         <TopSection>
           <Heading>Our work</Heading>
-          {ourWork ? <PortableText blocks={ourWork[0].node._rawBody} /> : null}
+          {ourWork ? <PortableText value={ourWork[0].node._rawBody} /> : null}
         </TopSection>
         {ourWork ? (
           <Container>

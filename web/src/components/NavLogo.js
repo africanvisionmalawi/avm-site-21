@@ -1,7 +1,6 @@
 // import PropTypes from 'prop-types'
+import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import { styled } from "linaria/react";
-import React from "react";
 import logo from "../img/logo-full.png";
 // import heroStyles from './heroimage.module.css'
 

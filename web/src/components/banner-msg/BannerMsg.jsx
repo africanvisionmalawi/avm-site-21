@@ -1,11 +1,10 @@
-import { styled } from "linaria/react";
-import React from "react";
-import { PortableText } from "../portableText/portableText";
+import styled from "@emotion/styled";
+import { PortableText } from "../../../components/portable-text/BasePortableText";
 
 export const BannerMsg = ({ msg, source }) => {
   return (
     <HeroMsgDiv>
-      {msg ? <PortableText blocks={msg} /> : null}
+      {msg ? <PortableText value={msg} /> : null}
       {source ? <Citation>{source}</Citation> : null}
     </HeroMsgDiv>
   );
