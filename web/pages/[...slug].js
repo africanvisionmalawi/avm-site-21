@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Breadcrumbs } from "components/breadcrumbs";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { Gallery } from "components/gallery";
 import { Hero } from "components/Hero";
 import { PageLinks } from "components/page-links";

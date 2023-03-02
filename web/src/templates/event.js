@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Breadcrumbs } from "components/breadcrumbs";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { graphql, Link } from "gatsby";

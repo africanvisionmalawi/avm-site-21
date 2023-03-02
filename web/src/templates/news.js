@@ -1,6 +1,6 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
 import styled from "@emotion/styled";
-import { Breadcrumbs } from "components/breadcrumbs";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { graphql, Link } from "gatsby";
 import { Donate } from "../../components/common/Donate";
 import { Gallery } from "../../components/gallery";

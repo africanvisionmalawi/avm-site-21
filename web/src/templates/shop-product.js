@@ -1,6 +1,6 @@
 // import SanityImage from "gatsby-plugin-sanity-image";
 import styled from "@emotion/styled";
-import { Breadcrumbs } from "components/breadcrumbs";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { graphql } from "gatsby";
 import React from "react";
 // import Pricing from "../components/pricing";

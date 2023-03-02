@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Breadcrumbs } from "components/breadcrumbs";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { OurWork } from "components/ourwork";
 import { PortableText } from "components/portable-text/BasePortableText";
 import groq from "groq";

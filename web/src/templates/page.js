@@ -2,7 +2,7 @@
 import { BannerMsg } from "components/banner-msg";
 // import Pricing from "../components/pricing";
 import styled from "@emotion/styled";
-import { Breadcrumbs } from "components/breadcrumbs";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { GoogleMap } from "components/google-map";
 import { graphql } from "gatsby";
 import { Donate } from "../../components/common/Donate";
