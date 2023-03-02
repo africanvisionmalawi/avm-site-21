@@ -238,10 +238,10 @@ export async function getStaticProps({ params, preview = false }) {
   const hasCategory = !!slug.length > 1;
   const slugLength = slug.length;
   const currentSlug = hasCategory ? slug[slug.length - 1] : slug.toString();
-  console.log("currentSlug ", currentSlug);
-  console.log("slug ", slug[slug.length - 1]);
+  // console.log("currentSlug ", currentSlug);
+  // console.log("slug ", slug[slug.length - 1]);
   data.sanityPost = await client.fetch(query, { currentSlug, hasCategory });
-  console.log("data ", data);
+  // console.log("data ", data);
 
   if (!data.sanityPost) {
     // check for markdown news
