@@ -1,9 +1,14 @@
 [build]
-  publish = "public"
-  command = "npm run build"
-  functions = "lambda"
+publish = "public"
+command = "npm run build"
+functions = "lambda"
 [build.environment]
-  YARN_VERSION = "1.9.4"
-  YARN_FLAGS = "--no-ignore-optional"
+YARN_VERSION = "1.9.4"
+YARN_FLAGS = "--no-ignore-optional"
 [[plugins]]
-  package = "netlify-plugin-gatsby-cache"
+package = "netlify-plugin-gatsby-cache"
+[[redirects]]
+from = "/avm-studio/"
+to = "https://avm.sanity.studio"
+stauts = 200
+force = true
