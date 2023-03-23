@@ -10,5 +10,5 @@ package = "netlify-plugin-gatsby-cache"
 [[redirects]]
 from = "/avm-studio/"
 to = "https://avm.sanity.studio"
-stauts = 200
+status = 200
 force = true
