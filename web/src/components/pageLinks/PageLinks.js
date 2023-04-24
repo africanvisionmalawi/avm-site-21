@@ -16,7 +16,9 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
         ? pageLinks.map((pageLink) => {
             return (
               <React.Fragment key={pageLink.id}>
-                {!pageLink.hideLink ? (
+                {!pageLink.hideLink &&
+                (pageLink.extUrl || url) &&
+                url !== "/" ? (
                   <>
                     <CardSingle
                       url={
@@ -30,7 +32,7 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
                       extUrl={pageLink.extUrl ? pageLink.extUrl : null}
                       title={pageLink.linkTitle ? pageLink.linkTitle : null}
                       linkText={pageLink.linkText ? pageLink.linkText : null}
-                      fixed={pageLink.photo ? pageLink.photo.asset.fixed : null}
+                      fixed={pageLink?.photo?.asset?.fixed || null}
                       photo={pageLink.photo ? pageLink.photo : null}
                       featured={pageLink.featured ? pageLink.featured : false}
                       // showPageLink={pageLink.showPageLink}
