@@ -17,8 +17,7 @@ const PageLinksWithPhotos = ({ pageLinks }) => {
             return (
               <React.Fragment key={pageLink.id}>
                 {!pageLink.hideLink &&
-                (pageLink.extUrl || url) &&
-                url !== "/" ? (
+                (pageLink.extUrl || (url && url !== "/")) ? (
                   <>
                     <CardSingle
                       url={
