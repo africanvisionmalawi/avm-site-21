@@ -45,7 +45,7 @@ export const CardSingle = ({
   // console.log("linkText ", linkText);
   return (
     <div>
-      {url || extUrl ? (
+      {(url || extUrl) && photo ? (
         <>
           {url ? (
             <Link to={url} className="card-image">
